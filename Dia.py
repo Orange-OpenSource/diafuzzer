@@ -100,6 +100,8 @@ Two cases for now in rfc6733: Diameter CCF, and grouped AVP'''
   for l in tokenize(whole):
     if not ongoing_elm:
       m = hdr(l)
+      if not m:
+        print >>sys.stderr, 'failed to parse %r' % l
       assert(m)
 
       ongoing_elm = m
