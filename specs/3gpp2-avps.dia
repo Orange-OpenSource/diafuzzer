@@ -1,0 +1,9 @@
+@name	3gpp2-avps
+@vendor	5535	3gpp2
+
+@avp_types
+3GPP2-BSID                                   	9010     	UTF8String          	MV  
+
+@avp_vendor_id	5535
+3GPP2-BSID
+

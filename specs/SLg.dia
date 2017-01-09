@@ -1,0 +1,123 @@
+@id	16777255
+@name	SLg
+
+@inherits	ietf-avps
+@inherits	3gpp-avps
+
+@messages
+Provide-Location-Request ::= <Diameter Header: 8388620, REQ, PXY, 16777255>
+      < Session-Id >
+      [ Vendor-Specific-Application-Id ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Host }
+      { Destination-Realm }
+      { SLg-Location-Type }
+      [ User-Name ]
+      [ MSISDN ]
+      [ IMEI ]
+      { LCS-EPS-Client-Name }
+      { LCS-Client-Type }
+      [ LCS-Requestor-Name ]
+      [ LCS-Priority ]
+      [ LCS-QoS ]
+      [ Velocity-Requested ]
+      [ Supported-GAD-Shapes ]
+      [ LCS-Service-Type-ID ]
+      [ LCS-Codeword ]
+      [ LCS-Privacy-Check-Non-Session ]
+      [ LCS-Privacy-Check-Session ]
+      [ Service-Selection ]
+      [ Deferred-Location-Type ]
+      [ PLR-Flags ]
+  *   [ Supported-Features ]
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Provide-Location-Answer ::= <Diameter Header: 8388620, PXY, 16777255>
+      < Session-Id >
+      [ Vendor-Specific-Application-Id ]
+      [ Result-Code ]
+      [ Experimental-Result ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Location-Estimate ]
+      [ Accuracy-Fulfilment-Indicator ]
+      [ Age-Of-Location-Estimate ]
+      [ Velocity-Estimate ]
+      [ EUTRAN-Positioning-Data ]
+      [ ECGI ]
+      [ GERAN-Positioning-Info ]
+      [ Cell-Global-Identity ]
+      [ UTRAN-Positioning-Info ]
+      [ Service-Area-Identity ]
+      [ Serving-Node ]
+      [ PLA-Flags ]
+      [ ESMLC-Cell-Info ]
+  *   [ Supported-Features ]
+  *   [ AVP ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Location-Report-Request ::= <Diameter Header: 8388621, REQ, PXY, 16777255>
+      < Session-Id >
+      [ Vendor-Specific-Application-Id ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Host }
+      { Destination-Realm }
+      { Location-Event }
+      [ LCS-EPS-Client-Name ]
+      [ User-Name ]
+      [ MSISDN ]
+      [ IMEI ]
+      [ Location-Estimate ]
+      [ Accuracy-Fulfilment-Indicator ]
+      [ Age-Of-Location-Estimate ]
+      [ Velocity-Estimate ]
+      [ EUTRAN-Positioning-Data ]
+      [ ECGI ]
+      [ GERAN-Positioning-Info ]
+      [ Cell-Global-Identity ]
+      [ UTRAN-Positioning-Info ]
+      [ Service-Area-Identity ]
+      [ LCS-Service-Type-ID ]
+      [ Pseudonym-Indicator ]
+      [ LCS-QoS-Class ]
+      [ Serving-Node ]
+      [ LRR-Flags ]
+      [ LCS-Reference-Number ]
+      [ Deferred-MT-LR-Data ]
+      [ GMLC-Address ]
+      [ Reporting-Amount ]
+      [ Periodic-LDR-Information ]
+      [ ESMLC-Cell-Info ]
+      [ 1xRTT-RCID ]
+  *   [ Supported-Features ]
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Location-Report-Answer ::= <Diameter Header: 8388621, PXY, 16777255>
+      < Session-Id >
+      [ Vendor-Specific-Application-Id ]
+      [ Result-Code ]
+      [ Experimental-Result ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ GMLC-Address ]
+      [ LRA-Flags ]
+      [ Reporting-PLMN-List ]
+      [ LCS-Reference-Number ]
+  *   [ Supported-Features ]
+  *   [ AVP ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+

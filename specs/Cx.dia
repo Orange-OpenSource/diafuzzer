@@ -1,0 +1,235 @@
+@id	16777216
+@name	Cx
+
+@inherits	ietf-avps
+@inherits	3gpp-avps
+
+@messages
+User-Authorization-Request ::= <Diameter Header: 300, REQ, PXY, 16777216>
+      < Session-Id >
+      { Vendor-Specific-Application-Id }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Destination-Host ]
+      { Destination-Realm }
+      { User-Name }
+      [ OC-Supported-Features ]
+  *   [ Supported-Features ]
+      { Public-Identity }
+      { Visited-Network-Identifier }
+      [ User-Authorization-Type ]
+      [ UAR-Flags ]
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+User-Authorization-Answer ::= <Diameter Header: 300, PXY, 16777216>
+      < Session-Id >
+      { Vendor-Specific-Application-Id }
+      [ Result-Code ]
+      [ Experimental-Result ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ OC-Supported-Features ]
+      [ OC-OLR ]
+  *   [ Supported-Features ]
+      [ Server-Name ]
+      [ Server-Capabilities ]
+  *   [ AVP ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Server-Assignment-Request ::= <Diameter Header: 301, REQ, PXY, 16777216>
+      < Session-Id >
+      { Vendor-Specific-Application-Id }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Destination-Host ]
+      { Destination-Realm }
+      [ User-Name ]
+      [ OC-Supported-Features ]
+  *   [ Supported-Features ]
+  *   [ Public-Identity ]
+      [ Wildcarded-Public-Identity ]
+      { Server-Name }
+      { Server-Assignment-Type }
+      { User-Data-Already-Available }
+      [ SCSCF-Restoration-Info ]
+      [ Multiple-Registration-Indication ]
+      [ Session-Priority ]
+      [ SAR-Flags ]
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Server-Assignment-Answer ::= <Diameter Header: 301, PXY, 16777216>
+      < Session-Id >
+      { Vendor-Specific-Application-Id }
+      [ Result-Code ]
+      [ Experimental-Result ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ User-Name ]
+      [ OC-Supported-Features ]
+      [ OC-OLR ]
+  *   [ Supported-Features ]
+      [ Cx-User-Data ]
+      [ Charging-Information ]
+      [ Associated-Identities ]
+      [ Loose-Route-Indication ]
+  *   [ SCSCF-Restoration-Info ]
+      [ Associated-Registered-Identities ]
+      [ Server-Name ]
+      [ Wildcarded-Public-Identity ]
+      [ Priviledged-Sender-Indication ]
+  *   [ AVP ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Location-Info-Request ::= <Diameter Header: 302, REQ, PXY, 16777216>
+      < Session-Id >
+      { Vendor-Specific-Application-Id }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Destination-Host ]
+      { Destination-Realm }
+      [ Originating-Request ]
+      [ OC-Supported-Features ]
+  *   [ Supported-Features ]
+      { Public-Identity }
+      [ User-Authorization-Type ]
+      [ Session-Priority ]
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Location-Info-Answer ::= <Diameter Header: 302, PXY, 16777216>
+      < Session-Id >
+      { Vendor-Specific-Application-Id }
+      [ Result-Code ]
+      [ Experimental-Result ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ OC-Supported-Features ]
+      [ OC-OLR ]
+  *   [ Supported-Features ]
+      [ Server-Name ]
+      [ Server-Capabilities ]
+      [ Wildcarded-Public-Identity ]
+      [ LIA-Flags ]
+  *   [ AVP ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Multimedia-Auth-Request ::= <Diameter Header: 303, REQ, PXY, 16777216>
+      < Session-Id >
+      { Vendor-Specific-Application-Id }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      [ Destination-Host ]
+      { User-Name }
+      [ OC-Supported-Features ]
+  *   [ Supported-Features ]
+      { Public-Identity }
+      { 3GPP-SIP-Auth-Data-Item }
+      { 3GPP-SIP-Number-Auth-Items }
+      { Server-Name }
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Multimedia-Auth-Answer ::= <Diameter Header: 303, PXY, 16777216>
+      < Session-Id >
+      { Vendor-Specific-Application-Id }
+      [ Result-Code ]
+      [ Experimental-Result ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ User-Name ]
+      [ OC-Supported-Features ]
+      [ OC-OLR ]
+  *   [ Supported-Features ]
+      [ Public-Identity ]
+      [ 3GPP-SIP-Number-Auth-Items ]
+  *   [ 3GPP-SIP-Auth-Data-Item ]
+  *   [ AVP ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Registration-Termination-Request ::= <Diameter Header: 304, REQ, PXY, 16777216>
+      < Session-Id >
+      { Vendor-Specific-Application-Id }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Host }
+      { Destination-Realm }
+      { User-Name }
+      [ Associated-Identities ]
+  *   [ Supported-Features ]
+  *   [ Public-Identity ]
+      { Deregistration-Reason }
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Registration-Termination-Answer ::= <Diameter Header: 304, PXY, 16777216>
+      < Session-Id >
+      { Vendor-Specific-Application-Id }
+      [ Result-Code ]
+      [ Experimental-Result ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Associated-Identities ]
+  *   [ Supported-Features ]
+  *   [ Identity-with-Emergency-Registration ]
+  *   [ AVP ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Push-Profile-Request ::= <Diameter Header: 305, REQ, PXY, 16777216>
+      < Session-Id >
+      { Vendor-Specific-Application-Id }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Host }
+      { Destination-Realm }
+      { User-Name }
+  *   [ Supported-Features ]
+      [ Cx-User-Data ]
+      [ Charging-Information ]
+      [ 3GPP-SIP-Auth-Data-Item ]
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Push-Profile-Answer ::= <Diameter Header: 305, PXY, 16777216>
+      < Session-Id >
+      { Vendor-Specific-Application-Id }
+      [ Result-Code ]
+      [ Experimental-Result ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+  *   [ Supported-Features ]
+  *   [ AVP ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+

@@ -1,0 +1,164 @@
+@id	16777217
+@name	Sh
+
+@inherits	ietf-avps
+@inherits	3gpp-avps
+
+@messages
+User-Data-Request ::= <Diameter Header: 306, REQ, PXY, 16777217>
+      < Session-Id >
+      { Vendor-Specific-Application-Id }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Destination-Host ]
+      { Destination-Realm }
+  *   [ Supported-Features ]
+      { User-Identity }
+      [ Wildcarded-Public-Identity ]
+      [ Wildcarded-IMPU ]
+      [ Server-Name ]
+  *   [ Service-Indication ]
+  *   { Data-Reference }
+  *   [ Identity-Set ]
+      [ Requested-Domain ]
+      [ Current-Location ]
+  *   [ DSAI-Tag ]
+      [ Session-Priority ]
+      [ User-Name ]
+      [ Requested-Nodes ]
+      [ Serving-Node-Indication ]
+      [ Pre-paging-Supported ]
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+User-Data-Answer ::= <Diameter Header: 306, PXY, 16777217>
+      < Session-Id >
+      { Vendor-Specific-Application-Id }
+      [ Result-Code ]
+      [ Experimental-Result ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+  *   [ Supported-Features ]
+      [ Wildcarded-Public-Identity ]
+      [ Wildcarded-IMPU ]
+      [ User-Data ]
+  *   [ AVP ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Profile-Update-Request ::= <Diameter Header: 307, REQ, PXY, 16777217>
+      < Session-Id >
+      { Vendor-Specific-Application-Id }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Destination-Host ]
+      { Destination-Realm }
+  *   [ Supported-Features ]
+      { User-Identity }
+      [ Wildcarded-Public-Identity ]
+      [ Wildcarded-IMPU ]
+      [ User-Name ]
+      { Data-Reference }
+      { User-Data }
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Profile-Update-Answer ::= <Diameter Header: 307, PXY, 16777217>
+      < Session-Id >
+      { Vendor-Specific-Application-Id }
+      [ Result-Code ]
+      [ Experimental-Result ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Wildcarded-Public-Identity ]
+      [ Wildcarded-IMPU ]
+      [ Repository-Data-ID ]
+  *   [ Supported-Features ]
+  *   [ AVP ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Subscribe-Notifications-Request ::= <Diameter Header: 308, REQ, PXY, 16777217>
+      < Session-Id >
+      { Vendor-Specific-Application-Id }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Destination-Host ]
+      { Destination-Realm }
+  *   [ Supported-Features ]
+      { User-Identity }
+      [ Wildcarded-Public-Identity ]
+      [ Wildcarded-IMPU ]
+  *   [ Service-Indication ]
+      [ Send-Data-Indication ]
+      [ Server-Name ]
+      { Subs-Req-Type }
+  *   { Data-Reference }
+  *   [ Identity-Set ]
+      [ Expiry-Time ]
+  *   [ DSAI-Tag ]
+      [ One-Time-Notification ]
+      [ User-Name ]
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Subscribe-Notifications-Answer ::= <Diameter Header: 308, PXY, 16777217>
+      < Session-Id >
+      { Vendor-Specific-Application-Id }
+      { Auth-Session-State }
+      [ Result-Code ]
+      [ Experimental-Result ]
+      { Origin-Host }
+      { Origin-Realm }
+      [ Wildcarded-Public-Identity ]
+      [ Wildcarded-IMPU ]
+  *   [ Supported-Features ]
+      [ User-Data ]
+      [ Expiry-Time ]
+  *   [ AVP ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Push-Notification-Request ::= <Diameter Header: 309, REQ, PXY, 16777217>
+      < Session-Id >
+      { Vendor-Specific-Application-Id }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Host }
+      { Destination-Realm }
+  *   [ Supported-Features ]
+      { User-Identity }
+      [ Wildcarded-Public-Identity ]
+      [ Wildcarded-IMPU ]
+      [ User-Name ]
+      { User-Data }
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Push-Notification-Answer ::= <Diameter Header: 309, PXY, 16777217>
+      < Session-Id >
+      { Vendor-Specific-Application-Id }
+      [ Result-Code ]
+      [ Experimental-Result ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+  *   [ Supported-Features ]
+  *   [ AVP ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+

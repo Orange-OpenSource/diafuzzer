@@ -1,0 +1,134 @@
+@id	16777272
+@name	S6b
+
+@inherits	ietf-avps
+@inherits	3gpp-avps
+
+@messages
+AA-Request ::= <Diameter Header: 265, REQ, PXY, 16777272>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { Auth-Request-Type }
+      [ User-Name ]
+      [ MIP6-Agent-Info ]
+      [ MIP6-Feature-Vector ]
+      [ Visited-Network-Identifier ]
+      [ QoS-Capability ]
+      [ Service-Selection ]
+  *   [ Supported-Features ]
+  *   [ AVP ]
+
+AA-Answer ::= <Diameter Header: 265, PXY, 16777272>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Auth-Request-Type }
+      { Result-Code }
+      { Origin-Host }
+      { Origin-Realm }
+      [ MIP6-Feature-Vector ]
+      [ Session-Timeout ]
+      [ APN-Configuration ]
+      [ QoS-Resources ]
+      [ AN-Trusted ]
+  *   [ Redirect-Host ]
+      [ Trace-Info ]
+  *   [ Supported-Features ]
+  *   [ AVP ]
+
+Re-Auth-Request ::= <Diameter Header: 258, REQ, PXY, 16777272>
+      < Session-Id >
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { Destination-Host }
+      { Auth-Application-Id }
+      { Re-Auth-Request-Type }
+      [ User-Name ]
+      [ Trust-Relationship-Update ]
+  *   [ AVP ]
+
+Re-Auth-Answer ::= <Diameter Header: 258, PXY, 16777272>
+      < Session-Id >
+      { Result-Code }
+      { Origin-Host }
+      { Origin-Realm }
+      [ User-Name ]
+  *   [ AVP ]
+
+Session-Termination-Request ::= <Diameter Header: 275, REQ, PXY, 16777272>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { Termination-Cause }
+      [ User-Name ]
+  *   [ AVP ]
+
+Session-Termination-Answer ::= <Diameter Header: 275, PXY, 16777272>
+      < Session-Id >
+      { Result-Code }
+      { Origin-Host }
+      { Origin-Realm }
+  *   [ AVP ]
+
+Diameter-EAP-Request ::= <Diameter Header: 268, REQ, PXY, 16777272>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { Auth-Request-Type }
+      [ RAT-Type ]
+      [ User-Name ]
+      [ Service-Selection ]
+      { EAP-Payload }
+      [ MIP6-Feature-Vector ]
+      [ MIP6-Agent-Info ]
+      [ QoS-Capability ]
+      [ Visited-Network-Identifier ]
+  *   [ Supported-Features ]
+  *   [ AVP ]
+
+Diameter-EAP-Answer ::= <Diameter Header: 268, PXY, 16777272>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Auth-Request-Type }
+      { Result-Code }
+      { Origin-Host }
+      { Origin-Realm }
+      [ User-Name ]
+      [ EAP-Payload ]
+      [ EAP-Master-Session-Key ]
+      [ Mobile-Node-Identifier ]
+      [ APN-Configuration ]
+      [ MIP6-Agent-Info ]
+      [ MIP6-Feature-Vector ]
+      [ 3GPP-Charging-Characteristics ]
+  *   [ QoS-Resources ]
+  *   [ Redirect-Host ]
+      [ Trace-Info ]
+  *   [ Supported-Features ]
+  *   [ AVP ]
+
+Abort-Session-Request ::= <Diameter Header: 274, REQ, PXY, 16777272>
+      < Session-Id >
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { Destination-Host }
+      { Auth-Application-Id }
+      [ User-Name ]
+      [ Auth-Session-State ]
+  *   [ AVP ]
+
+Abort-Session-Answer ::= <Diameter Header: 274, PXY, 16777272>
+      < Session-Id >
+      { Result-Code }
+      { Origin-Host }
+      { Origin-Realm }
+  *   [ AVP ]
+

@@ -1,0 +1,145 @@
+@id	16777224
+@name	Gx
+
+@inherits	etsi-avps
+@inherits	ietf-avps
+@inherits	3gpp-avps
+
+@messages
+CC-Request ::= <Diameter Header: 272, REQ, PXY, 16777224>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { CC-Request-Type }
+      { CC-Request-Number }
+      [ Destination-Host ]
+      [ Origin-State-Id ]
+  *   [ Subscription-Id ]
+  *   [ Supported-Features ]
+      [ Network-Request-Support ]
+  *   [ Packet-Filter-Information ]
+      [ Packet-Filter-Operation ]
+      [ Bearer-Identifier ]
+      [ Bearer-Operation ]
+      [ Framed-IP-Address ]
+      [ Framed-IPv6-Prefix ]
+      [ IP-CAN-Type ]
+      [ 3GPP-RAT-Type ]
+      [ RAT-Type ]
+      [ Termination-Cause ]
+      [ User-Equipment-Info ]
+      [ QoS-Information ]
+      [ QoS-Negotiation ]
+      [ QoS-Upgrade ]
+      [ Default-EPS-Bearer-QoS ]
+  * 2 [ AN-GW-Address ]
+      [ 3GPP-SGSN-MCC-MNC ]
+      [ 3GPP-SGSN-Address ]
+      [ 3GPP-SGSN-IPv6-Address ]
+      [ RAI ]
+      [ 3GPP-User-Location-Info ]
+      [ 3GPP-MS-TimeZone ]
+      [ Called-Station-Id ]
+      [ PDN-Connection-ID ]
+      [ Bearer-Usage ]
+      [ Online ]
+      [ Offline ]
+  *   [ TFT-Packet-Filter-Information ]
+  *   [ Charging-Rule-Report ]
+  *   [ Event-Trigger ]
+      [ Event-Report-Indication ]
+      [ Access-Network-Charging-Address ]
+  *   [ Access-Network-Charging-Identifier-Gx ]
+  *   [ CoA-Information ]
+  *   [ Usage-Monitoring-Information ]
+      [ Routing-Rule-Install ]
+      [ Routing-Rule-Remove ]
+      [ Logical-Access-ID ]
+      [ Physical-Access-ID ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+CC-Answer ::= <Diameter Header: 272, PXY, 16777224>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Result-Code ]
+      [ Experimental-Result ]
+      { CC-Request-Type }
+      { CC-Request-Number }
+  *   [ Supported-Features ]
+      [ Bearer-Control-Mode ]
+  *   [ Event-Trigger ]
+      [ Event-Report-Indication ]
+      [ Origin-State-Id ]
+  *   [ Redirect-Host ]
+      [ Redirect-Host-Usage ]
+      [ Redirect-Max-Cache-Time ]
+  *   [ Charging-Rule-Remove ]
+  *   [ Charging-Rule-Install ]
+      [ Charging-Information ]
+      [ Online ]
+      [ Offline ]
+  *   [ QoS-Information ]
+      [ Revalidation-Time ]
+      [ Default-EPS-Bearer-QoS ]
+      [ Bearer-Usage ]
+  *   [ Usage-Monitoring-Information ]
+  *   [ CSG-Information-Reporting ]
+      [ User-CSG-Information ]
+      [ Error-Message ]
+      [ Error-Reporting-Host ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+RA-Request ::= <Diameter Header: 258, REQ, PXY, 16777224>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { Destination-Host }
+      { Re-Auth-Request-Type }
+      [ Session-Release-Cause ]
+      [ Origin-State-Id ]
+  *   [ Event-Trigger ]
+      [ Event-Report-Indication ]
+  *   [ Charging-Rule-Remove ]
+  *   [ Charging-Rule-Install ]
+      [ Default-EPS-Bearer-QoS ]
+  *   [ QoS-Information ]
+      [ Revalidation-Time ]
+  *   [ Usage-Monitoring-Information ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+RA-Answer ::= <Diameter Header: 258, PXY, 16777224>
+      < Session-Id >
+      { Origin-Host }
+      { Origin-Realm }
+      [ Result-Code ]
+      [ Experimental-Result ]
+      [ Origin-State-Id ]
+      [ IP-CAN-Type ]
+      [ RAT-Type ]
+  * 2 [ AN-GW-Address ]
+      [ 3GPP-SGSN-MCC-MNC ]
+      [ 3GPP-SGSN-Address ]
+      [ 3GPP-SGSN-IPv6-Address ]
+      [ RAI ]
+      [ 3GPP-User-Location-Info ]
+      [ 3GPP-MS-TimeZone ]
+  *   [ Charging-Rule-Report ]
+      [ Error-Message ]
+      [ Error-Reporting-Host ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ AVP ]
+

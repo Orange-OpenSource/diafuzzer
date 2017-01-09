@@ -1,0 +1,160 @@
+@id	16777236
+@name	Rx
+
+@inherits	etsi-avps
+@inherits	ietf-avps
+@inherits	3gpp-avps
+
+@messages
+AA-Request ::= <Diameter Header: 265, REQ, PXY, 16777236>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      [ Destination-Host ]
+      [ AF-Application-Identifier ]
+  *   [ Media-Component-Description ]
+      [ Service-Info-Status ]
+      [ AF-Charging-Identifier ]
+      [ SIP-Forking-Indication ]
+  *   [ Specific-Action ]
+  *   [ Subscription-Id ]
+  *   [ Supported-Features ]
+      [ Reservation-Priority ]
+      [ Framed-IP-Address ]
+      [ Framed-IPv6-Prefix ]
+      [ Called-Station-Id ]
+      [ Service-URN ]
+      [ Sponsored-Connectivity-Data ]
+      [ MPS-Identifier ]
+      [ Origin-State-Id ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+AA-Answer ::= <Diameter Header: 265, PXY, 16777236>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Result-Code ]
+      [ Experimental-Result ]
+  *   [ Access-Network-Charging-Identifier ]
+      [ Access-Network-Charging-Address ]
+      [ Acceptable-Service-Info ]
+      [ IP-CAN-Type ]
+      [ RAT-Type ]
+  *   [ Flows ]
+  *   [ Supported-Features ]
+  *   [ Class ]
+      [ Error-Message ]
+      [ Error-Reporting-Host ]
+  *   [ Failed-AVP ]
+      [ Origin-State-Id ]
+  *   [ Redirect-Host ]
+      [ Redirect-Host-Usage ]
+      [ Redirect-Max-Cache-Time ]
+  *   [ Proxy-Info ]
+  *   [ AVP ]
+
+RA-Request ::= <Diameter Header: 258, REQ, PXY, 16777236>
+      < Session-Id >
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { Destination-Host }
+      { Auth-Application-Id }
+      { Specific-Action }
+  *   [ Access-Network-Charging-Identifier ]
+      [ Access-Network-Charging-Address ]
+  *   [ Flows ]
+  *   [ Subscription-Id ]
+      [ Abort-Cause ]
+      [ IP-CAN-Type ]
+      [ RAT-Type ]
+      [ Sponsored-Connectivity-Data ]
+      [ Origin-State-Id ]
+  *   [ Class ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+RA-Answer ::= <Diameter Header: 258, PXY, 16777236>
+      < Session-Id >
+      { Origin-Host }
+      { Origin-Realm }
+      [ Result-Code ]
+      [ Experimental-Result ]
+  *   [ Media-Component-Description ]
+      [ Service-URN ]
+      [ Origin-State-Id ]
+  *   [ Class ]
+      [ Error-Message ]
+      [ Error-Reporting-Host ]
+  *   [ Redirect-Host ]
+      [ Redirect-Host-Usage ]
+      [ Redirect-Max-Cache-Time ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ AVP ]
+
+ST-Request ::= <Diameter Header: 275, REQ, PXY, 16777236>
+      < Session-Id >
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { Auth-Application-Id }
+      { Termination-Cause }
+      [ Destination-Host ]
+  *   [ Class ]
+      [ Origin-State-Id ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+ST-Answer ::= <Diameter Header: 275, PXY, 16777236>
+      < Session-Id >
+      { Origin-Host }
+      { Origin-Realm }
+      [ Result-Code ]
+      [ Error-Message ]
+      [ Error-Reporting-Host ]
+  *   [ Failed-AVP ]
+      [ Sponsored-Connectivity-Data ]
+      [ Origin-State-Id ]
+  *   [ Class ]
+  *   [ Redirect-Host ]
+      [ Redirect-Host-Usage ]
+      [ Redirect-Max-Cache-Time ]
+  *   [ Proxy-Info ]
+  *   [ AVP ]
+
+AS-Request ::= <Diameter Header: 274, REQ, PXY, 16777236>
+      < Session-Id >
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { Destination-Host }
+      { Auth-Application-Id }
+      { Abort-Cause }
+      [ Origin-State-Id ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+AS-Answer ::= <Diameter Header: 274, PXY, 16777236>
+      < Session-Id >
+      { Origin-Host }
+      { Origin-Realm }
+      [ Result-Code ]
+      [ Origin-State-Id ]
+      [ Error-Message ]
+      [ Error-Reporting-Host ]
+  *   [ Failed-AVP ]
+  *   [ Redirect-Host ]
+      [ Redirect-Host-Usage ]
+      [ Redirect-Max-Cache-Time ]
+  *   [ Proxy-Info ]
+  *   [ AVP ]
+

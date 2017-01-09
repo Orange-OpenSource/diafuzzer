@@ -1,0 +1,35 @@
+@id	16777252
+@name	S13
+
+@inherits	ietf-avps
+@inherits	3gpp-avps
+
+@messages
+ME-Identity-Check-Request ::= <Diameter Header: 324, REQ, PXY, 16777252>
+      < Session-Id >
+      [ Vendor-Specific-Application-Id ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Destination-Host ]
+      { Destination-Realm }
+      { Terminal-Information }
+      [ User-Name ]
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+ME-Identity-Check-Answer ::= <Diameter Header: 324, PXY, 16777252>
+      < Session-Id >
+      [ Vendor-Specific-Application-Id ]
+      [ Result-Code ]
+      [ Experimental-Result ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Equipment-Status ]
+  *   [ AVP ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+

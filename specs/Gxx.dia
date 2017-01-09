@@ -1,0 +1,118 @@
+@id	16777266
+@name	Gxx
+
+@inherits	etsi-avps
+@inherits	ietf-avps
+@inherits	3gpp-avps
+@inherits	3gpp2-avps
+
+@messages
+CC-Request ::= <Diameter Header: 272, REQ, PXY, 16777266>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { CC-Request-Type }
+      { CC-Request-Number }
+      [ Destination-Host ]
+      [ Origin-State-Id ]
+  *   [ Supported-Features ]
+  *   [ Subscription-Id ]
+      [ Network-Request-Support ]
+  *   [ Packet-Filter-Information ]
+      [ Packet-Filter-Operation ]
+      [ Framed-IP-Address ]
+      [ Framed-IPv6-Prefix ]
+      [ IP-CAN-Type ]
+      [ RAT-Type ]
+      [ Termination-Cause ]
+      [ User-Equipment-Info ]
+      [ QoS-Information ]
+      [ Default-EPS-Bearer-QoS ]
+  * 2 [ AN-GW-Address ]
+      [ 3GPP-SGSN-MCC-MNC ]
+      [ RAI ]
+      [ 3GPP-User-Location-Info ]
+      [ 3GPP-MS-TimeZone ]
+      [ 3GPP2-BSID ]
+      [ User-CSG-Information ]
+      [ Called-Station-Id ]
+      [ PDN-Connection-ID ]
+  *   [ QoS-Rule-Report ]
+  *   [ Event-Trigger ]
+      [ Session-Linking-Indicator ]
+      [ Trace-Data ]
+      [ Trace-Reference ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+CC-Answer ::= <Diameter Header: 272, PXY, 16777266>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Result-Code ]
+      [ Experimental-Result ]
+      { CC-Request-Type }
+      { CC-Request-Number }
+  *   [ Supported-Features ]
+      [ Bearer-Control-Mode ]
+  *   [ Event-Trigger ]
+      [ Framed-IPv6-Prefix ]
+      [ Origin-State-Id ]
+  *   [ Redirect-Host ]
+      [ Redirect-Host-Usage ]
+      [ Redirect-Max-Cache-Time ]
+  *   [ QoS-Rule-Remove ]
+  *   [ QoS-Rule-Install ]
+      [ QoS-Information ]
+      [ Default-EPS-Bearer-QoS ]
+      [ Error-Message ]
+      [ Error-Reporting-Host ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+RA-Request ::= <Diameter Header: 258, REQ, PXY, 16777266>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { Destination-Host }
+      { Re-Auth-Request-Type }
+      [ Session-Release-Cause ]
+      [ Origin-State-Id ]
+  *   [ Event-Trigger ]
+  *   [ QoS-Rule-Remove ]
+  *   [ QoS-Rule-Install ]
+      [ QoS-Information ]
+      [ Default-EPS-Bearer-QoS ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+RA-Answer ::= <Diameter Header: 258, PXY, 16777266>
+      < Session-Id >
+      { Origin-Host }
+      { Origin-Realm }
+      [ Result-Code ]
+      [ Experimental-Result ]
+      [ Origin-State-Id ]
+      [ RAT-Type ]
+      [ 3GPP-SGSN-MCC-MNC ]
+      [ RAI ]
+      [ 3GPP-User-Location-Info ]
+      [ User-CSG-Information ]
+      [ 3GPP-MS-TimeZone ]
+      [ 3GPP2-BSID ]
+  *   [ QoS-Rule-Report ]
+      [ Error-Message ]
+      [ Error-Reporting-Host ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ AVP ]
+

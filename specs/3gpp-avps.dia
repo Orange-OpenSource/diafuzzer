@@ -1,0 +1,4472 @@
+@name	3gpp-avps
+
+@vendor	10415	3gpp
+
+@inherits	ietf-avps
+@inherits	etsi-avps
+@inherits	3gpp2-avps
+@avp_types
+3GPP-IMSI                                    	1        	UTF8String          	MV  
+3GPP-Charging-ID                             	2        	Integer32           	MV  
+3GPP-PDP-Type                                	3        	Integer32           	MV  
+3GPP-SGSN-Address                            	6        	Address             	MV  
+3GPP-GGSN-Address                            	7        	Address             	MV  
+3GPP-IMSI-MCC-MNC                            	8        	UTF8String          	MV  
+3GPP-GGSN-MCC-MNC                            	9        	UTF8String          	MV  
+3GPP-NSAPI                                   	10       	UTF8String          	MV  
+3GPP-Session-Stop-Indicator                  	11       	UTF8String          	MV  
+3GPP-Selection-Mode                          	12       	UTF8String          	MV  
+3GPP-Charging-Characteristics                	13       	UTF8String          	MV  
+3GPP-SGSN-IPv6-Address                       	15       	OctetString         	MV  
+3GPP-GGSN-IPv6-Address                       	16       	OctetString         	MV  
+3GPP-SGSN-MCC-MNC                            	18       	UTF8String          	MV  
+3GPP-RAT-Type                                	21       	Integer32           	MV  
+3GPP-User-Location-Info                      	22       	OctetString         	MV  
+3GPP-MS-TimeZone                             	23       	OctetString         	MV  
+3GPP-AAA-Server-Name                         	318      	DiameterIdentity    	MV  
+Abort-Cause                                  	500      	Enumerated          	MV  
+Access-Network-Charging-Address              	501      	Address             	MV  
+Access-Network-Charging-Identifier           	502      	Grouped             	MV  
+Access-Network-Charging-Identifier-Value     	503      	OctetString         	MV  
+AF-Application-Identifier                    	504      	OctetString         	MV  
+AF-Charging-Identifier                       	505      	OctetString         	MV  
+Authorization-Token                          	506      	OctetString         	MV  
+Flow-Description                             	507      	IPFilterRule        	MV  
+Flow-Grouping                                	508      	Grouped             	MV  
+Flow-Number                                  	509      	Unsigned32          	MV  
+Flows                                        	510      	Grouped             	MV  
+Flow-Status                                  	511      	Enumerated          	MV  
+Flow-Usage                                   	512      	Enumerated          	MV  
+Specific-Action                              	513      	Enumerated          	MV  
+Max-Requested-Bandwidth-DL                   	515      	Unsigned32          	MV  
+Max-Requested-Bandwidth-UL                   	516      	Unsigned32          	MV  
+Media-Component-Description                  	517      	Grouped             	MV  
+Media-Component-Number                       	518      	Unsigned32          	MV  
+Media-Sub-Component                          	519      	Grouped             	MV  
+Media-Type                                   	520      	Enumerated          	MV  
+RR-Bandwidth                                 	521      	Unsigned32          	MV  
+RS-Bandwidth                                 	522      	Unsigned32          	MV  
+SIP-Forking-Indication                       	523      	Enumerated          	MV  
+Service-URN                                  	525      	OctetString         	MV  
+Acceptable-Service-Info                      	526      	Grouped             	MV  
+Service-Info-Status                          	527      	Enumerated          	MV  
+MPS-Identifier                               	528      	OctetString         	V   
+AF-Signalling-Protocol                       	529      	Enumerated          	V   
+Sponsored-Connectivity-Data			530		Grouped			V
+Sponsor-Identity                             	531      	UTF8String          	V   
+Application-Service-Provider-Identity        	532      	UTF8String          	V   
+Rx-Request-Type                              	533      	Enumerated          	V   
+Min-Requested-Bandwidth-DL                   	534      	Unsigned32          	V   
+Min-Requested-Bandwidth-UL                   	535      	Unsigned32          	V   
+Required-Access-Info                         	536      	Enumerated          	V   
+IP-Domain-Id                                 	537      	OctetString         	V   
+GCS-Identifier                               	538      	OctetString         	V   
+Sharing-Key-DL                               	539      	Unsigned32          	V   
+Sharing-Key-UL                               	540      	Unsigned32          	V   
+Retry-Interval                               	541      	Unsigned32          	V   
+Visited-Network-Identifier                   	600      	OctetString         	MV  
+Public-Identity                              	601      	UTF8String          	MV  
+Server-Name                                  	602      	UTF8String          	MV  
+Server-Capabilities                          	603      	Grouped             	MV  
+Mandatory-Capability                         	604      	Unsigned32          	MV  
+Optional-Capability                          	605      	Unsigned32          	MV  
+Cx-User-Data                                 	606      	OctetString         	MV  
+3GPP-SIP-Number-Auth-Items                   	607      	Unsigned32          	MV  
+ETSI-SIP-Authentication-Scheme               	608      	UTF8String          	MV  
+ETSI-SIP-Authenticate                        	609      	OctetString         	MV  
+ETSI-SIP-Authorization                       	610      	OctetString         	MV  
+SIP-Authentication-Context                   	611      	OctetString         	MV  
+3GPP-SIP-Auth-Data-Item                      	612      	Grouped             	MV  
+ETSI-SIP-Item-Number                         	613      	Unsigned32          	MV  
+Server-Assignment-Type                       	614      	Enumerated          	MV  
+Deregistration-Reason                        	615      	Grouped             	MV  
+Reason-Code                                  	616      	Enumerated          	MV  
+Reason-Info                                  	617      	UTF8String          	MV  
+Charging-Information                         	618      	Grouped             	MV  
+Primary-Event-Charging-Function-Name         	619      	DiameterURI         	MV  
+Secondary-Event-Charging-Function-Name       	620      	DiameterURI         	MV  
+Primary-Charging-Collection-Function-Name    	621      	DiameterURI         	MV  
+Secondary-Charging-Collection-Function-Name  	622      	DiameterURI         	MV  
+User-Authorization-Type                      	623      	Enumerated          	MV  
+User-Data-Already-Available                  	624      	Enumerated          	MV  
+Confidentiality-Key                          	625      	OctetString         	MV  
+Integrity-Key                                	626      	OctetString         	MV  
+Supported-Features                           	628      	Grouped             	V   
+Feature-List-ID                              	629      	Unsigned32          	V   
+Feature-List                                 	630      	Unsigned32          	V   
+Supported-Applications                       	631      	Grouped             	V   
+Associated-Identities                        	632      	Grouped             	V   
+Originating-Request                          	633      	Enumerated          	MV  
+Wildcarded-Public-Identity                   	634      	UTF8String          	V   
+SIP-Digest-Authenticate                      	635      	Grouped             	V   
+Wildcarded-IMPU                              	636      	UTF8String          	V   
+UAR-Flags                                    	637      	Unsigned32          	V   
+Loose-Route-Indication                       	638      	Enumerated          	V   
+SCSCF-Restoration-Info                       	639      	Grouped             	V   
+Path                                         	640      	OctetString         	V   
+Contact                                      	641      	OctetString         	V   
+Subscription-Info                            	642      	Grouped             	V   
+Call-ID-SIP-Header                           	643      	OctetString         	V   
+From-SIP-Header                              	644      	OctetString         	V   
+To-SIP-Header                                	645      	OctetString         	V   
+Record-Route                                 	646      	OctetString         	V   
+Associated-Registered-Identities             	647      	Grouped             	V   
+Multiple-Registration-Indication             	648      	Enumerated          	V   
+Restoration-Info                             	649      	Grouped             	V   
+Session-Priority                             	650      	Enumerated          	V   
+Identity-with-Emergency-Registration         	651      	Grouped             	V   
+Priviledged-Sender-Indication                	652      	Enumerated          	V   
+LIA-Flags                                    	653      	Unsigned32          	V   
+Initial-CSeq-Sequence-Number                 	654      	Unsigned32          	V   
+SAR-Flags                                    	655      	Unsigned32          	V   
+User-Identity                                	700      	Grouped             	MV  
+MSISDN                                       	701      	OctetString         	MV  
+User-Data                                    	702      	OctetString         	MV  
+Data-Reference                               	703      	Enumerated          	MV  
+Service-Indication                           	704      	OctetString         	MV  
+Subs-Req-Type                                	705      	Enumerated          	MV  
+Requested-Domain                             	706      	Enumerated          	MV  
+Current-Location                             	707      	Enumerated          	MV  
+Identity-Set                                 	708      	Enumerated          	V   
+Expiry-Time                                  	709      	Time                	V   
+Send-Data-Indication                         	710      	Enumerated          	V   
+DSAI-Tag                                     	711      	OctetString         	MV  
+One-Time-Notification                        	712      	Enumerated          	V   
+Requested-Nodes                              	713      	Unsigned32          	V   
+Serving-Node-Indication                      	714      	Enumerated          	V   
+Repository-Data-ID                           	715      	Grouped             	V   
+Sequence-Number                              	716      	Unsigned32          	V   
+Pre-paging-Supported                         	717      	Enumerated          	V   
+Local-Time-Zone-Indication                   	718      	Enumerated          	V   
+UDR-Flags                                    	719      	Unsigned32          	V   
+Call-Reference-Info                          	720      	Grouped             	V   
+Call-Reference-Number                        	721      	OctetString         	V   
+AS-Number                                    	722      	OctetString         	V   
+Event-Type                                   	823      	Grouped             	MV  
+ETSI-SIP-Method                              	824      	UTF8String          	MV  
+Event                                        	825      	UTF8String          	MV  
+Content-Type                                 	826      	UTF8String          	MV  
+Content-Length                               	827      	Unsigned32          	MV  
+Content-Disposition                          	828      	UTF8String          	MV  
+Role-Of-Node                                 	829      	Enumerated          	MV  
+User-Session-Id                              	830      	UTF8String          	MV  
+Calling-Party-Address                        	831      	UTF8String          	MV  
+Called-Party-Address                         	832      	UTF8String          	MV  
+Time-Stamps                                  	833      	Grouped             	MV  
+SIP-Request-Timestamp                        	834      	Time                	MV  
+SIP-Response-Timestamp                       	835      	Time                	MV  
+Application-Server                           	836      	UTF8String          	MV  
+Application-Provided-Called-Party-Address    	837      	UTF8String          	MV  
+Inter-Operator-Identifier                    	838      	Grouped             	MV  
+Originating-IOI                              	839      	UTF8String          	MV  
+Terminating-IOI                              	840      	UTF8String          	MV  
+IMS-Charging-Identifier                      	841      	UTF8String          	MV  
+SDP-Session-Description                      	842      	UTF8String          	MV  
+SDP-Media-Component                          	843      	Grouped             	MV  
+SDP-Media-Name                               	844      	UTF8String          	MV  
+SDP-Media-Description                        	845      	UTF8String          	MV  
+CG-Address                                   	846      	Address             	MV  
+GGSN-Address                                 	847      	Address             	MV  
+Served-Party-IP-Address                      	848      	Address             	MV  
+Authorised-QoS                               	849      	UTF8String          	MV  
+Application-Server-Information               	850      	Grouped             	MV  
+Trunk-Group-ID                               	851      	Grouped             	MV  
+Incoming-Trunk-Group-Id                      	852      	UTF8String          	MV  
+Outgoing-Trunk-Group-Id                      	853      	UTF8String          	MV  
+Bearer-Service                               	854      	OctetString         	MV  
+Service-Id                                   	855      	UTF8String          	MV  
+Associated-URI                               	856      	UTF8String          	MV  
+Charged-Party                                	857      	UTF8String          	MV  
+PoC-Controlling-Address                      	858      	UTF8String          	MV  
+PoC-Group-Name                               	859      	UTF8String          	MV  
+Cause-Code                                   	861      	Integer32           	MV  
+Node-Functionality                           	862      	Enumerated          	MV  
+Service-Specific-Data                        	863      	UTF8String          	MV  
+Originator                                   	864      	Enumerated          	MV  
+PS-Furnish-Charging-Information              	865      	Grouped             	MV  
+PS-Free-Format-Data                          	866      	OctetString         	MV  
+PS-Append-Free-Format-Data                   	867      	Enumerated          	MV  
+Time-Quota-Threshold                         	868      	Unsigned32          	MV  
+Volume-Quota-Threshold                       	869      	Unsigned32          	MV  
+Trigger-Type                                 	870      	Enumerated          	MV  
+Quota-Holding-Time                           	871      	Unsigned32          	MV  
+Reporting-Reason                             	872      	Enumerated          	MV  
+Service-Information                          	873      	Grouped             	MV  
+PS-Information                               	874      	Grouped             	MV  
+IMS-Information                              	876      	Grouped             	MV  
+MMS-Information                              	877      	Grouped             	MV  
+LCS-Information                              	878      	Grouped             	MV  
+PoC-Information                              	879      	Grouped             	MV  
+MBMS-Information                             	880      	Grouped             	MV  
+Quota-Consumption-Time                       	881      	Unsigned32          	MV  
+Media-Initiator-Flag                         	882      	Enumerated          	MV  
+PoC-Server-Role                              	883      	Enumerated          	MV  
+PoC-Session-Type                             	884      	Enumerated          	MV  
+Number-Of-Participants                       	885      	Unsigned32          	MV  
+Originator-Address                           	886      	Grouped             	MV  
+Participants-Involved                        	887      	UTF8String          	MV  
+Expires                                      	888      	Unsigned32          	MV  
+Message-Body                                 	889      	Grouped             	MV  
+Address-Data                                 	897      	UTF8String          	MV  
+Address-Domain                               	898      	Grouped             	MV  
+Address-Type                                 	899      	Enumerated          	MV  
+TMGI                                         	900      	OctetString         	MV  
+Required-MBMS-Bearer-Capabilities            	901      	UTF8String          	MV  
+MBMS-StartStop-Indication                    	902      	Enumerated          	MV  
+MBMS-Service-Area                            	903      	OctetString         	MV  
+MBMS-Session-Duration                        	904      	OctetString         	MV  
+Alternative-APN                              	905      	UTF8String          	MV  
+MBMS-Service-Type                            	906      	Enumerated          	MV  
+MBMS-2G-3G-Indicator                         	907      	Enumerated          	MV  
+MBMS-Session-Identity                        	908      	OctetString         	MV  
+RAI                                          	909      	UTF8String          	MV  
+Additional-MBMS-Trace-Info                   	910      	OctetString         	MV  
+MBMS-Time-To-Data-Transfer                   	911      	OctetString         	MV  
+MBMS-Flow-Identifier                         	920      	OctetString         	MV  
+CN-IP-Multicast-Distribution                 	921      	Enumerated          	MV  
+MBMS-HC-Indicator                            	922      	Enumerated          	MV  
+MBMS-Data-Transfer-Start                     	929      	Unsigned64          	MV  
+MBMS-Data-Transfer-Stop                      	930      	Unsigned64          	MV  
+Bearer-Usage                                 	1000     	Enumerated          	MV  
+Charging-Rule-Install                        	1001     	Grouped             	MV  
+Charging-Rule-Remove                         	1002     	Grouped             	MV  
+Charging-Rule-Definition                     	1003     	Grouped             	MV  
+Charging-Rule-Base-Name                      	1004     	UTF8String          	MV  
+Charging-Rule-Name                           	1005     	OctetString         	MV  
+Event-Trigger                                	1006     	Enumerated          	MV  
+Metering-Method                              	1007     	Enumerated          	MV  
+Offline                                      	1008     	Enumerated          	MV  
+Online                                       	1009     	Enumerated          	MV  
+Precedence                                   	1010     	Unsigned32          	MV  
+Reporting-Level                              	1011     	Enumerated          	MV  
+TFT-Filter                                   	1012     	IPFilterRule        	MV  
+TFT-Packet-Filter-Information                	1013     	Grouped             	MV  
+ToS-Traffic-Class                            	1014     	OctetString         	MV  
+PDP-Session-Operation                        	1015     	Enumerated          	MV  
+QoS-Information                              	1016     	Grouped             	MV  
+Charging-Rule-Report                         	1018     	Grouped             	MV  
+PCC-Rule-Status                              	1019     	Enumerated          	MV  
+Bearer-Identifier                            	1020     	OctetString         	MV  
+Bearer-Operation                             	1021     	Enumerated          	MV  
+Access-Network-Charging-Identifier-Gx        	1022     	Grouped             	MV  
+Bearer-Control-Mode                          	1023     	Enumerated          	MV  
+Network-Request-Support                      	1024     	Enumerated          	MV  
+Guaranteed-Bitrate-DL                        	1025     	Unsigned32          	MV  
+Guaranteed-Bitrate-UL                        	1026     	Unsigned32          	MV  
+IP-CAN-Type                                  	1027     	Enumerated          	MV  
+QoS-Class-Identifier                         	1028     	Enumerated          	MV  
+QoS-Negotiation					1029		Enumerated		MV
+QoS-Upgrade					1030		Enumerated		MV
+Rule-Failure-Code                            	1031     	Enumerated          	MV  
+RAT-Type                                     	1032     	Enumerated          	V   
+Event-Report-Indication                      	1033     	Grouped             	V   
+Allocation-Retention-Priority                	1034     	Grouped             	V   
+CoA-IP-Address                               	1035     	Address             	V   
+Tunnel-Header-Filter                         	1036     	IPFilterRule        	V   
+Tunnel-Header-Length                         	1037     	Unsigned32          	V   
+Tunnel-Information                           	1038     	Grouped             	V   
+CoA-Information                              	1039     	Grouped             	V   
+APN-Aggregate-Max-Bitrate-DL                 	1040     	Unsigned32          	V   
+APN-Aggregate-Max-Bitrate-UL                 	1041     	Unsigned32          	V   
+Revalidation-Time                            	1042     	Time                	MV  
+Rule-Activation-Time                         	1043     	Time                	MV  
+Rule-Deactivation-Time                       	1044     	Time                	MV  
+Session-Release-Cause                        	1045     	Enumerated          	MV  
+Priority-Level                               	1046     	Unsigned32          	V   
+Pre-emption-Capability                       	1047     	Enumerated          	V   
+Pre-emption-Vulnerability                    	1048     	Enumerated          	V   
+Default-EPS-Bearer-QoS                       	1049     	Grouped             	V   
+AN-GW-Address                                	1050     	Address             	V   
+QoS-Rule-Install                             	1051     	Grouped             	MV  
+QoS-Rule-Remove                              	1052     	Grouped             	MV  
+QoS-Rule-Definition                          	1053     	Grouped             	MV  
+QoS-Rule-Name                                	1054     	OctetString         	MV  
+QoS-Rule-Report                              	1055     	Grouped             	MV  
+Security-Parameter-Index                     	1056     	OctetString         	V   
+Flow-Label                                   	1057     	OctetString         	V   
+Flow-Information                             	1058     	Grouped             	V   
+Packet-Filter-Content                        	1059     	IPFilterRule        	V   
+Packet-Filter-Identifier                     	1060     	OctetString         	V   
+Packet-Filter-Information                    	1061     	Grouped             	V   
+Packet-Filter-Operation                      	1062     	Enumerated          	V   
+Resource-Allocation-Notification             	1063     	Enumerated          	V   
+Session-Linking-Indicator                    	1064     	Enumerated          	MV  
+PDN-Connection-ID                            	1065     	OctetString         	V   
+Monitoring-Key                               	1066     	OctetString         	V   
+Usage-Monitoring-Information                 	1067     	Grouped             	V   
+Usage-Monitoring-Level                       	1068     	Enumerated          	V   
+Usage-Monitoring-Report                      	1069     	Enumerated          	V   
+Usage-Monitoring-Support                     	1070     	Enumerated          	V   
+CSG-Information-Reporting                    	1071     	Enumerated          	V   
+Packet-Filter-Usage                          	1072     	Enumerated          	V   
+Charging-Correlation-Indicator               	1073     	Enumerated          	V   
+Routing-Rule-Remove                          	1075     	Grouped             	V   
+Routing-Rule-Definition                      	1076     	Grouped             	V   
+Routing-Rule-Identifier                      	1077     	OctetString         	V   
+Routing-Filter                               	1078     	Grouped             	V   
+Routing-IP-Address                           	1079     	Address             	V   
+Flow-Direction                               	1080     	Enumerated          	V   
+Routing-Rule-Install                         	1081     	Grouped             	V   
+Credit-Management-Status                     	1082     	Unsigned32          	V   
+Redirect-Information                         	1085     	Grouped             	V   
+Redirect-Support                             	1086     	Enumerated          	V   
+TDF-Information                              	1087     	Grouped             	V   
+TDF-Application-Identifier                   	1088     	OctetString         	V   
+TDF-Destination-Host                         	1089     	DiameterIdentity    	V   
+TDF-Destination-Realm                        	1090     	DiameterIdentity    	V   
+TDF-IP-Address                               	1091     	Address             	V   
+ADC-Rule-Base-Name                           	1095     	UTF8String          	MV  
+Application-Detection-Information            	1098     	Grouped             	V   
+PS-to-CS-Session-Continuity                  	1099     	Enumerated          	V   
+VASP-ID                                      	1101     	UTF8String          	MV  
+VAS-ID                                       	1102     	UTF8String          	MV  
+Domain-Name                                  	1200     	UTF8String          	MV  
+Recipient-Address                            	1201     	Grouped             	MV  
+Submission-Time                              	1202     	Time                	MV  
+MM-Content-Type                              	1203     	Grouped             	MV  
+Type-Number                                  	1204     	Enumerated          	MV  
+Additional-Type-Information                  	1205     	UTF8String          	MV  
+Content-Size                                 	1206     	Unsigned32          	MV  
+Additional-Content-Information               	1207     	Grouped             	MV  
+Addressee-Type                               	1208     	Enumerated          	MV  
+Priority                                     	1209     	Enumerated          	MV  
+Message-ID                                   	1210     	UTF8String          	MV  
+Message-Type                                 	1211     	Enumerated          	MV  
+Message-Size                                 	1212     	Unsigned32          	MV  
+Message-Class                                	1213     	Grouped             	MV  
+Class-Identifier                             	1214     	Enumerated          	MV  
+Token-Text                                   	1215     	UTF8String          	MV  
+Delivery-Report-Requested                    	1216     	Enumerated          	MV  
+Adaptations                                  	1217     	Enumerated          	MV  
+Applic-ID                                    	1218     	UTF8String          	MV  
+Aux-Applic-Info                              	1219     	UTF8String          	MV  
+Content-Class                                	1220     	Enumerated          	MV  
+DRM-Content                                  	1221     	Enumerated          	MV  
+Read-Reply-Report-Requested                  	1222     	Enumerated          	MV  
+Reply-Applic-ID                              	1223     	UTF8String          	MV  
+File-Repair-Supported                        	1224     	Enumerated          	MV  
+MBMS-User-Service-Type                       	1225     	Enumerated          	MV  
+Unit-Quota-Threshold                         	1226     	Unsigned32          	MV  
+PDP-Address                                  	1227     	Address             	MV  
+SGSN-Address                                 	1228     	Address             	MV  
+PoC-Session-Id                               	1229     	UTF8String          	MV  
+Deferred-Location-Event-Type                 	1230     	UTF8String          	MV  
+LCS-APN                                      	1231     	UTF8String          	MV  
+LCS-Client-ID                                	1232     	Grouped             	MV  
+LCS-Client-Dialed-By-MS                      	1233     	UTF8String          	MV  
+LCS-Client-External-ID                       	1234     	UTF8String          	MV  
+LCS-Client-Name                              	1235     	Grouped             	MV  
+LCS-Data-Coding-Scheme                       	1236     	UTF8String          	MV  
+LCS-Format-Indicator                         	1237     	Enumerated          	MV  
+LCS-Name-String                              	1238     	UTF8String          	MV  
+LCS-Requestor-ID                             	1239     	Grouped             	MV  
+LCS-Requestor-ID-String                      	1240     	UTF8String          	MV  
+LCS-Client-Type                              	1241     	Enumerated          	MV  
+Location-Estimate                            	1242     	OctetString         	MV  
+Location-Estimate-Type                       	1243     	Enumerated          	MV  
+Location-Type                                	1244     	Grouped             	MV  
+Positioning-Data                             	1245     	UTF8String          	MV  
+PDP-Context-Type                             	1247     	Enumerated          	MV  
+MMBox-Storage-Requested                      	1248     	Enumerated          	MV  
+Service-Specific-Info                        	1249     	Grouped             	MV  
+Called-Asserted-Identity                     	1250     	UTF8String          	MV  
+Requested-Party-Address                      	1251     	UTF8String          	MV  
+PoC-User-Role                                	1252     	Grouped             	MV  
+PoC-User-Role-IDs                            	1253     	UTF8String          	MV  
+PoC-User-Role-info-Units                     	1254     	Enumerated          	MV  
+Talk-Burst-Exchange                          	1255     	Grouped             	MV  
+Service-Generic-Information                  	1256     	Grouped             	MV  
+Service-Specific-Type                        	1257     	Unsigned32          	MV  
+Event-Charging-TimeStamp                     	1258     	Time                	MV  
+Participant-Access-Priority                  	1259     	Enumerated          	MV  
+Participant-Group                            	1260     	Grouped             	MV  
+PoC-Change-Condition                         	1261     	Enumerated          	MV  
+PoC-Change-Time                              	1262     	Time                	MV  
+Access-Network-Information                   	1263     	OctetString         	MV  
+Trigger                                      	1264     	Grouped             	MV  
+Base-Time-Interval                           	1265     	Unsigned32          	MV  
+Envelope                                     	1266     	Grouped             	MV  
+Envelope-End-Time                            	1267     	Time                	MV  
+Envelope-Reporting                           	1268     	Enumerated          	MV  
+Envelope-Start-Time                          	1269     	Time                	MV  
+Time-Quota-Mechanism                         	1270     	Grouped             	MV  
+Time-Quota-Type                              	1271     	Enumerated          	MV  
+Early-Media-Description                      	1272     	Grouped             	MV  
+SDP-TimeStamps                               	1273     	Grouped             	MV  
+SDP-Offer-Timestamp                          	1274     	Time                	MV  
+SDP-Answer-Timestamp                         	1275     	Time                	MV  
+AF-Correlation-Information                   	1276     	Grouped             	MV  
+PoC-Session-Initiation-type                  	1277     	Enumerated          	MV  
+Offline-Charging                             	1278     	Grouped             	MV  
+User-Participating-Type                      	1279     	Enumerated          	MV  
+Alternate-Charged-Party-Address              	1280     	UTF8String          	MV  
+IMS-Communication-Service-Identifier         	1281     	UTF8String          	MV  
+Number-Of-Received-Talk-Bursts               	1282     	Unsigned32          	MV  
+Number-Of-Talk-Bursts                        	1283     	Unsigned32          	MV  
+Received-Talk-Burst-Time                     	1284     	Unsigned32          	MV  
+Received-Talk-Burst-Volume                   	1285     	Unsigned32          	MV  
+Talk-Burst-Time                              	1286     	Unsigned32          	MV  
+Talk-Burst-Volume                            	1287     	Unsigned32          	MV  
+Media-Initiator-Party                        	1288     	UTF8String          	MV  
+Subscription-Data                            	1400     	Grouped             	MV  
+Terminal-Information                         	1401     	Grouped             	MV  
+IMEI                                         	1402     	UTF8String          	MV  
+Software-Version                             	1403     	UTF8String          	MV  
+QoS-Subscribed                               	1404     	OctetString         	MV  
+ULR-Flags                                    	1405     	Unsigned32          	MV  
+ULA-Flags                                    	1406     	Unsigned32          	MV  
+Visited-PLMN-Id                              	1407     	OctetString         	MV  
+Requested-EUTRAN-Authentication-Info         	1408     	Grouped             	MV  
+Requested-UTRAN-GERAN-Authentication-Info    	1409     	Grouped             	MV  
+Number-Of-Requested-Vectors                  	1410     	Unsigned32          	MV  
+Re-Synchronization-Info                      	1411     	OctetString         	MV  
+Immediate-Response-Preferred                 	1412     	Unsigned32          	MV  
+Authentication-Info                          	1413     	Grouped             	MV  
+E-UTRAN-Vector                               	1414     	Grouped             	MV  
+UTRAN-Vector                                 	1415     	Grouped             	MV  
+GERAN-Vector                                 	1416     	Grouped             	MV  
+Network-Access-Mode                          	1417     	Enumerated          	MV  
+HPLMN-ODB                                    	1418     	Unsigned32          	MV  
+Item-Number                                  	1419     	Unsigned32          	MV  
+Cancellation-Type                            	1420     	Enumerated          	MV  
+DSR-Flags                                    	1421     	Unsigned32          	MV  
+DSA-Flags                                    	1422     	Unsigned32          	MV  
+Context-Identifier                           	1423     	Unsigned32          	MV  
+Subscriber-Status                            	1424     	Enumerated          	MV  
+Operator-Determined-Barring                  	1425     	Unsigned32          	MV  
+Access-Restriction-Data                      	1426     	Unsigned32          	MV  
+APN-OI-Replacement                           	1427     	UTF8String          	MV  
+All-APN-Configurations-Included-Indicator    	1428     	Enumerated          	MV  
+APN-Configuration-Profile                    	1429     	Grouped             	MV  
+APN-Configuration                            	1430     	Grouped             	MV  
+EPS-Subscribed-QoS-Profile                   	1431     	Grouped             	MV  
+VPLMN-Dynamic-Address-Allowed                	1432     	Enumerated          	MV  
+STN-SR                                       	1433     	OctetString         	MV  
+Alert-Reason                                 	1434     	Enumerated          	MV  
+AMBR                                         	1435     	Grouped             	MV  
+CSG-Subscription-Data                        	1436     	Grouped             	MV  
+CSG-Id                                       	1437     	Unsigned32          	MV  
+PDN-GW-Allocation-Type                       	1438     	Enumerated          	MV  
+Expiration-Date                              	1439     	Time                	MV  
+RAT-Frequency-Selection-Priority-ID          	1440     	Unsigned32          	MV  
+IDA-Flags                                    	1441     	Unsigned32          	MV  
+PUA-Flags                                    	1442     	Unsigned32          	MV  
+NOR-Flags                                    	1443     	Unsigned32          	MV  
+User-Id                                      	1444     	UTF8String          	V   
+Equipment-Status                             	1445     	Enumerated          	MV  
+Regional-Subscription-Zone-Code              	1446     	OctetString         	MV  
+RAND                                         	1447     	OctetString         	MV  
+XRES                                         	1448     	OctetString         	MV  
+AUTN                                         	1449     	OctetString         	MV  
+KASME                                        	1450     	OctetString         	MV  
+Trace-Collection-Entity                      	1452     	Address             	MV  
+Kc                                           	1453     	OctetString         	MV  
+SRES                                         	1454     	OctetString         	MV  
+PDN-Type                                     	1456     	Enumerated          	MV  
+Roaming-Restricted-Due-To-Unsupported-Feature	1457     	Enumerated          	MV  
+Trace-Data                                   	1458     	Grouped             	MV  
+Trace-Reference                              	1459     	OctetString         	MV  
+Trace-Depth                                  	1462     	Enumerated          	MV  
+Trace-NE-Type-List                           	1463     	OctetString         	MV  
+Trace-Interface-List                         	1464     	OctetString         	MV  
+Trace-Event-List                             	1465     	OctetString         	MV  
+OMC-Id                                       	1466     	OctetString         	MV  
+GPRS-Subscription-Data                       	1467     	Grouped             	MV  
+Complete-Data-List-Included-Indicator        	1468     	Enumerated          	MV  
+PDP-Context                                  	1469     	Grouped             	MV  
+PDP-Type                                     	1470     	OctetString         	MV  
+3GPP2-MEID                                   	1471     	OctetString         	MV  
+Specific-APN-Info                            	1472     	Grouped             	MV  
+LCS-Info                                     	1473     	Grouped             	MV  
+GMLC-Number                                  	1474     	OctetString         	MV  
+LCS-PrivacyException                         	1475     	Grouped             	MV  
+SS-Code                                      	1476     	OctetString         	MV  
+SS-Status                                    	1477     	OctetString         	MV  
+Notification-To-UE-User                      	1478     	Enumerated          	MV  
+External-Client                              	1479     	Grouped             	MV  
+Client-Identity                              	1480     	OctetString         	MV  
+GMLC-Restriction                             	1481     	Enumerated          	MV  
+PLMN-Client                                  	1482     	Enumerated          	MV  
+ETSI-Service-Type                            	1483     	Grouped             	MV  
+ServiceTypeIdentity                          	1484     	Unsigned32          	MV  
+MO-LR                                        	1485     	Grouped             	MV  
+Teleservice-List                             	1486     	Grouped             	MV  
+TS-Code                                      	1487     	OctetString         	MV  
+Call-Barring-Info                            	1488     	Grouped             	MV  
+SGSN-Number                                  	1489     	OctetString         	MV  
+IDR-Flags                                    	1490     	Unsigned32          	MV  
+ICS-Indicator                                	1491     	Enumerated          	V   
+IMS-Voice-Over-PS-Sessions-Supported         	1492     	Enumerated          	V   
+Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions	1493     	Enumerated          	V   
+Last-UE-Activity-Time                        	1494     	Time                	V   
+EPS-User-State                               	1495     	Grouped             	V   
+EPS-Location-Information                     	1496     	Grouped             	V   
+MME-User-State                               	1497     	Grouped             	V   
+SGSN-User-State                              	1498     	Grouped             	V   
+User-State                                   	1499     	Enumerated          	V   
+Non-3GPP-User-Data                           	1500     	Grouped             	MV  
+Non-3GPP-IP-Access                           	1501     	Enumerated          	MV  
+Non-3GPP-IP-Access-APN                       	1502     	Enumerated          	MV  
+AN-Trusted                                   	1503     	Enumerated          	MV  
+ANID                                         	1504     	UTF8String          	MV  
+Trace-Info                                   	1505     	Grouped             	V   
+MIP-FA-RK                                    	1506     	OctetString         	MV  
+MIP-FA-RK-SPI                                	1507     	Unsigned32          	MV  
+PPR-Flags                                    	1508     	Unsigned32          	V   
+WLAN-Identifier                              	1509     	Grouped             	V   
+TWAN-Access-Info                             	1510     	Grouped             	V   
+Access-Authorization-Flags                   	1511     	Unsigned32          	V   
+TWAN-Default-APN-Context-Id                  	1512     	Unsigned32          	V   
+Trust-Relationship-Update                    	1515     	Enumerated          	V   
+Full-Network-Name                            	1516     	OctetString         	V   
+Short-Network-Name                           	1517     	OctetString         	V   
+AAA-Failure-Indication                       	1518     	Unsigned32          	V   
+Transport-Access-Type                        	1519     	Enumerated          	V   
+DER-Flags                                    	1520     	Unsigned32          	V   
+DEA-Flags                                    	1521     	Unsigned32          	V   
+RAR-Flags                                    	1522     	Unsigned32          	V   
+DER-S6b-Flags                                	1523     	Unsigned32          	V   
+SSID                                         	1524     	UTF8String          	V   
+HESSID                                       	1525     	UTF8String          	V   
+Access-Network-Info                          	1526     	Grouped             	V   
+TWAN-Connection-Mode                         	1527     	Unsigned32          	V   
+TWAN-Connectivity-Parameters                 	1528     	Grouped             	V   
+Connectivity-Flags                           	1529     	Unsigned32          	V   
+TWAN-PCO                                     	1530     	OctetString         	V   
+TWAG-CP-Address                              	1531     	Address             	V   
+TWAG-UP-Address                              	1532     	UTF8String          	V   
+TWAN-S2a-Failure-Cause                       	1533     	Unsigned32          	V   
+SM-Back-Off-Timer                            	1534     	Unsigned32          	V   
+WLCP-Key                                     	1535     	OctetString         	V   
+MME-Location-Information                     	1600     	Grouped             	V   
+SGSN-Location-Information                    	1601     	Grouped             	V   
+E-UTRAN-Cell-Global-Identity                 	1602     	OctetString         	V   
+Tracking-Area-Identity                       	1603     	OctetString         	V   
+Cell-Global-Identity                         	1604     	OctetString         	V   
+Routing-Area-Identity                        	1605     	OctetString         	V   
+Location-Area-Identity                       	1606     	OctetString         	V   
+Service-Area-Identity                        	1607     	OctetString         	V   
+Geographical-Information                     	1608     	OctetString         	V   
+Geodetic-Information                         	1609     	OctetString         	V   
+Current-Location-Retrieved                   	1610     	Enumerated          	V   
+Age-Of-Location-Information                  	1611     	Unsigned32          	V   
+Active-APN                                   	1612     	Grouped             	V   
+SIPTO-Permission                             	1613     	Enumerated          	V   
+Error-Diagnostic                             	1614     	Enumerated          	V   
+UE-SRVCC-Capability                          	1615     	Enumerated          	V   
+MPS-Priority                                 	1616     	Unsigned32          	V   
+VPLMN-LIPA-Allowed                           	1617     	Enumerated          	V   
+LIPA-Permission                              	1618     	Enumerated          	V   
+Subscribed-Periodic-RAU-TAU-Timer            	1619     	Unsigned32          	V   
+Ext-PDP-Type                                 	1620     	OctetString         	V   
+Ext-PDP-Address                              	1621     	Address             	V   
+MDT-Configuration                            	1622     	Grouped             	V   
+Job-Type                                     	1623     	Enumerated          	V   
+Area-Scope                                   	1624     	Grouped             	V   
+List-Of-Measurements                         	1625     	Unsigned32          	V   
+Reporting-Trigger                            	1626     	Unsigned32          	V   
+Report-Interval                              	1627     	Enumerated          	V   
+Report-Amount                                	1628     	Enumerated          	V   
+Event-Threshold-RSRP                         	1629     	Unsigned32          	V   
+Event-Threshold-RSRQ                         	1630     	Unsigned32          	V   
+Logging-Interval                             	1631     	Enumerated          	V   
+Logging-Duration                             	1632     	Enumerated          	V   
+Relay-Node-Indicator                         	1633     	Enumerated          	V   
+MDT-User-Consent                             	1634     	Enumerated          	V   
+PUR-Flags                                    	1635     	Unsigned32          	V   
+Subscribed-VSRVCC                            	1636     	Enumerated          	V   
+Equivalent-PLMN-List                         	1637     	Grouped             	V   
+CLR-Flags                                    	1638     	Unsigned32          	V   
+UVR-Flags                                    	1639     	Unsigned32          	MV  
+UVA-Flags                                    	1640     	Unsigned32          	MV  
+VPLMN-CSG-Subscription-Data                  	1641     	Grouped             	MV  
+Time-Zone                                    	1642     	UTF8String          	V   
+A-MSISDN                                     	1643     	OctetString         	V   
+MME-Number-for-MT-SMS                        	1645     	OctetString         	V   
+SMS-Register-Request                         	1648     	Enumerated          	V   
+Local-Time-Zone                              	1649     	Grouped             	V   
+Daylight-Saving-Time                         	1650     	Enumerated          	V   
+Subscription-Data-Flags                      	1654     	Unsigned32          	V   
+Measurement-Period-UMTS                      	1655     	Enumerated          	V   
+Measurement-Period-LTE                       	1656     	Enumerated          	V   
+Collection-Period-RRM-LTE                    	1657     	Enumerated          	V   
+Collection-Period-RRM-UMTS                   	1658     	Enumerated          	V   
+Positioning-Method                           	1659     	OctetString         	V   
+Measurement-Quantity                         	1660     	OctetString         	V   
+Event-Threshold-Event-1F                     	1661     	Integer32           	V   
+Event-Threshold-Event-1I                     	1662     	Integer32           	V   
+Restoration-Priority                         	1663     	Unsigned32          	V   
+SGs-MME-Identity                             	1664     	UTF8String          	V   
+SIPTO-Local-Network-Permission               	1665     	Unsigned32          	V   
+Coupled-Node-Diameter-ID                     	1666     	DiameterIdentity    	V   
+WLAN-offloadability                          	1667     	Grouped             	V   
+WLAN-offloadability-EUTRAN                   	1668     	Unsigned32          	V   
+WLAN-offloadability-UTRAN                    	1669     	Unsigned32          	V   
+Reset-ID                                     	1670     	OctetString         	V   
+MDT-Allowed-PLMN-Id                          	1671     	OctetString         	V   
+SMS-Information                              	2000     	Grouped             	MV  
+Data-Coding-Scheme                           	2001     	Integer32           	MV  
+Destination-Interface                        	2002     	Grouped             	MV  
+Interface-Id                                 	2003     	UTF8String          	MV  
+Interface-Port                               	2004     	UTF8String          	MV  
+Interface-Text                               	2005     	UTF8String          	MV  
+Interface-Type                               	2006     	Enumerated          	MV  
+SM-Message-Type                              	2007     	Enumerated          	MV  
+Originator-SCCP-Address                      	2008     	Address             	MV  
+Originator-Interface                         	2009     	Grouped             	MV  
+Recipient-SCCP-Address                       	2010     	Address             	MV  
+Reply-Path-Requested                         	2011     	Enumerated          	MV  
+SM-Discharge-Time                            	2012     	Time                	MV  
+SM-Protocol-ID                               	2013     	OctetString         	MV  
+SM-Status                                    	2014     	OctetString         	MV  
+SM-User-Data-Header                          	2015     	OctetString         	MV  
+SMS-Node                                     	2016     	Enumerated          	MV  
+SMSC-Address                                 	2017     	Address             	MV  
+Client-Address                               	2018     	Address             	MV  
+Number-Of-Messages-Sent                      	2019     	Unsigned32          	MV  
+Remaining-Balance                            	2021     	Grouped             	MV  
+Refund-Information                           	2022     	OctetString         	MV  
+Carrier-Select-Routing-Information           	2023     	UTF8String          	MV  
+Number-Portability-Routing-Information       	2024     	UTF8String          	MV  
+PoC-Event-Type                               	2025     	Enumerated          	MV  
+Recipient-Info                               	2026     	Grouped             	MV  
+Originator-Received-Address                  	2027     	Grouped             	MV  
+Recipient-Received-Address                   	2028     	Grouped             	MV  
+SM-Service-Type                              	2029     	Enumerated          	MV  
+MMTel-Information                            	2030     	Grouped             	MV  
+MMTel-SService-Type                          	2031     	Unsigned32          	MV  
+Service-Mode                                 	2032     	Unsigned32          	MV  
+Subscriber-Role                              	2033     	Enumerated          	MV  
+Number-Of-Diversions                         	2034     	Unsigned32          	MV  
+Associated-Party-Address                     	2035     	UTF8String          	MV  
+SDP-Type                                     	2036     	Enumerated          	MV  
+Change-Condition                             	2037     	Integer32           	MV  
+Change-Time                                  	2038     	Time                	MV  
+Diagnostics                                  	2039     	Integer32           	MV  
+Service-Data-Container                       	2040     	Grouped             	MV  
+Start-Time                                   	2041     	Time                	MV  
+Stop-Time                                    	2042     	Time                	MV  
+Time-First-Usage                             	2043     	Time                	MV  
+Time-Last-Usage                              	2044     	Time                	MV  
+Time-Usage                                   	2045     	Unsigned32          	MV  
+Traffic-Data-Volumes                         	2046     	Grouped             	MV  
+Serving-Node-Type                            	2047     	Enumerated          	MV  
+Supplementary-Service                        	2048     	Grouped             	MV  
+Participant-Action-Type                      	2049     	Enumerated          	MV  
+PDN-Connection-Charging-ID                   	2050     	Unsigned32          	MV  
+Dynamic-Address-Flag                         	2051     	Enumerated          	MV  
+Accumulated-Cost                             	2052     	Grouped             	MV  
+AoC-Cost-Information                         	2053     	Grouped             	MV  
+AoC-Information                              	2054     	Grouped             	MV  
+Current-Tariff                               	2056     	Grouped             	MV  
+Next-Tariff                                  	2057     	Grouped             	MV  
+Rate-Element                                 	2058     	Grouped             	MV  
+Scale-Factor                                 	2059     	Grouped             	MV  
+Tariff-Information                           	2060     	Grouped             	MV  
+Unit-Cost                                    	2061     	Grouped             	MV  
+Incremental-Cost                             	2062     	Grouped             	MV  
+Local-Sequence-Number                        	2063     	Unsigned32          	MV  
+Node-Id                                      	2064     	UTF8String          	MV  
+SGW-Change                                   	2065     	Enumerated          	MV  
+Charging-Characteristics-Selection-Mode      	2066     	Enumerated          	MV  
+SGW-Address                                  	2067     	Address             	MV  
+Dynamic-Address-Flag-Extension               	2068     	Enumerated          	MV  
+Application-Server-ID                        	2101     	Unsigned32          	V   
+Application-Service-Type                     	2102     	Enumerated          	V   
+Application-Session-ID                       	2103     	Unsigned32          	V   
+Delivery-Status                              	2104     	UTF8String          	V   
+IM-Information                               	2110     	Grouped             	V   
+Number-Of-Messages-Successfully-Exploded     	2111     	Unsigned32          	V   
+Number-Of-Messages-Successfully-Sent         	2112     	Unsigned32          	V   
+Total-Number-Of-Messages-Exploded            	2113     	Unsigned32          	V   
+Total-Number-Of-Messages-Sent                	2114     	Unsigned32          	V   
+DCD-Information                              	2115     	Grouped             	V   
+Content-ID                                   	2116     	UTF8String          	V   
+Content-Provider-ID                          	2117     	UTF8String          	V   
+Charge-Reason-Code                           	2118     	Enumerated          	MV  
+Subsession-Decision-Info                     	2200     	Grouped             	MV  
+Subsession-Enforcement-Info                  	2201     	Grouped             	MV  
+Subsession-Id                                	2202     	Unsigned32          	MV  
+Subsession-Operation                         	2203     	Enumerated          	MV  
+Multiple-BBERF-Action                        	2204     	Enumerated          	MV  
+UE-Local-IPv6-Prefix                         	2205     	OctetString         	MV  
+DRA-Deployment                               	2206     	Enumerated          	V   
+DRA-Binding                                  	2208     	Enumerated          	V   
+SIP-Request-Timestamp-Fraction               	2301     	Unsigned32          	MV  
+SIP-Response-Timestamp-Fraction              	2302     	Unsigned32          	MV  
+Online-Charging-Flag                         	2303     	Enumerated          	MV  
+CUG-Information                              	2304     	OctetString         	MV  
+Real-Time-Tariff-Information                 	2305     	Grouped             	MV  
+Tariff-XML                                   	2306     	UTF8String          	MV  
+MBMS-GW-Address                              	2307     	Address             	MV  
+IMSI-Unauthenticated-Flag                    	2308     	Enumerated          	MV  
+Account-Expiration                           	2309     	Time                	MV  
+AoC-Format                                   	2310     	Enumerated          	MV  
+AoC-Service                                  	2311     	Grouped             	MV  
+AoC-Service-Obligatory-Type                  	2312     	Enumerated          	MV  
+AoC-Service-Type                             	2313     	Enumerated          	MV  
+AoC-Subscription-Information                 	2314     	Grouped             	MV  
+Preferred-AoC-Currency                       	2315     	Unsigned32          	MV  
+CSG-Access-Mode                              	2317     	Enumerated          	MV  
+CSG-Membership-Indication                    	2318     	Enumerated          	MV  
+User-CSG-Information                         	2319     	Grouped             	MV  
+Outgoing-Session-Id                          	2320     	UTF8String          	MV  
+Initial-IMS-Charging-Identifier              	2321     	UTF8String          	MV  
+IMS-Emergency-Indicator                      	2322     	Enumerated          	MV  
+MBMS-Charged-Party                           	2323     	Enumerated          	MV  
+LMSI                                         	2400     	OctetString         	MV  
+Serving-Node                                 	2401     	Grouped             	MV  
+MME-Name                                     	2402     	DiameterIdentity    	MV  
+MSC-Number                                   	2403     	OctetString         	MV  
+LCS-Capabilities-Sets                        	2404     	Unsigned32          	MV  
+GMLC-Address                                 	2405     	Address             	MV  
+Additional-Serving-Node                      	2406     	Grouped             	MV  
+PPR-Address                                  	2407     	Address             	MV  
+MME-Realm                                    	2408     	DiameterIdentity    	V   
+SGSN-Name                                    	2409     	DiameterIdentity    	V   
+SGSN-Realm                                   	2410     	DiameterIdentity    	V   
+RIA-Flags                                    	2411     	Unsigned32          	V   
+SLg-Location-Type                            	2500     	Enumerated          	MV  
+LCS-EPS-Client-Name                          	2501     	Grouped             	MV  
+LCS-Requestor-Name                           	2502     	Grouped             	MV  
+LCS-Priority                                 	2503     	Unsigned32          	MV  
+LCS-QoS                                      	2504     	Grouped             	MV  
+Horizontal-Accuracy                          	2505     	Unsigned32          	MV  
+Vertical-Accuracy                            	2506     	Unsigned32          	MV  
+Vertical-Requested                           	2507     	Enumerated          	MV  
+Velocity-Requested                           	2508     	Enumerated          	MV  
+Response-Time                                	2509     	Enumerated          	MV  
+Supported-GAD-Shapes                         	2510     	Unsigned32          	MV  
+LCS-Codeword                                 	2511     	UTF8String          	MV  
+LCS-Privacy-Check                            	2512     	Enumerated          	MV  
+Accuracy-Fulfilment-Indicator                	2513     	Enumerated          	MV  
+Age-Of-Location-Estimate                     	2514     	Unsigned32          	MV  
+Velocity-Estimate                            	2515     	OctetString         	MV  
+EUTRAN-Positioning-Data                      	2516     	OctetString         	MV  
+ECGI                                         	2517     	OctetString         	MV  
+Location-Event                               	2518     	Enumerated          	MV  
+Pseudonym-Indicator                          	2519     	Enumerated          	MV  
+LCS-Service-Type-ID                          	2520     	Unsigned32          	MV  
+LCS-Privacy-Check-Non-Session                	2521     	Grouped             	MV  
+LCS-Privacy-Check-Session                    	2522     	Grouped             	MV  
+LCS-QoS-Class                                	2523     	Enumerated          	MV  
+GERAN-Positioning-Info                       	2524     	Grouped             	V   
+GERAN-Positioning-Data                       	2525     	OctetString         	V   
+GERAN-GANSS-Positioning-Data                 	2526     	OctetString         	V   
+UTRAN-Positioning-Info                       	2527     	Grouped             	V   
+UTRAN-Positioning-Data                       	2528     	OctetString         	V   
+UTRAN-GANSS-Positioning-Data                 	2529     	OctetString         	V   
+LRR-Flags                                    	2530     	Unsigned32          	V   
+LCS-Reference-Number                         	2531     	OctetString         	V   
+Deferred-Location-Type                       	2532     	Unsigned32          	V   
+Area-Event-Info                              	2533     	Grouped             	V   
+Area-Definition                              	2534     	Grouped             	V   
+Area                                         	2535     	Grouped             	V   
+Area-Type                                    	2536     	Unsigned32          	V   
+Area-Identification                          	2537     	OctetString         	V   
+Occurrence-Info                              	2538     	Enumerated          	V   
+Interval-Time                                	2539     	Unsigned32          	V   
+Periodic-LDR-Information                     	2540     	Grouped             	V   
+Reporting-Amount                             	2541     	Unsigned32          	V   
+Reporting-Interval                           	2542     	Unsigned32          	V   
+Reporting-PLMN-List                          	2543     	Grouped             	V   
+PLMN-ID-List                                 	2544     	Grouped             	V   
+PLR-Flags                                    	2545     	Unsigned32          	V   
+PLA-Flags                                    	2546     	Unsigned32          	V   
+Deferred-MT-LR-Data                          	2547     	Grouped             	V   
+ETSI-Termination-Cause                       	2548     	Unsigned32          	V   
+LRA-Flags                                    	2549     	Unsigned32          	V   
+Periodic-Location-Support-Indicator          	2550     	Enumerated          	V   
+Prioritized-List-Indicator                   	2551     	Enumerated          	V   
+ESMLC-Cell-Info                              	2552     	Grouped             	V   
+Cell-Portion-ID                              	2553     	Unsigned32          	V   
+1xRTT-RCID                                   	2554     	OctetString         	V   
+IMS-Application-Reference-Identifier         	2601     	UTF8String          	MV  
+Low-Priority-Indicator                       	2602     	Enumerated          	MV  
+IP-Realm-Default-Indication                  	2603     	Enumerated          	MV  
+Local-GW-Inserted-Indication                 	2604     	Enumerated          	MV  
+Transcoder-Inserted-Indication               	2605     	Enumerated          	MV  
+PDP-Address-Prefix-Length                    	2606     	Unsigned32          	MV  
+Transit-IOI-List                             	2701     	UTF8String          	MV  
+Status-AS-Code                               	2702     	Enumerated          	MV  
+NNI-Information                              	2703     	Grouped             	MV  
+NNI-Type                                     	2704     	Enumerated          	MV  
+Neighbour-Node-Address                       	2705     	Address             	MV  
+Relationship-Mode                            	2706     	Enumerated          	MV  
+Session-Direction                            	2707     	Enumerated          	MV  
+From-Address                                 	2708     	UTF8String          	MV  
+Access-Transfer-Information                  	2709     	Grouped             	MV  
+Access-Transfer-Type                         	2710     	Enumerated          	MV  
+Related-IMS-Charging-Identifier              	2711     	UTF8String          	MV  
+Related-IMS-Charging-Identifier-Node         	2712     	Address             	MV  
+IMS-Visited-Network-Identifier               	2713     	UTF8String          	MV  
+TWAN-User-Location-Info                      	2714     	Grouped             	MV  
+BSSID                                        	2716     	UTF8String          	MV  
+TAD-Identifier                               	2717     	Enumerated          	MV  
+TDF-Application-Instance-Identifier          	2802     	OctetString         	V   
+HeNB-Local-IP-Address                        	2804     	Address             	V   
+UE-Local-IP-Address                          	2805     	Address             	V   
+UDP-Source-Port                              	2806     	Unsigned32          	V   
+Mute-Notification                            	2809     	Enumerated          	V   
+Monitoring-Time                              	2810     	Time                	V   
+AN-GW-Status                                 	2811     	Enumerated          	V   
+User-Location-Info-Time                      	2812     	Time                	V   
+Default-QoS-Information                      	2816     	Grouped             	V   
+Default-QoS-Name                             	2817     	UTF8String          	V   
+Conditional-APN-Aggregate-Max-Bitrate        	2818     	Grouped             	V   
+RAN-NAS-Release-Cause                        	2819     	OctetString         	V   
+Presence-Reporting-Area-Elements-List        	2820     	OctetString         	V   
+Presence-Reporting-Area-Identifier           	2821     	OctetString         	V   
+Presence-Reporting-Area-Information          	2822     	Grouped             	V   
+Presence-Reporting-Area-Status               	2823     	Unsigned32          	V   
+NetLoc-Access-Support                        	2824     	Unsigned32          	V   
+Fixed-User-Location-Info                     	2825     	Grouped             	V   
+PCSCF-Restoration-Indication                 	2826     	Unsigned32          	V   
+IP-CAN-Session-Charging-Scope                	2827     	Unsigned32          	V   
+Monitoring-Flags                             	2828     	Unsigned32          	V   
+Policy-Counter-Identifier                    	2901     	UTF8String          	MV  
+Policy-Counter-Status                        	2902     	UTF8String          	MV  
+Policy-Counter-Status-Report                 	2903     	Grouped             	MV  
+SL-Request-Type                              	2904     	Enumerated          	MV  
+Pending-Policy-Counter-Information           	2905     	Grouped             	MV  
+Pending-Policy-Counter-Change-Time           	2906     	Time                	MV  
+Priority-Indication                          	3006     	Enumerated          	MV  
+Reference-Number                             	3007     	Unsigned32          	MV  
+Application-Port-Identifier                  	3010     	Unsigned32          	MV  
+Reason-Header                                	3401     	UTF8String          	MV  
+Instance-Id                                  	3402     	UTF8String          	MV  
+Route-Header-Received                        	3403     	UTF8String          	MV  
+Route-Header-Transmitted                     	3404     	UTF8String          	MV  
+SM-Device-Trigger-Information                	3405     	Grouped             	MV  
+MTC-IWF-Address                              	3406     	Address             	MV  
+SM-Device-Trigger-Indicator                  	3407     	Enumerated          	MV  
+SM-Sequence-Number                           	3408     	Unsigned32          	MV  
+SMS-Result                                   	3409     	Unsigned32          	MV  
+VCS-Information                              	3410     	Grouped             	MV  
+Basic-Service-Code                           	3411     	Grouped             	MV  
+Bearer-Capability                            	3412     	OctetString         	MV  
+Teleservice                                  	3413     	OctetString         	MV  
+ISUP-Location-Number                         	3414     	OctetString         	MV  
+Forwarding-Pending                           	3415     	Enumerated          	MV  
+ISUP-Release-Cause                           	3416     	Unsigned32          	MV  
+MSC-Address                                  	3417     	OctetString         	MV  
+Network-Call-Reference-Number                	3418     	OctetString         	MV  
+Start-of-Charging                            	3419     	Time                	MV  
+VLR-Number                                   	3420     	OctetString         	MV  
+CN-Operator-Selection-Entity                 	3421     	Enumerated          	MV  
+ISUP-Cause-Diagnostics                       	3422     	OctetString         	MV  
+ISUP-Cause-Location                          	3423     	Unsigned32          	MV  
+ISUP-Cause-Value                             	3424     	Unsigned32          	MV  
+ePDG-Address                                 	3425     	Address             	MV  
+Announcing-UE-HPLMN-Identifier               	3426     	UTF8String          	MV  
+Announcing-UE-VPLMN-Identifier               	3427     	UTF8String          	MV  
+Coverage-Status                              	3428     	Enumerated          	MV  
+Layer-2-Group-ID                             	3429     	UTF8String          	MV  
+Monitored-PLMN-Identifier                    	3430     	UTF8String          	MV  
+Monitoring-UE-HPLMN-Identifier               	3431     	UTF8String          	MV  
+Monitoring-UE-Identifier                     	3432     	UTF8String          	MV  
+Monitoring-UE-VPLMN-Identifier               	3433     	UTF8String          	MV  
+PC3-Control-Protocol-Cause                   	3434     	Integer32           	MV  
+PC3-EPC-Control-Protocol-Cause               	3435     	Integer32           	MV  
+Requested-PLMN-Identifier                    	3436     	UTF8String          	MV  
+Requestor-PLMN-Identifier                    	3437     	UTF8String          	MV  
+Role-Of-ProSe-Function                       	3438     	Enumerated          	MV  
+Usage-Information-Report-Sequence-Number     	3439     	Integer32           	MV  
+ProSe-3rd-Party-Application-ID               	3440     	UTF8String          	MV  
+ProSe-Direct-Communication-Transmission-Data-Container	3441     	Grouped             	MV  
+ProSe-Direct-Discovery-Model                 	3442     	Enumerated          	MV  
+ProSe-Event-Type                             	3443     	Enumerated          	MV  
+ProSe-Function-IP-Address                    	3444     	Address             	MV  
+ProSe-Functionality                          	3445     	Enumerated          	MV  
+ProSe-Group-IP-Multicast-Address             	3446     	Address             	MV  
+ProSe-Information                            	3447     	Grouped             	MV  
+ProSe-Range-Class                            	3448     	Enumerated          	MV  
+ProSe-Reason-For-Cancellation                	3449     	Enumerated          	MV  
+ProSe-Request-Timestamp                      	3450     	Time                	MV  
+ProSe-Role-Of-UE                             	3451     	Enumerated          	MV  
+ProSe-Source-IP-Address                      	3452     	Address             	MV  
+ProSe-UE-ID                                  	3453     	UTF8String          	MV  
+Proximity-Alert-Indication                   	3454     	Enumerated          	MV  
+Proximity-Alert-Timestamp                    	3455     	Time                	MV  
+Proximity-Cancellation-Timestamp             	3456     	Time                	MV  
+ProSe-Function-PLMN-Identifier               	3457     	UTF8String          	MV  
+Application-Specific-Data                    	3458     	OctetString         	MV  
+Coverage-Info                                	3459     	Grouped             	MV  
+Location-Info                                	3460     	Grouped             	MV  
+ProSe-Direct-Communication-Reception-Data-Container	3461     	Grouped             	MV  
+Radio-Frequency                              	3462     	OctetString         	MV  
+Radio-Parameter-Set-Info                     	3463     	Grouped             	MV  
+Radio-Parameter-Set-Values                   	3464     	OctetString         	MV  
+Radio-Resources-Indicator                    	3465     	Integer32           	MV  
+Time-First-Reception                         	3466     	Time                	MV  
+Time-First-Transmission                      	3467     	Time                	MV  
+Transmitter-Info                             	3468     	Grouped             	MV  
+Origin-App-Layer-User-Id                     	3600     	UTF8String          	MV  
+Target-App-Layer-User-Id                     	3601     	UTF8String          	MV  
+ProSe-Function-ID                            	3602     	OctetString         	MV  
+ProSe-Subscription-Data                      	3701     	Grouped             	MV  
+ProSe-Permission                             	3702     	Unsigned32          	MV  
+ProSe-Allowed-PLMN                           	3703     	Grouped             	MV  
+ProSe-Direct-Allowed                         	3704     	Unsigned32          	MV  
+Authorized-Discovery-Range                   	3708     	Unsigned32          	MV  
+ProSe-App-ID                                 	3811     	UTF8String          	MV  
+ProSe-Validity-Timer                         	3815     	Unsigned32          	MV  
+Requesting-EPUID                             	3816     	UTF8String          	MV  
+Time-Window                                  	3818     	Unsigned32          	MV  
+WLAN-Link-Layer-Id                           	3821     	OctetString         	MV  
+
+@avp_vendor_id	10415
+3GPP-IMSI
+3GPP-Charging-ID
+3GPP-PDP-Type
+3GPP-SGSN-Address
+3GPP-GGSN-Address
+3GPP-IMSI-MCC-MNC
+3GPP-GGSN-MCC-MNC
+3GPP-NSAPI
+3GPP-Session-Stop-Indicator
+3GPP-Selection-Mode
+3GPP-Charging-Characteristics
+3GPP-SGSN-IPv6-Address
+3GPP-GGSN-IPv6-Address
+3GPP-SGSN-MCC-MNC
+3GPP-RAT-Type
+3GPP-User-Location-Info
+3GPP-MS-TimeZone
+3GPP-AAA-Server-Name
+Abort-Cause
+Access-Network-Charging-Address
+Access-Network-Charging-Identifier
+Access-Network-Charging-Identifier-Value
+AF-Application-Identifier
+AF-Charging-Identifier
+Authorization-Token
+Flow-Description
+Flow-Grouping
+Flow-Number
+Flows
+Flow-Status
+Flow-Usage
+Specific-Action
+Max-Requested-Bandwidth-DL
+Max-Requested-Bandwidth-UL
+Media-Component-Description
+Media-Component-Number
+Media-Sub-Component
+Media-Type
+RR-Bandwidth
+RS-Bandwidth
+SIP-Forking-Indication
+Service-URN
+Acceptable-Service-Info
+Service-Info-Status
+MPS-Identifier
+AF-Signalling-Protocol
+Sponsor-Identity
+Application-Service-Provider-Identity
+Rx-Request-Type
+Min-Requested-Bandwidth-DL
+Min-Requested-Bandwidth-UL
+Required-Access-Info
+IP-Domain-Id
+GCS-Identifier
+Sharing-Key-DL
+Sharing-Key-UL
+Retry-Interval
+Visited-Network-Identifier
+Public-Identity
+Server-Name
+Server-Capabilities
+Mandatory-Capability
+Optional-Capability
+Cx-User-Data
+3GPP-SIP-Number-Auth-Items
+ETSI-SIP-Authentication-Scheme
+ETSI-SIP-Authenticate
+ETSI-SIP-Authorization
+SIP-Authentication-Context
+3GPP-SIP-Auth-Data-Item
+ETSI-SIP-Item-Number
+Server-Assignment-Type
+Deregistration-Reason
+Reason-Code
+Reason-Info
+Charging-Information
+Primary-Event-Charging-Function-Name
+Secondary-Event-Charging-Function-Name
+Primary-Charging-Collection-Function-Name
+Secondary-Charging-Collection-Function-Name
+User-Authorization-Type
+User-Data-Already-Available
+Confidentiality-Key
+Integrity-Key
+Supported-Features
+Feature-List-ID
+Feature-List
+Supported-Applications
+Associated-Identities
+Originating-Request
+Wildcarded-Public-Identity
+SIP-Digest-Authenticate
+Wildcarded-IMPU
+UAR-Flags
+Loose-Route-Indication
+SCSCF-Restoration-Info
+Path
+Contact
+Subscription-Info
+Call-ID-SIP-Header
+From-SIP-Header
+To-SIP-Header
+Record-Route
+Associated-Registered-Identities
+Multiple-Registration-Indication
+Restoration-Info
+Session-Priority
+Identity-with-Emergency-Registration
+Priviledged-Sender-Indication
+LIA-Flags
+Initial-CSeq-Sequence-Number
+SAR-Flags
+User-Identity
+MSISDN
+User-Data
+Data-Reference
+Service-Indication
+Subs-Req-Type
+Requested-Domain
+Current-Location
+Identity-Set
+Expiry-Time
+Send-Data-Indication
+DSAI-Tag
+One-Time-Notification
+Requested-Nodes
+Serving-Node-Indication
+Repository-Data-ID
+Sequence-Number
+Pre-paging-Supported
+Local-Time-Zone-Indication
+UDR-Flags
+Call-Reference-Info
+Call-Reference-Number
+AS-Number
+Event-Type
+ETSI-SIP-Method
+Event
+Content-Type
+Content-Length
+Content-Disposition
+Role-Of-Node
+User-Session-Id
+Calling-Party-Address
+Called-Party-Address
+Time-Stamps
+SIP-Request-Timestamp
+SIP-Response-Timestamp
+Application-Server
+Application-Provided-Called-Party-Address
+Inter-Operator-Identifier
+Originating-IOI
+Terminating-IOI
+IMS-Charging-Identifier
+SDP-Session-Description
+SDP-Media-Component
+SDP-Media-Name
+SDP-Media-Description
+CG-Address
+GGSN-Address
+Served-Party-IP-Address
+Authorised-QoS
+Application-Server-Information
+Trunk-Group-ID
+Incoming-Trunk-Group-Id
+Outgoing-Trunk-Group-Id
+Bearer-Service
+Service-Id
+Associated-URI
+Charged-Party
+PoC-Controlling-Address
+PoC-Group-Name
+Cause-Code
+Node-Functionality
+Service-Specific-Data
+Originator
+PS-Furnish-Charging-Information
+PS-Free-Format-Data
+PS-Append-Free-Format-Data
+Time-Quota-Threshold
+Volume-Quota-Threshold
+Trigger-Type
+Quota-Holding-Time
+Reporting-Reason
+Service-Information
+PS-Information
+IMS-Information
+MMS-Information
+LCS-Information
+PoC-Information
+MBMS-Information
+Quota-Consumption-Time
+Media-Initiator-Flag
+PoC-Server-Role
+PoC-Session-Type
+Number-Of-Participants
+Originator-Address
+Participants-Involved
+Expires
+Message-Body
+Address-Data
+Address-Domain
+Address-Type
+TMGI
+Required-MBMS-Bearer-Capabilities
+MBMS-StartStop-Indication
+MBMS-Service-Area
+MBMS-Session-Duration
+Alternative-APN
+MBMS-Service-Type
+MBMS-2G-3G-Indicator
+MBMS-Session-Identity
+RAI
+Additional-MBMS-Trace-Info
+MBMS-Time-To-Data-Transfer
+MBMS-Flow-Identifier
+CN-IP-Multicast-Distribution
+MBMS-HC-Indicator
+MBMS-Data-Transfer-Start
+MBMS-Data-Transfer-Stop
+Bearer-Usage
+Charging-Rule-Install
+Charging-Rule-Remove
+Charging-Rule-Definition
+Charging-Rule-Base-Name
+Charging-Rule-Name
+Event-Trigger
+Metering-Method
+Offline
+Online
+Precedence
+Reporting-Level
+TFT-Filter
+TFT-Packet-Filter-Information
+ToS-Traffic-Class
+PDP-Session-Operation
+QoS-Information
+Charging-Rule-Report
+PCC-Rule-Status
+Bearer-Identifier
+Bearer-Operation
+Access-Network-Charging-Identifier-Gx
+Bearer-Control-Mode
+Network-Request-Support
+Guaranteed-Bitrate-DL
+Guaranteed-Bitrate-UL
+IP-CAN-Type
+QoS-Class-Identifier
+Rule-Failure-Code
+RAT-Type
+Event-Report-Indication
+Allocation-Retention-Priority
+CoA-IP-Address
+Tunnel-Header-Filter
+Tunnel-Header-Length
+Tunnel-Information
+CoA-Information
+APN-Aggregate-Max-Bitrate-DL
+APN-Aggregate-Max-Bitrate-UL
+Revalidation-Time
+Rule-Activation-Time
+Rule-Deactivation-Time
+Session-Release-Cause
+Priority-Level
+Pre-emption-Capability
+Pre-emption-Vulnerability
+Default-EPS-Bearer-QoS
+AN-GW-Address
+QoS-Rule-Install
+QoS-Rule-Remove
+QoS-Rule-Definition
+QoS-Rule-Name
+QoS-Rule-Report
+Security-Parameter-Index
+Flow-Label
+Flow-Information
+Packet-Filter-Content
+Packet-Filter-Identifier
+Packet-Filter-Information
+Packet-Filter-Operation
+Resource-Allocation-Notification
+Session-Linking-Indicator
+PDN-Connection-ID
+Monitoring-Key
+Usage-Monitoring-Information
+Usage-Monitoring-Level
+Usage-Monitoring-Report
+Usage-Monitoring-Support
+CSG-Information-Reporting
+Packet-Filter-Usage
+Charging-Correlation-Indicator
+Routing-Rule-Remove
+Routing-Rule-Definition
+Routing-Rule-Identifier
+Routing-Filter
+Routing-IP-Address
+Flow-Direction
+Routing-Rule-Install
+Credit-Management-Status
+Redirect-Information
+Redirect-Support
+TDF-Information
+TDF-Application-Identifier
+TDF-Destination-Host
+TDF-Destination-Realm
+TDF-IP-Address
+ADC-Rule-Base-Name
+Application-Detection-Information
+PS-to-CS-Session-Continuity
+VASP-ID
+VAS-ID
+Domain-Name
+Recipient-Address
+Submission-Time
+MM-Content-Type
+Type-Number
+Additional-Type-Information
+Content-Size
+Additional-Content-Information
+Addressee-Type
+Priority
+Message-ID
+Message-Type
+Message-Size
+Message-Class
+Class-Identifier
+Token-Text
+Delivery-Report-Requested
+Adaptations
+Applic-ID
+Aux-Applic-Info
+Content-Class
+DRM-Content
+Read-Reply-Report-Requested
+Reply-Applic-ID
+File-Repair-Supported
+MBMS-User-Service-Type
+Unit-Quota-Threshold
+PDP-Address
+SGSN-Address
+PoC-Session-Id
+Deferred-Location-Event-Type
+LCS-APN
+LCS-Client-ID
+LCS-Client-Dialed-By-MS
+LCS-Client-External-ID
+LCS-Client-Name
+LCS-Data-Coding-Scheme
+LCS-Format-Indicator
+LCS-Name-String
+LCS-Requestor-ID
+LCS-Requestor-ID-String
+LCS-Client-Type
+Location-Estimate
+Location-Estimate-Type
+Location-Type
+Positioning-Data
+PDP-Context-Type
+MMBox-Storage-Requested
+Service-Specific-Info
+Called-Asserted-Identity
+Requested-Party-Address
+PoC-User-Role
+PoC-User-Role-IDs
+PoC-User-Role-info-Units
+Talk-Burst-Exchange
+Service-Generic-Information
+Service-Specific-Type
+Event-Charging-TimeStamp
+Participant-Access-Priority
+Participant-Group
+PoC-Change-Condition
+PoC-Change-Time
+Access-Network-Information
+Trigger
+Base-Time-Interval
+Envelope
+Envelope-End-Time
+Envelope-Reporting
+Envelope-Start-Time
+Time-Quota-Mechanism
+Time-Quota-Type
+Early-Media-Description
+SDP-TimeStamps
+SDP-Offer-Timestamp
+SDP-Answer-Timestamp
+AF-Correlation-Information
+PoC-Session-Initiation-type
+Offline-Charging
+User-Participating-Type
+Alternate-Charged-Party-Address
+IMS-Communication-Service-Identifier
+Number-Of-Received-Talk-Bursts
+Number-Of-Talk-Bursts
+Received-Talk-Burst-Time
+Received-Talk-Burst-Volume
+Talk-Burst-Time
+Talk-Burst-Volume
+Media-Initiator-Party
+Subscription-Data
+Terminal-Information
+IMEI
+Software-Version
+QoS-Subscribed
+ULR-Flags
+ULA-Flags
+Visited-PLMN-Id
+Requested-EUTRAN-Authentication-Info
+Requested-UTRAN-GERAN-Authentication-Info
+Number-Of-Requested-Vectors
+Re-Synchronization-Info
+Immediate-Response-Preferred
+Authentication-Info
+E-UTRAN-Vector
+UTRAN-Vector
+GERAN-Vector
+Network-Access-Mode
+HPLMN-ODB
+Item-Number
+Cancellation-Type
+DSR-Flags
+DSA-Flags
+Context-Identifier
+Subscriber-Status
+Operator-Determined-Barring
+Access-Restriction-Data
+APN-OI-Replacement
+All-APN-Configurations-Included-Indicator
+APN-Configuration-Profile
+APN-Configuration
+EPS-Subscribed-QoS-Profile
+VPLMN-Dynamic-Address-Allowed
+STN-SR
+Alert-Reason
+AMBR
+CSG-Subscription-Data
+CSG-Id
+PDN-GW-Allocation-Type
+Expiration-Date
+RAT-Frequency-Selection-Priority-ID
+IDA-Flags
+PUA-Flags
+NOR-Flags
+User-Id
+Equipment-Status
+Regional-Subscription-Zone-Code
+RAND
+XRES
+AUTN
+KASME
+Trace-Collection-Entity
+Kc
+SRES
+PDN-Type
+Roaming-Restricted-Due-To-Unsupported-Feature
+Trace-Data
+Trace-Reference
+Trace-Depth
+Trace-NE-Type-List
+Trace-Interface-List
+Trace-Event-List
+OMC-Id
+GPRS-Subscription-Data
+Complete-Data-List-Included-Indicator
+PDP-Context
+PDP-Type
+3GPP2-MEID
+Specific-APN-Info
+LCS-Info
+GMLC-Number
+LCS-PrivacyException
+SS-Code
+SS-Status
+Notification-To-UE-User
+External-Client
+Client-Identity
+GMLC-Restriction
+PLMN-Client
+ETSI-Service-Type
+ServiceTypeIdentity
+MO-LR
+Teleservice-List
+TS-Code
+Call-Barring-Info
+SGSN-Number
+IDR-Flags
+ICS-Indicator
+IMS-Voice-Over-PS-Sessions-Supported
+Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions
+Last-UE-Activity-Time
+EPS-User-State
+EPS-Location-Information
+MME-User-State
+SGSN-User-State
+User-State
+Non-3GPP-User-Data
+Non-3GPP-IP-Access
+Non-3GPP-IP-Access-APN
+AN-Trusted
+ANID
+Trace-Info
+MIP-FA-RK
+MIP-FA-RK-SPI
+PPR-Flags
+WLAN-Identifier
+TWAN-Access-Info
+Access-Authorization-Flags
+TWAN-Default-APN-Context-Id
+Trust-Relationship-Update
+Full-Network-Name
+Short-Network-Name
+AAA-Failure-Indication
+Transport-Access-Type
+DER-Flags
+DEA-Flags
+RAR-Flags
+DER-S6b-Flags
+SSID
+HESSID
+Access-Network-Info
+TWAN-Connection-Mode
+TWAN-Connectivity-Parameters
+Connectivity-Flags
+TWAN-PCO
+TWAG-CP-Address
+TWAG-UP-Address
+TWAN-S2a-Failure-Cause
+SM-Back-Off-Timer
+WLCP-Key
+MME-Location-Information
+SGSN-Location-Information
+E-UTRAN-Cell-Global-Identity
+Tracking-Area-Identity
+Cell-Global-Identity
+Routing-Area-Identity
+Location-Area-Identity
+Service-Area-Identity
+Geographical-Information
+Geodetic-Information
+Current-Location-Retrieved
+Age-Of-Location-Information
+Active-APN
+SIPTO-Permission
+Error-Diagnostic
+UE-SRVCC-Capability
+MPS-Priority
+VPLMN-LIPA-Allowed
+LIPA-Permission
+Subscribed-Periodic-RAU-TAU-Timer
+Ext-PDP-Type
+Ext-PDP-Address
+MDT-Configuration
+Job-Type
+Area-Scope
+List-Of-Measurements
+Reporting-Trigger
+Report-Interval
+Report-Amount
+Event-Threshold-RSRP
+Event-Threshold-RSRQ
+Logging-Interval
+Logging-Duration
+Relay-Node-Indicator
+MDT-User-Consent
+PUR-Flags
+Subscribed-VSRVCC
+Equivalent-PLMN-List
+CLR-Flags
+UVR-Flags
+UVA-Flags
+VPLMN-CSG-Subscription-Data
+Time-Zone
+A-MSISDN
+MME-Number-for-MT-SMS
+SMS-Register-Request
+Local-Time-Zone
+Daylight-Saving-Time
+Subscription-Data-Flags
+Measurement-Period-UMTS
+Measurement-Period-LTE
+Collection-Period-RRM-LTE
+Collection-Period-RRM-UMTS
+Positioning-Method
+Measurement-Quantity
+Event-Threshold-Event-1F
+Event-Threshold-Event-1I
+Restoration-Priority
+SGs-MME-Identity
+SIPTO-Local-Network-Permission
+Coupled-Node-Diameter-ID
+WLAN-offloadability
+WLAN-offloadability-EUTRAN
+WLAN-offloadability-UTRAN
+Reset-ID
+MDT-Allowed-PLMN-Id
+SMS-Information
+Data-Coding-Scheme
+Destination-Interface
+Interface-Id
+Interface-Port
+Interface-Text
+Interface-Type
+SM-Message-Type
+Originator-SCCP-Address
+Originator-Interface
+Recipient-SCCP-Address
+Reply-Path-Requested
+SM-Discharge-Time
+SM-Protocol-ID
+SM-Status
+SM-User-Data-Header
+SMS-Node
+SMSC-Address
+Client-Address
+Number-Of-Messages-Sent
+Remaining-Balance
+Refund-Information
+Carrier-Select-Routing-Information
+Number-Portability-Routing-Information
+PoC-Event-Type
+Recipient-Info
+Originator-Received-Address
+Recipient-Received-Address
+SM-Service-Type
+MMTel-Information
+MMTel-SService-Type
+Service-Mode
+Subscriber-Role
+Number-Of-Diversions
+Associated-Party-Address
+SDP-Type
+Change-Condition
+Change-Time
+Diagnostics
+Service-Data-Container
+Start-Time
+Stop-Time
+Time-First-Usage
+Time-Last-Usage
+Time-Usage
+Traffic-Data-Volumes
+Serving-Node-Type
+Supplementary-Service
+Participant-Action-Type
+PDN-Connection-Charging-ID
+Dynamic-Address-Flag
+Accumulated-Cost
+AoC-Cost-Information
+AoC-Information
+Current-Tariff
+Next-Tariff
+Rate-Element
+Scale-Factor
+Tariff-Information
+Unit-Cost
+Incremental-Cost
+Local-Sequence-Number
+Node-Id
+SGW-Change
+Charging-Characteristics-Selection-Mode
+SGW-Address
+Dynamic-Address-Flag-Extension
+Application-Server-ID
+Application-Service-Type
+Application-Session-ID
+Delivery-Status
+IM-Information
+Number-Of-Messages-Successfully-Exploded
+Number-Of-Messages-Successfully-Sent
+Total-Number-Of-Messages-Exploded
+Total-Number-Of-Messages-Sent
+DCD-Information
+Content-ID
+Content-Provider-ID
+Charge-Reason-Code
+Subsession-Decision-Info
+Subsession-Enforcement-Info
+Subsession-Id
+Subsession-Operation
+Multiple-BBERF-Action
+UE-Local-IPv6-Prefix
+DRA-Deployment
+DRA-Binding
+SIP-Request-Timestamp-Fraction
+SIP-Response-Timestamp-Fraction
+Online-Charging-Flag
+CUG-Information
+Real-Time-Tariff-Information
+Tariff-XML
+MBMS-GW-Address
+IMSI-Unauthenticated-Flag
+Account-Expiration
+AoC-Format
+AoC-Service
+AoC-Service-Obligatory-Type
+AoC-Service-Type
+AoC-Subscription-Information
+Preferred-AoC-Currency
+CSG-Access-Mode
+CSG-Membership-Indication
+User-CSG-Information
+Outgoing-Session-Id
+Initial-IMS-Charging-Identifier
+IMS-Emergency-Indicator
+MBMS-Charged-Party
+LMSI
+Serving-Node
+MME-Name
+MSC-Number
+LCS-Capabilities-Sets
+GMLC-Address
+Additional-Serving-Node
+PPR-Address
+MME-Realm
+SGSN-Name
+SGSN-Realm
+RIA-Flags
+SLg-Location-Type
+LCS-EPS-Client-Name
+LCS-Requestor-Name
+LCS-Priority
+LCS-QoS
+Horizontal-Accuracy
+Vertical-Accuracy
+Vertical-Requested
+Velocity-Requested
+Response-Time
+Supported-GAD-Shapes
+LCS-Codeword
+LCS-Privacy-Check
+Accuracy-Fulfilment-Indicator
+Age-Of-Location-Estimate
+Velocity-Estimate
+EUTRAN-Positioning-Data
+ECGI
+Location-Event
+Pseudonym-Indicator
+LCS-Service-Type-ID
+LCS-Privacy-Check-Non-Session
+LCS-Privacy-Check-Session
+LCS-QoS-Class
+GERAN-Positioning-Info
+GERAN-Positioning-Data
+GERAN-GANSS-Positioning-Data
+UTRAN-Positioning-Info
+UTRAN-Positioning-Data
+UTRAN-GANSS-Positioning-Data
+LRR-Flags
+LCS-Reference-Number
+Deferred-Location-Type
+Area-Event-Info
+Area-Definition
+Area
+Area-Type
+Area-Identification
+Occurrence-Info
+Interval-Time
+Periodic-LDR-Information
+Reporting-Amount
+Reporting-Interval
+Reporting-PLMN-List
+PLMN-ID-List
+PLR-Flags
+PLA-Flags
+Deferred-MT-LR-Data
+ETSI-Termination-Cause
+LRA-Flags
+Periodic-Location-Support-Indicator
+Prioritized-List-Indicator
+ESMLC-Cell-Info
+Cell-Portion-ID
+1xRTT-RCID
+IMS-Application-Reference-Identifier
+Low-Priority-Indicator
+IP-Realm-Default-Indication
+Local-GW-Inserted-Indication
+Transcoder-Inserted-Indication
+PDP-Address-Prefix-Length
+Transit-IOI-List
+Status-AS-Code
+NNI-Information
+NNI-Type
+Neighbour-Node-Address
+Relationship-Mode
+Session-Direction
+From-Address
+Access-Transfer-Information
+Access-Transfer-Type
+Related-IMS-Charging-Identifier
+Related-IMS-Charging-Identifier-Node
+IMS-Visited-Network-Identifier
+TWAN-User-Location-Info
+BSSID
+TAD-Identifier
+TDF-Application-Instance-Identifier
+HeNB-Local-IP-Address
+UE-Local-IP-Address
+UDP-Source-Port
+Mute-Notification
+Monitoring-Time
+AN-GW-Status
+User-Location-Info-Time
+Default-QoS-Information
+Default-QoS-Name
+Conditional-APN-Aggregate-Max-Bitrate
+RAN-NAS-Release-Cause
+Presence-Reporting-Area-Elements-List
+Presence-Reporting-Area-Identifier
+Presence-Reporting-Area-Information
+Presence-Reporting-Area-Status
+NetLoc-Access-Support
+Fixed-User-Location-Info
+PCSCF-Restoration-Indication
+IP-CAN-Session-Charging-Scope
+Monitoring-Flags
+Policy-Counter-Identifier
+Policy-Counter-Status
+Policy-Counter-Status-Report
+SL-Request-Type
+Pending-Policy-Counter-Information
+Pending-Policy-Counter-Change-Time
+Priority-Indication
+Reference-Number
+Application-Port-Identifier
+Reason-Header
+Instance-Id
+Route-Header-Received
+Route-Header-Transmitted
+SM-Device-Trigger-Information
+MTC-IWF-Address
+SM-Device-Trigger-Indicator
+SM-Sequence-Number
+SMS-Result
+VCS-Information
+Basic-Service-Code
+Bearer-Capability
+Teleservice
+ISUP-Location-Number
+Forwarding-Pending
+ISUP-Release-Cause
+MSC-Address
+Network-Call-Reference-Number
+Start-of-Charging
+VLR-Number
+CN-Operator-Selection-Entity
+ISUP-Cause-Diagnostics
+ISUP-Cause-Location
+ISUP-Cause-Value
+ePDG-Address
+Announcing-UE-HPLMN-Identifier
+Announcing-UE-VPLMN-Identifier
+Coverage-Status
+Layer-2-Group-ID
+Monitored-PLMN-Identifier
+Monitoring-UE-HPLMN-Identifier
+Monitoring-UE-Identifier
+Monitoring-UE-VPLMN-Identifier
+PC3-Control-Protocol-Cause
+PC3-EPC-Control-Protocol-Cause
+Requested-PLMN-Identifier
+Requestor-PLMN-Identifier
+Role-Of-ProSe-Function
+Usage-Information-Report-Sequence-Number
+ProSe-3rd-Party-Application-ID
+ProSe-Direct-Communication-Transmission-Data-Container
+ProSe-Direct-Discovery-Model
+ProSe-Event-Type
+ProSe-Function-IP-Address
+ProSe-Functionality
+ProSe-Group-IP-Multicast-Address
+ProSe-Information
+ProSe-Range-Class
+ProSe-Reason-For-Cancellation
+ProSe-Request-Timestamp
+ProSe-Role-Of-UE
+ProSe-Source-IP-Address
+ProSe-UE-ID
+Proximity-Alert-Indication
+Proximity-Alert-Timestamp
+Proximity-Cancellation-Timestamp
+ProSe-Function-PLMN-Identifier
+Application-Specific-Data
+Coverage-Info
+Location-Info
+ProSe-Direct-Communication-Reception-Data-Container
+Radio-Frequency
+Radio-Parameter-Set-Info
+Radio-Parameter-Set-Values
+Radio-Resources-Indicator
+Time-First-Reception
+Time-First-Transmission
+Transmitter-Info
+Origin-App-Layer-User-Id
+Target-App-Layer-User-Id
+ProSe-Function-ID
+ProSe-Subscription-Data
+ProSe-Permission
+ProSe-Allowed-PLMN
+ProSe-Direct-Allowed
+Authorized-Discovery-Range
+ProSe-App-ID
+ProSe-Validity-Timer
+Requesting-EPUID
+Time-Window
+WLAN-Link-Layer-Id
+
+@grouped
+Access-Network-Charging-Identifier ::= <AVP Header: 502>
+      { Access-Network-Charging-Identifier-Value }
+  *   [ Flows ]
+Flow-Grouping ::= <AVP Header: 508>
+  *   [ Flows ]
+Flows ::= <AVP Header: 510>
+      { Media-Component-Number }
+  *   [ Flow-Number ]
+Media-Component-Description ::= <AVP Header: 517>
+      { Media-Component-Number }
+  *   [ Media-Sub-Component ]
+      [ AF-Application-Identifier ]
+      [ Media-Type ]
+      [ Max-Requested-Bandwidth-UL ]
+      [ Max-Requested-Bandwidth-DL ]
+      [ Flow-Status ]
+      [ RS-Bandwidth ]
+      [ RR-Bandwidth ]
+      [ Reservation-Priority ]
+      [ Reservation-Class ]
+      [ Transport-Class ]
+  *   [ Media-Authorization-Context-ID ]
+Media-Sub-Component ::= <AVP Header: 519>
+      { Flow-Number }
+      [ Flow-Status ]
+  * 2 [ Flow-Description ]
+      [ Flow-Usage ]
+      [ Max-Requested-Bandwidth-UL ]
+      [ Max-Requested-Bandwidth-DL ]
+Acceptable-Service-Info ::= <AVP Header: 526>
+  *   [ Media-Component-Description ]
+      [ Max-Requested-Bandwidth-DL ]
+      [ Max-Requested-Bandwidth-UL ]
+  *   [ AVP ]
+Server-Capabilities ::= <AVP Header: 603>
+  *   [ Mandatory-Capability ]
+  *   [ Optional-Capability ]
+  *   [ Server-Name ]
+  *   [ AVP ]
+3GPP-SIP-Auth-Data-Item ::= <AVP Header: 612>
+      [ ETSI-SIP-Item-Number ]
+      [ ETSI-SIP-Authentication-Scheme ]
+      [ ETSI-SIP-Authenticate ]
+      [ ETSI-SIP-Authorization ]
+      [ SIP-Authentication-Context ]
+      [ Confidentiality-Key ]
+      [ Integrity-Key ]
+      [ SIP-Digest-Authenticate ]
+      [ Framed-IP-Address ]
+      [ Framed-IPv6-Prefix ]
+      [ Framed-Interface-Id ]
+  *   [ Line-Identifier ]
+  *   [ AVP ]
+Deregistration-Reason ::= <AVP Header: 615>
+      { Reason-Code }
+      [ Reason-Info ]
+  *   [ AVP ]
+Charging-Information ::= <AVP Header: 618>
+      [ Primary-Event-Charging-Function-Name ]
+      [ Secondary-Event-Charging-Function-Name ]
+      [ Primary-Charging-Collection-Function-Name ]
+      [ Secondary-Charging-Collection-Function-Name ]
+  *   [ AVP ]
+Supported-Features ::= <AVP Header: 628>
+      { Vendor-Id }
+      { Feature-List-ID }
+      { Feature-List }
+  *   [ AVP ]
+Supported-Applications ::= <AVP Header: 631>
+  *   [ Auth-Application-Id ]
+  *   [ Acct-Application-Id ]
+  *   [ Vendor-Specific-Application-Id ]
+  *   [ AVP ]
+Associated-Identities ::= <AVP Header: 632>
+  *   [ User-Name ]
+  *   [ AVP ]
+SIP-Digest-Authenticate ::= <AVP Header: 635>
+      { Digest-Realm }
+      [ Digest-Algorithm ]
+      { Digest-QoP }
+      { Digest-HA1 }
+  *   [ AVP ]
+SCSCF-Restoration-Info ::= <AVP Header: 639>
+      { User-Name }
+ 1*   { Restoration-Info }
+      [ ETSI-SIP-Authentication-Scheme ]
+  *   [ AVP ]
+Subscription-Info ::= <AVP Header: 642>
+      { Call-ID-SIP-Header }
+      { From-SIP-Header }
+      { To-SIP-Header }
+      { Record-Route }
+      { Contact }
+  *   [ AVP ]
+Associated-Registered-Identities ::= <AVP Header: 647>
+  *   [ User-Name ]
+  *   [ AVP ]
+Restoration-Info ::= <AVP Header: 649>
+      { Path }
+      { Contact }
+      [ Initial-CSeq-Sequence-Number ]
+      [ Call-ID-SIP-Header ]
+      [ Subscription-Info ]
+  *   [ AVP ]
+Identity-with-Emergency-Registration ::= <AVP Header: 651>
+      { User-Name }
+      { Public-Identity }
+  *   [ AVP ]
+User-Identity ::= <AVP Header: 700>
+      [ Public-Identity ]
+      [ MSISDN ]
+  *   [ AVP ]
+Repository-Data-ID ::= <AVP Header: 715>
+      { Service-Indication }
+      { Sequence-Number }
+  *   [ AVP ]
+Call-Reference-Info ::= <AVP Header: 720>
+      { Call-Reference-Number }
+      { AS-Number }
+  *   [ AVP ]
+Event-Type ::= <AVP Header: 823>
+      [ ETSI-SIP-Method ]
+      [ Event ]
+      [ Expires ]
+Time-Stamps ::= <AVP Header: 833>
+      [ SIP-Request-Timestamp ]
+      [ SIP-Response-Timestamp ]
+      [ SIP-Request-Timestamp-Fraction ]
+      [ SIP-Response-Timestamp-Fraction ]
+Inter-Operator-Identifier ::= <AVP Header: 838>
+      [ Originating-IOI ]
+      [ Terminating-IOI ]
+SDP-Media-Component ::= <AVP Header: 843>
+      [ SDP-Media-Name ]
+  *   [ SDP-Media-Description ]
+      [ Local-GW-Inserted-Indication ]
+      [ IP-Realm-Default-Indication ]
+      [ Transcoder-Inserted-Indication ]
+      [ Media-Initiator-Flag ]
+      [ Media-Initiator-Party ]
+      [ 3GPP-Charging-ID ]
+      [ Access-Network-Charging-Identifier-Value ]
+      [ SDP-Type ]
+Application-Server-Information ::= <AVP Header: 850>
+      [ Application-Server ]
+  *   [ Application-Provided-Called-Party-Address ]
+      [ Status-AS-Code ]
+Trunk-Group-ID ::= <AVP Header: 851>
+      [ Incoming-Trunk-Group-Id ]
+      [ Outgoing-Trunk-Group-Id ]
+PS-Furnish-Charging-Information ::= <AVP Header: 865>
+      { 3GPP-Charging-ID }
+      { PS-Free-Format-Data }
+      [ PS-Append-Free-Format-Data ]
+Service-Information ::= <AVP Header: 873>
+  *   [ Subscription-Id ]
+      [ AoC-Information ]
+      [ PS-Information ]
+      [ IMS-Information ]
+      [ MMS-Information ]
+      [ LCS-Information ]
+      [ PoC-Information ]
+      [ MBMS-Information ]
+      [ SMS-Information ]
+      [ VCS-Information ]
+      [ MMTel-Information ]
+      [ ProSe-Information ]
+      [ Service-Generic-Information ]
+      [ IM-Information ]
+      [ DCD-Information ]
+PS-Information ::= <AVP Header: 874>
+      [ 3GPP-Charging-ID ]
+      [ PDN-Connection-Charging-ID ]
+      [ Node-Id ]
+      [ 3GPP-PDP-Type ]
+  *   [ PDP-Address ]
+      [ PDP-Address-Prefix-Length ]
+      [ Dynamic-Address-Flag ]
+      [ Dynamic-Address-Flag-Extension ]
+      [ QoS-Information ]
+  *   [ SGSN-Address ]
+  *   [ GGSN-Address ]
+  *   [ TDF-IP-Address ]
+  *   [ SGW-Address ]
+  *   [ ePDG-Address ]
+      [ CG-Address ]
+      [ Serving-Node-Type ]
+      [ SGW-Change ]
+      [ 3GPP-IMSI-MCC-MNC ]
+      [ IMSI-Unauthenticated-Flag ]
+      [ 3GPP-GGSN-MCC-MNC ]
+      [ 3GPP-NSAPI ]
+      [ Called-Station-Id ]
+      [ 3GPP-Session-Stop-Indicator ]
+      [ 3GPP-Selection-Mode ]
+      [ 3GPP-Charging-Characteristics ]
+      [ Charging-Characteristics-Selection-Mode ]
+      [ 3GPP-SGSN-MCC-MNC ]
+      [ 3GPP-MS-TimeZone ]
+      [ Charging-Rule-Base-Name ]
+      [ ADC-Rule-Base-Name ]
+      [ 3GPP-User-Location-Info ]
+      [ User-Location-Info-Time ]
+      [ User-CSG-Information ]
+      [ Presence-Reporting-Area-Information ]
+      [ 3GPP2-BSID ]
+      [ TWAN-User-Location-Info ]
+      [ 3GPP-RAT-Type ]
+      [ PS-Furnish-Charging-Information ]
+      [ PDP-Context-Type ]
+      [ Offline-Charging ]
+  *   [ Traffic-Data-Volumes ]
+  *   [ Service-Data-Container ]
+      [ User-Equipment-Info ]
+      [ Terminal-Information ]
+      [ Start-Time ]
+      [ Stop-Time ]
+      [ Change-Condition ]
+      [ Diagnostics ]
+      [ Low-Priority-Indicator ]
+      [ MME-Number-for-MT-SMS ]
+      [ MME-Name ]
+      [ MME-Realm ]
+      [ Logical-Access-ID ]
+      [ Physical-Access-ID ]
+      [ Fixed-User-Location-Info ]
+      [ CN-Operator-Selection-Entity ]
+IMS-Information ::= <AVP Header: 876>
+      [ Event-Type ]
+      [ Role-Of-Node ]
+      { Node-Functionality }
+      [ User-Session-Id ]
+      [ Outgoing-Session-Id ]
+      [ Session-Priority ]
+  *   [ Calling-Party-Address ]
+      [ Called-Party-Address ]
+  *   [ Called-Asserted-Identity ]
+      [ Number-Portability-Routing-Information ]
+      [ Carrier-Select-Routing-Information ]
+      [ Alternate-Charged-Party-Address ]
+  *   [ Requested-Party-Address ]
+  *   [ Associated-URI ]
+      [ Time-Stamps ]
+  *   [ Application-Server-Information ]
+  *   [ Inter-Operator-Identifier ]
+  *   [ Transit-IOI-List ]
+      [ IMS-Charging-Identifier ]
+  *   [ SDP-Session-Description ]
+  *   [ SDP-Media-Component ]
+      [ Served-Party-IP-Address ]
+      [ Server-Capabilities ]
+      [ Trunk-Group-ID ]
+      [ Bearer-Service ]
+      [ Service-Id ]
+  *   [ Service-Specific-Info ]
+  *   [ Message-Body ]
+      [ Cause-Code ]
+  *   [ Reason-Header ]
+  *   [ Access-Network-Information ]
+  *   [ Early-Media-Description ]
+      [ IMS-Communication-Service-Identifier ]
+      [ IMS-Application-Reference-Identifier ]
+      [ Online-Charging-Flag ]
+      [ Real-Time-Tariff-Information ]
+      [ Account-Expiration ]
+      [ Initial-IMS-Charging-Identifier ]
+  *   [ NNI-Information ]
+      [ From-Address ]
+      [ IMS-Emergency-Indicator ]
+      [ IMS-Visited-Network-Identifier ]
+  *   [ Access-Transfer-Information ]
+      [ Related-IMS-Charging-Identifier ]
+      [ Related-IMS-Charging-Identifier-Node ]
+      [ Route-Header-Received ]
+      [ Route-Header-Transmitted ]
+      [ Instance-Id ]
+      [ TAD-Identifier ]
+MMS-Information ::= <AVP Header: 877>
+      [ Originator-Address ]
+  *   [ Recipient-Address ]
+      [ Submission-Time ]
+      [ MM-Content-Type ]
+      [ Priority ]
+      [ Message-ID ]
+      [ Message-Type ]
+      [ Message-Size ]
+      [ Message-Class ]
+      [ Delivery-Report-Requested ]
+      [ Read-Reply-Report-Requested ]
+      [ MMBox-Storage-Requested ]
+      [ Applic-ID ]
+      [ Reply-Applic-ID ]
+      [ Aux-Applic-Info ]
+      [ Content-Class ]
+      [ DRM-Content ]
+      [ Adaptations ]
+      [ VASP-ID ]
+      [ VAS-ID ]
+LCS-Information ::= <AVP Header: 878>
+      [ LCS-Client-ID ]
+      [ Location-Type ]
+      [ Location-Estimate ]
+      [ Positioning-Data ]
+      [ 3GPP-IMSI ]
+      [ MSISDN ]
+PoC-Information ::= <AVP Header: 879>
+      [ PoC-Server-Role ]
+      [ PoC-Session-Type ]
+      [ PoC-User-Role ]
+      [ PoC-Session-Initiation-type ]
+      [ PoC-Event-Type ]
+      [ Number-Of-Participants ]
+  *   [ Participants-Involved ]
+  *   [ Participant-Group ]
+  *   [ Talk-Burst-Exchange ]
+      [ PoC-Controlling-Address ]
+      [ PoC-Group-Name ]
+      [ PoC-Session-Id ]
+      [ Charged-Party ]
+MBMS-Information ::= <AVP Header: 880>
+      [ TMGI ]
+      [ MBMS-Service-Type ]
+      [ MBMS-User-Service-Type ]
+      [ File-Repair-Supported ]
+      [ Required-MBMS-Bearer-Capabilities ]
+      [ MBMS-2G-3G-Indicator ]
+      [ RAI ]
+  *   [ MBMS-Service-Area ]
+      [ MBMS-Session-Identity ]
+      [ CN-IP-Multicast-Distribution ]
+      [ MBMS-GW-Address ]
+      [ MBMS-Charged-Party ]
+  *   [ MSISDN ]
+      [ MBMS-Data-Transfer-Start ]
+      [ MBMS-Data-Transfer-Stop ]
+Originator-Address ::= <AVP Header: 886>
+      [ Address-Type ]
+      [ Address-Data ]
+      [ Address-Domain ]
+Message-Body ::= <AVP Header: 889>
+      { Content-Type }
+      { Content-Length }
+      [ Content-Disposition ]
+      [ Originator ]
+Address-Domain ::= <AVP Header: 898>
+      [ Domain-Name ]
+      [ 3GPP-IMSI-MCC-MNC ]
+Charging-Rule-Install ::= <AVP Header: 1001>
+  *   [ Charging-Rule-Definition ]
+  *   [ Charging-Rule-Name ]
+  *   [ Charging-Rule-Base-Name ]
+      [ Bearer-Identifier ]
+      [ Rule-Activation-Time ]
+      [ Rule-Deactivation-Time ]
+      [ Resource-Allocation-Notification ]
+      [ Charging-Correlation-Indicator ]
+  *   [ AVP ]
+Charging-Rule-Remove ::= <AVP Header: 1002>
+  *   [ Charging-Rule-Name ]
+  *   [ Charging-Rule-Base-Name ]
+  *   [ Required-Access-Info ]
+  *   [ AVP ]
+Charging-Rule-Definition ::= <AVP Header: 1003>
+      { Charging-Rule-Name }
+      [ Service-Identifier ]
+      [ Rating-Group ]
+  *   [ Flow-Information ]
+      [ TDF-Application-Identifier ]
+      [ Flow-Status ]
+      [ QoS-Information ]
+      [ PS-to-CS-Session-Continuity ]
+      [ Reporting-Level ]
+      [ Online ]
+      [ Offline ]
+      [ Metering-Method ]
+      [ Precedence ]
+      [ AF-Charging-Identifier ]
+  *   [ Flows ]
+      [ Monitoring-Key ]
+      [ Redirect-Information ]
+      [ Mute-Notification ]
+      [ AF-Signalling-Protocol ]
+      [ Sponsor-Identity ]
+      [ Application-Service-Provider-Identity ]
+  *   [ Required-Access-Info ]
+  *   [ AVP ]
+TFT-Packet-Filter-Information ::= <AVP Header: 1013>
+      [ Precedence ]
+      [ TFT-Filter ]
+      [ ToS-Traffic-Class ]
+      [ Security-Parameter-Index ]
+      [ Flow-Label ]
+      [ Flow-Direction ]
+  *   [ AVP ]
+QoS-Information ::= <AVP Header: 1016>
+      [ QoS-Class-Identifier ]
+      [ Max-Requested-Bandwidth-UL ]
+      [ Max-Requested-Bandwidth-DL ]
+      [ Guaranteed-Bitrate-UL ]
+      [ Guaranteed-Bitrate-DL ]
+      [ Bearer-Identifier ]
+Charging-Rule-Report ::= <AVP Header: 1018>
+  *   [ Charging-Rule-Name ]
+  *   [ Charging-Rule-Base-Name ]
+      [ Bearer-Identifier ]
+      [ PCC-Rule-Status ]
+      [ Rule-Failure-Code ]
+      [ Final-Unit-Indication ]
+  *   [ RAN-NAS-Release-Cause ]
+  *   [ AVP ]
+Access-Network-Charging-Identifier-Gx ::= <AVP Header: 1022>
+      { Access-Network-Charging-Identifier-Value }
+  *   [ Charging-Rule-Base-Name ]
+  *   [ Charging-Rule-Name ]
+      [ IP-CAN-Session-Charging-Scope ]
+  *   [ AVP ]
+Event-Report-Indication ::= <AVP Header: 1033>
+      [ AN-Trusted ]
+  *   [ Event-Trigger ]
+      [ User-CSG-Information ]
+      [ IP-CAN-Type ]
+  * 2 [ AN-GW-Address ]
+      [ 3GPP-SGSN-Address ]
+      [ 3GPP-SGSN-IPv6-Address ]
+      [ 3GPP-SGSN-MCC-MNC ]
+      [ Framed-IP-Address ]
+      [ RAT-Type ]
+      [ RAI ]
+      [ 3GPP-User-Location-Info ]
+      [ Trace-Data ]
+      [ Trace-Reference ]
+      [ 3GPP2-BSID ]
+      [ 3GPP-MS-TimeZone ]
+      [ Routing-IP-Address ]
+      [ UE-Local-IP-Address ]
+      [ HeNB-Local-IP-Address ]
+      [ UDP-Source-Port ]
+      [ Presence-Reporting-Area-Information ]
+  *   [ AVP ]
+Allocation-Retention-Priority ::= <AVP Header: 1034>
+      { Priority-Level }
+      [ Pre-emption-Capability ]
+      [ Pre-emption-Vulnerability ]
+Tunnel-Information ::= <AVP Header: 1038>
+      [ Tunnel-Header-Length ]
+      [ Tunnel-Header-Filter ]
+  *   [ AVP ]
+CoA-Information ::= <AVP Header: 1039>
+      { Tunnel-Information }
+      { CoA-IP-Address }
+  *   [ AVP ]
+Default-EPS-Bearer-QoS ::= <AVP Header: 1049>
+      [ QoS-Class-Identifier ]
+      [ Allocation-Retention-Priority ]
+  *   [ AVP ]
+QoS-Rule-Install ::= <AVP Header: 1051>
+  *   [ QoS-Rule-Definition ]
+      [ Tunnel-Information ]
+      [ Access-Network-Charging-Identifier-Value ]
+      [ Resource-Allocation-Notification ]
+  *   [ AVP ]
+QoS-Rule-Remove ::= <AVP Header: 1052>
+  *   [ QoS-Rule-Name ]
+  *   [ AVP ]
+QoS-Rule-Definition ::= <AVP Header: 1053>
+      { QoS-Rule-Name }
+  *   [ Flow-Information ]
+      [ QoS-Information ]
+      [ Precedence ]
+  *   [ AVP ]
+QoS-Rule-Report ::= <AVP Header: 1055>
+  *   [ QoS-Rule-Name ]
+      [ PCC-Rule-Status ]
+      [ Rule-Failure-Code ]
+  *   [ AVP ]
+Flow-Information ::= <AVP Header: 1058>
+      [ Flow-Description ]
+      [ Packet-Filter-Identifier ]
+      [ Packet-Filter-Usage ]
+      [ ToS-Traffic-Class ]
+      [ Security-Parameter-Index ]
+      [ Flow-Label ]
+      [ Flow-Direction ]
+  *   [ AVP ]
+Packet-Filter-Information ::= <AVP Header: 1061>
+      [ Packet-Filter-Identifier ]
+      [ Precedence ]
+      [ Packet-Filter-Content ]
+      [ ToS-Traffic-Class ]
+      [ Security-Parameter-Index ]
+      [ Flow-Label ]
+      [ Flow-Direction ]
+  *   [ AVP ]
+Usage-Monitoring-Information ::= <AVP Header: 1067>
+      [ Monitoring-Key ]
+  * 2 [ Granted-Service-Unit ]
+  * 2 [ Used-Service-Unit ]
+      [ Quota-Consumption-Time ]
+      [ Usage-Monitoring-Level ]
+      [ Usage-Monitoring-Report ]
+      [ Usage-Monitoring-Support ]
+  *   [ AVP ]
+Routing-Rule-Remove ::= <AVP Header: 1075>
+  *   [ Routing-Rule-Identifier ]
+  *   [ AVP ]
+Routing-Rule-Definition ::= <AVP Header: 1076>
+      { Routing-Rule-Identifier }
+  *   [ Routing-Filter ]
+      [ Precedence ]
+      [ Routing-IP-Address ]
+  *   [ AVP ]
+Routing-Filter ::= <AVP Header: 1078>
+      { Flow-Description }
+      { Flow-Direction }
+      [ ToS-Traffic-Class ]
+      [ Security-Parameter-Index ]
+      [ Flow-Label ]
+  *   [ AVP ]
+Routing-Rule-Install ::= <AVP Header: 1081>
+  *   [ Routing-Rule-Definition ]
+  *   [ AVP ]
+Redirect-Information ::= <AVP Header: 1085>
+      [ Redirect-Support ]
+      [ Redirect-Address-Type ]
+      [ Redirect-Server-Address ]
+  *   [ AVP ]
+TDF-Information ::= <AVP Header: 1087>
+      [ TDF-Destination-Realm ]
+      [ TDF-Destination-Host ]
+      [ TDF-IP-Address ]
+Application-Detection-Information ::= <AVP Header: 1098>
+      { TDF-Application-Identifier }
+      [ TDF-Application-Instance-Identifier ]
+  *   [ Flow-Information ]
+  *   [ AVP ]
+Recipient-Address ::= <AVP Header: 1201>
+      [ Address-Type ]
+      [ Address-Data ]
+      [ Address-Domain ]
+      [ Addressee-Type ]
+MM-Content-Type ::= <AVP Header: 1203>
+      [ Type-Number ]
+      [ Additional-Type-Information ]
+      [ Content-Size ]
+Additional-Content-Information ::= <AVP Header: 1207>
+      [ Type-Number ]
+      [ Additional-Type-Information ]
+      [ Content-Size ]
+Message-Class ::= <AVP Header: 1213>
+      [ Class-Identifier ]
+      [ Token-Text ]
+LCS-Client-ID ::= <AVP Header: 1232>
+      [ LCS-Client-Type ]
+      [ LCS-Client-External-ID ]
+      [ LCS-Client-Dialed-By-MS ]
+      [ LCS-Client-Name ]
+      [ LCS-APN ]
+      [ LCS-Requestor-ID ]
+LCS-Client-Name ::= <AVP Header: 1235>
+      [ LCS-Data-Coding-Scheme ]
+      [ LCS-Name-String ]
+      [ LCS-Format-Indicator ]
+LCS-Requestor-ID ::= <AVP Header: 1239>
+      [ LCS-Data-Coding-Scheme ]
+      [ LCS-Requestor-ID-String ]
+Location-Type ::= <AVP Header: 1244>
+      [ Location-Estimate-Type ]
+      [ Deferred-Location-Event-Type ]
+Service-Specific-Info ::= <AVP Header: 1249>
+      [ Service-Specific-Data ]
+      [ Service-Specific-Type ]
+PoC-User-Role ::= <AVP Header: 1252>
+      [ PoC-User-Role-IDs ]
+      [ PoC-User-Role-info-Units ]
+Talk-Burst-Exchange ::= <AVP Header: 1255>
+      { PoC-Change-Time }
+      [ Number-Of-Talk-Bursts ]
+      [ Talk-Burst-Volume ]
+      [ Talk-Burst-Time ]
+      [ Number-Of-Received-Talk-Bursts ]
+      [ Received-Talk-Burst-Volume ]
+      [ Received-Talk-Burst-Time ]
+      [ Number-Of-Participants ]
+      [ PoC-Change-Condition ]
+Service-Generic-Information ::= <AVP Header: 1256>
+      [ Application-Server-ID ]
+      [ Application-Service-Type ]
+      [ Application-Session-ID ]
+      [ Delivery-Status ]
+Participant-Group ::= <AVP Header: 1260>
+      [ Called-Party-Address ]
+      [ Participant-Access-Priority ]
+      [ User-Participating-Type ]
+Trigger ::= <AVP Header: 1264>
+  *   [ Trigger-Type ]
+Envelope ::= <AVP Header: 1266>
+      { Envelope-Start-Time }
+      [ Envelope-End-Time ]
+      [ CC-Total-Octets ]
+      [ CC-Input-Octets ]
+      [ CC-Output-Octets ]
+      [ CC-Service-Specific-Units ]
+Time-Quota-Mechanism ::= <AVP Header: 1270>
+      { Time-Quota-Type }
+      { Base-Time-Interval }
+Early-Media-Description ::= <AVP Header: 1272>
+      [ SDP-TimeStamps ]
+  *   [ SDP-Media-Component ]
+  *   [ SDP-Session-Description ]
+SDP-TimeStamps ::= <AVP Header: 1273>
+      [ SDP-Offer-Timestamp ]
+      [ SDP-Answer-Timestamp ]
+AF-Correlation-Information ::= <AVP Header: 1276>
+      { AF-Charging-Identifier }
+  *   [ Flows ]
+Offline-Charging ::= <AVP Header: 1278>
+      [ Quota-Consumption-Time ]
+      [ Time-Quota-Mechanism ]
+      [ Envelope-Reporting ]
+  *   [ Multiple-Services-Credit-Control ]
+  *   [ AVP ]
+Subscription-Data ::= <AVP Header: 1400>
+      [ Subscriber-Status ]
+      [ MSISDN ]
+      [ A-MSISDN ]
+      [ STN-SR ]
+      [ ICS-Indicator ]
+      [ Network-Access-Mode ]
+      [ Operator-Determined-Barring ]
+      [ HPLMN-ODB ]
+  *10 [ Regional-Subscription-Zone-Code ]
+      [ Access-Restriction-Data ]
+      [ APN-OI-Replacement ]
+      [ LCS-Info ]
+      [ Teleservice-List ]
+  *   [ Call-Barring-Info ]
+      [ 3GPP-Charging-Characteristics ]
+      [ AMBR ]
+      [ APN-Configuration-Profile ]
+      [ RAT-Frequency-Selection-Priority-ID ]
+      [ Trace-Data ]
+      [ GPRS-Subscription-Data ]
+  *   [ CSG-Subscription-Data ]
+      [ Roaming-Restricted-Due-To-Unsupported-Feature ]
+      [ Subscribed-Periodic-RAU-TAU-Timer ]
+      [ MPS-Priority ]
+      [ VPLMN-LIPA-Allowed ]
+      [ Relay-Node-Indicator ]
+      [ MDT-User-Consent ]
+      [ Subscribed-VSRVCC ]
+      [ ProSe-Subscription-Data ]
+      [ Subscription-Data-Flags ]
+  *   [ AVP ]
+Terminal-Information ::= <AVP Header: 1401>
+      [ IMEI ]
+      [ 3GPP2-MEID ]
+      [ Software-Version ]
+  *   [ AVP ]
+Requested-EUTRAN-Authentication-Info ::= <AVP Header: 1408>
+      [ Number-Of-Requested-Vectors ]
+      [ Immediate-Response-Preferred ]
+      [ Re-Synchronization-Info ]
+  *   [ AVP ]
+Requested-UTRAN-GERAN-Authentication-Info ::= <AVP Header: 1409>
+      [ Number-Of-Requested-Vectors ]
+      [ Immediate-Response-Preferred ]
+      [ Re-Synchronization-Info ]
+  *   [ AVP ]
+Authentication-Info ::= <AVP Header: 1413>
+  *   [ E-UTRAN-Vector ]
+  *   [ UTRAN-Vector ]
+  *   [ GERAN-Vector ]
+  *   [ AVP ]
+E-UTRAN-Vector ::= <AVP Header: 1414>
+      [ Item-Number ]
+      { RAND }
+      { XRES }
+      { AUTN }
+      { KASME }
+  *   [ AVP ]
+UTRAN-Vector ::= <AVP Header: 1415>
+      [ Item-Number ]
+      { RAND }
+      { XRES }
+      { AUTN }
+      { Confidentiality-Key }
+      { Integrity-Key }
+  *   [ AVP ]
+GERAN-Vector ::= <AVP Header: 1416>
+      [ Item-Number ]
+      { RAND }
+      { SRES }
+      { Kc }
+  *   [ AVP ]
+APN-Configuration-Profile ::= <AVP Header: 1429>
+      { Context-Identifier }
+      { All-APN-Configurations-Included-Indicator }
+ 1*   { APN-Configuration }
+  *   [ AVP ]
+APN-Configuration ::= <AVP Header: 1430>
+      { Context-Identifier }
+  * 2 [ Served-Party-IP-Address ]
+      { PDN-Type }
+      { Service-Selection }
+      [ EPS-Subscribed-QoS-Profile ]
+      [ VPLMN-Dynamic-Address-Allowed ]
+      [ MIP6-Agent-Info ]
+      [ Visited-Network-Identifier ]
+      [ PDN-GW-Allocation-Type ]
+      [ 3GPP-Charging-Characteristics ]
+      [ AMBR ]
+  *   [ Specific-APN-Info ]
+      [ APN-OI-Replacement ]
+      [ SIPTO-Permission ]
+      [ LIPA-Permission ]
+      [ Restoration-Priority ]
+      [ SIPTO-Local-Network-Permission ]
+      [ WLAN-offloadability ]
+  *   [ AVP ]
+EPS-Subscribed-QoS-Profile ::= <AVP Header: 1431>
+      { QoS-Class-Identifier }
+      { Allocation-Retention-Priority }
+  *   [ AVP ]
+AMBR ::= <AVP Header: 1435>
+      { Max-Requested-Bandwidth-UL }
+      { Max-Requested-Bandwidth-DL }
+  *   [ AVP ]
+CSG-Subscription-Data ::= <AVP Header: 1436>
+      { CSG-Id }
+      [ Expiration-Date ]
+  *   [ AVP ]
+Trace-Data ::= <AVP Header: 1458>
+      { Trace-Reference }
+      { Trace-Depth }
+      { Trace-NE-Type-List }
+      [ Trace-Interface-List ]
+      { Trace-Event-List }
+      [ OMC-Id ]
+      { Trace-Collection-Entity }
+      [ MDT-Configuration ]
+  *   [ AVP ]
+GPRS-Subscription-Data ::= <AVP Header: 1467>
+      { Complete-Data-List-Included-Indicator }
+ 1*50 { PDP-Context }
+  *   [ AVP ]
+PDP-Context ::= <AVP Header: 1469>
+      { Context-Identifier }
+      { PDP-Type }
+      [ PDP-Address ]
+      { QoS-Subscribed }
+      [ VPLMN-Dynamic-Address-Allowed ]
+      { Service-Selection }
+      [ 3GPP-Charging-Characteristics ]
+      [ Ext-PDP-Type ]
+      [ Ext-PDP-Address ]
+      [ AMBR ]
+      [ APN-OI-Replacement ]
+      [ SIPTO-Permission ]
+      [ LIPA-Permission ]
+      [ Restoration-Priority ]
+      [ SIPTO-Local-Network-Permission ]
+  *   [ AVP ]
+Specific-APN-Info ::= <AVP Header: 1472>
+      { Service-Selection }
+      { MIP6-Agent-Info }
+      [ Visited-Network-Identifier ]
+  *   [ AVP ]
+LCS-Info ::= <AVP Header: 1473>
+  *   [ GMLC-Number ]
+  *   [ LCS-PrivacyException ]
+  *   [ MO-LR ]
+  *   [ AVP ]
+LCS-PrivacyException ::= <AVP Header: 1475>
+      { SS-Code }
+      { SS-Status }
+      [ Notification-To-UE-User ]
+  *   [ External-Client ]
+  *   [ PLMN-Client ]
+  *   [ ETSI-Service-Type ]
+  *   [ AVP ]
+External-Client ::= <AVP Header: 1479>
+      { Client-Identity }
+      [ GMLC-Restriction ]
+      [ Notification-To-UE-User ]
+  *   [ AVP ]
+ETSI-Service-Type ::= <AVP Header: 1483>
+      { ServiceTypeIdentity }
+      [ GMLC-Restriction ]
+      [ Notification-To-UE-User ]
+  *   [ AVP ]
+MO-LR ::= <AVP Header: 1485>
+      { SS-Code }
+      { SS-Status }
+  *   [ AVP ]
+Teleservice-List ::= <AVP Header: 1486>
+ 1*   { TS-Code }
+  *   [ AVP ]
+Call-Barring-Info ::= <AVP Header: 1488>
+      { SS-Code }
+      { SS-Status }
+  *   [ AVP ]
+EPS-User-State ::= <AVP Header: 1495>
+      [ MME-User-State ]
+      [ SGSN-User-State ]
+  *   [ AVP ]
+EPS-Location-Information ::= <AVP Header: 1496>
+      [ MME-Location-Information ]
+      [ SGSN-Location-Information ]
+  *   [ AVP ]
+MME-User-State ::= <AVP Header: 1497>
+      [ User-State ]
+  *   [ AVP ]
+SGSN-User-State ::= <AVP Header: 1498>
+      [ User-State ]
+  *   [ AVP ]
+Non-3GPP-User-Data ::= <AVP Header: 1500>
+      [ Subscription-Id ]
+      [ Non-3GPP-IP-Access ]
+      [ Non-3GPP-IP-Access-APN ]
+  *   [ RAT-Type ]
+      [ Session-Timeout ]
+      [ MIP6-Feature-Vector ]
+      [ AMBR ]
+      [ 3GPP-Charging-Characteristics ]
+      [ Context-Identifier ]
+      [ APN-OI-Replacement ]
+  *   [ APN-Configuration ]
+      [ Trace-Info ]
+      [ TWAN-Default-APN-Context-Id ]
+  *   [ TWAN-Access-Info ]
+  *   [ AVP ]
+Trace-Info ::= <AVP Header: 1505>
+      [ Trace-Data ]
+      [ Trace-Reference ]
+  *   [ AVP ]
+WLAN-Identifier ::= <AVP Header: 1509>
+      [ SSID ]
+      [ HESSID ]
+  *   [ AVP ]
+TWAN-Access-Info ::= <AVP Header: 1510>
+      [ Access-Authorization-Flags ]
+      [ WLAN-Identifier ]
+  *   [ AVP ]
+Access-Network-Info ::= <AVP Header: 1526>
+      [ SSID ]
+      [ BSSID ]
+      [ Location-Information ]
+      [ Location-Data ]
+      [ Operator-Name ]
+      [ Logical-Access-ID ]
+  *   [ AVP ]
+TWAN-Connectivity-Parameters ::= <AVP Header: 1528>
+      [ Connectivity-Flags ]
+      [ Service-Selection ]
+      [ PDN-Type ]
+  * 2 [ Served-Party-IP-Address ]
+      [ TWAN-PCO ]
+      [ TWAG-UP-Address ]
+      [ TWAN-S2a-Failure-Cause ]
+      [ SM-Back-Off-Timer ]
+  *   [ AVP ]
+MME-Location-Information ::= <AVP Header: 1600>
+      [ E-UTRAN-Cell-Global-Identity ]
+      [ Tracking-Area-Identity ]
+      [ Geographical-Information ]
+      [ Geodetic-Information ]
+      [ Current-Location-Retrieved ]
+      [ Age-Of-Location-Information ]
+      [ User-CSG-Information ]
+  *   [ AVP ]
+SGSN-Location-Information ::= <AVP Header: 1601>
+      [ Cell-Global-Identity ]
+      [ Location-Area-Identity ]
+      [ Service-Area-Identity ]
+      [ Routing-Area-Identity ]
+      [ Geographical-Information ]
+      [ Geodetic-Information ]
+      [ Current-Location-Retrieved ]
+      [ Age-Of-Location-Information ]
+      [ User-CSG-Information ]
+  *   [ AVP ]
+Active-APN ::= <AVP Header: 1612>
+      { Context-Identifier }
+      [ Service-Selection ]
+      [ MIP6-Agent-Info ]
+      [ Visited-Network-Identifier ]
+  *   [ Specific-APN-Info ]
+  *   [ AVP ]
+MDT-Configuration ::= <AVP Header: 1622>
+      { Job-Type }
+      [ Area-Scope ]
+      [ List-Of-Measurements ]
+      [ Reporting-Trigger ]
+      [ Report-Interval ]
+      [ Report-Amount ]
+      [ Event-Threshold-RSRP ]
+      [ Event-Threshold-RSRQ ]
+      [ Logging-Interval ]
+      [ Logging-Duration ]
+      [ Measurement-Period-LTE ]
+      [ Measurement-Period-UMTS ]
+      [ Collection-Period-RRM-LTE ]
+      [ Collection-Period-RRM-UMTS ]
+      [ Positioning-Method ]
+      [ Measurement-Quantity ]
+      [ Event-Threshold-Event-1F ]
+      [ Event-Threshold-Event-1I ]
+  *   [ MDT-Allowed-PLMN-Id ]
+  *   [ AVP ]
+Area-Scope ::= <AVP Header: 1624>
+  *   [ Cell-Global-Identity ]
+  *   [ E-UTRAN-Cell-Global-Identity ]
+  *   [ Routing-Area-Identity ]
+  *   [ Location-Area-Identity ]
+  *   [ Tracking-Area-Identity ]
+  *   [ AVP ]
+Equivalent-PLMN-List ::= <AVP Header: 1637>
+ 1*   { Visited-PLMN-Id }
+  *   [ AVP ]
+VPLMN-CSG-Subscription-Data ::= <AVP Header: 1641>
+      { CSG-Id }
+      [ Expiration-Date ]
+  *   [ AVP ]
+Local-Time-Zone ::= <AVP Header: 1649>
+      { Time-Zone }
+      { Daylight-Saving-Time }
+  *   [ AVP ]
+WLAN-offloadability ::= <AVP Header: 1667>
+      [ WLAN-offloadability-EUTRAN ]
+      [ WLAN-offloadability-UTRAN ]
+  *   [ AVP ]
+SMS-Information ::= <AVP Header: 2000>
+      [ SMS-Node ]
+      [ Client-Address ]
+      [ Originator-SCCP-Address ]
+      [ SMSC-Address ]
+      [ Data-Coding-Scheme ]
+      [ SM-Discharge-Time ]
+      [ SM-Message-Type ]
+      [ Originator-Interface ]
+      [ SM-Protocol-ID ]
+      [ Reply-Path-Requested ]
+      [ SM-Status ]
+      [ SM-User-Data-Header ]
+      [ Number-Of-Messages-Sent ]
+      [ SM-Sequence-Number ]
+  *   [ Recipient-Info ]
+      [ Originator-Received-Address ]
+      [ SM-Service-Type ]
+      [ SMS-Result ]
+      [ SM-Device-Trigger-Indicator ]
+      [ SM-Device-Trigger-Information ]
+Destination-Interface ::= <AVP Header: 2002>
+      [ Interface-Id ]
+      [ Interface-Text ]
+      [ Interface-Port ]
+      [ Interface-Type ]
+Originator-Interface ::= <AVP Header: 2009>
+      [ Interface-Id ]
+      [ Interface-Text ]
+      [ Interface-Port ]
+      [ Interface-Type ]
+Remaining-Balance ::= <AVP Header: 2021>
+      { Unit-Value }
+      { Currency-Code }
+Recipient-Info ::= <AVP Header: 2026>
+      [ Destination-Interface ]
+  *   [ Recipient-Address ]
+  *   [ Recipient-Received-Address ]
+      [ Recipient-SCCP-Address ]
+      [ SM-Protocol-ID ]
+Originator-Received-Address ::= <AVP Header: 2027>
+      [ Address-Type ]
+      [ Address-Data ]
+      [ Address-Domain ]
+Recipient-Received-Address ::= <AVP Header: 2028>
+      [ Address-Type ]
+      [ Address-Data ]
+      [ Address-Domain ]
+MMTel-Information ::= <AVP Header: 2030>
+  *   [ Supplementary-Service ]
+Service-Data-Container ::= <AVP Header: 2040>
+      [ AF-Correlation-Information ]
+      [ Charging-Rule-Base-Name ]
+      [ Accounting-Input-Octets ]
+      [ Accounting-Output-Octets ]
+      [ Local-Sequence-Number ]
+      [ QoS-Information ]
+      [ Rating-Group ]
+      [ Change-Time ]
+      [ Service-Identifier ]
+      [ Service-Specific-Info ]
+      [ ADC-Rule-Base-Name ]
+      [ SGSN-Address ]
+      [ Time-First-Usage ]
+      [ Time-Last-Usage ]
+      [ Time-Usage ]
+  *   [ Change-Condition ]
+      [ 3GPP-User-Location-Info ]
+      [ 3GPP2-BSID ]
+      [ Sponsor-Identity ]
+      [ Application-Service-Provider-Identity ]
+      [ Presence-Reporting-Area-Status ]
+      [ User-CSG-Information ]
+Traffic-Data-Volumes ::= <AVP Header: 2046>
+      [ QoS-Information ]
+      [ Accounting-Input-Octets ]
+      [ Accounting-Output-Octets ]
+      [ Change-Condition ]
+      [ Change-Time ]
+      [ 3GPP-User-Location-Info ]
+      [ 3GPP-Charging-ID ]
+      [ Presence-Reporting-Area-Status ]
+      [ User-CSG-Information ]
+Supplementary-Service ::= <AVP Header: 2048>
+      [ MMTel-SService-Type ]
+      [ Service-Mode ]
+      [ Number-Of-Diversions ]
+      [ Associated-Party-Address ]
+      [ Service-Id ]
+      [ Change-Time ]
+      [ Number-Of-Participants ]
+      [ Participant-Action-Type ]
+      [ CUG-Information ]
+      [ AoC-Information ]
+Accumulated-Cost ::= <AVP Header: 2052>
+      { Value-Digits }
+      [ Exponent ]
+AoC-Cost-Information ::= <AVP Header: 2053>
+      [ Accumulated-Cost ]
+  *   [ Incremental-Cost ]
+      [ Currency-Code ]
+AoC-Information ::= <AVP Header: 2054>
+      [ AoC-Cost-Information ]
+      [ Tariff-Information ]
+Current-Tariff ::= <AVP Header: 2056>
+      [ Currency-Code ]
+      [ Scale-Factor ]
+  *   [ Rate-Element ]
+Next-Tariff ::= <AVP Header: 2057>
+      [ Currency-Code ]
+      [ Scale-Factor ]
+  *   [ Rate-Element ]
+Rate-Element ::= <AVP Header: 2058>
+      { CC-Unit-Type }
+      [ Charge-Reason-Code ]
+      [ Unit-Value ]
+      [ Unit-Cost ]
+      [ Unit-Quota-Threshold ]
+Scale-Factor ::= <AVP Header: 2059>
+      { Value-Digits }
+      [ Exponent ]
+Tariff-Information ::= <AVP Header: 2060>
+      { Current-Tariff }
+      [ Tariff-Time-Change ]
+      [ Next-Tariff ]
+Unit-Cost ::= <AVP Header: 2061>
+      { Value-Digits }
+      [ Exponent ]
+Incremental-Cost ::= <AVP Header: 2062>
+      { Value-Digits }
+      [ Exponent ]
+IM-Information ::= <AVP Header: 2110>
+      [ Total-Number-Of-Messages-Sent ]
+      [ Total-Number-Of-Messages-Exploded ]
+      [ Number-Of-Messages-Successfully-Sent ]
+      [ Number-Of-Messages-Successfully-Exploded ]
+DCD-Information ::= <AVP Header: 2115>
+      [ Content-ID ]
+      [ Content-Provider-ID ]
+Subsession-Decision-Info ::= <AVP Header: 2200>
+      { Subsession-Id }
+  * 2 [ AN-GW-Address ]
+      [ Result-Code ]
+      [ Experimental-Result-Code ]
+  *   [ Charging-Rule-Remove ]
+  *   [ Charging-Rule-Install ]
+      [ Event-Report-Indication ]
+  *   [ QoS-Rule-Install ]
+  *   [ QoS-Rule-Remove ]
+      [ Default-EPS-Bearer-QoS ]
+      [ Framed-IPv6-Prefix ]
+  *   [ Usage-Monitoring-Information ]
+      [ Session-Release-Cause ]
+      [ Bearer-Control-Mode ]
+  *   [ Event-Trigger ]
+      [ Revalidation-Time ]
+      [ Online ]
+      [ Offline ]
+  *   [ QoS-Information ]
+  *   [ AVP ]
+Subsession-Enforcement-Info ::= <AVP Header: 2201>
+      { Subsession-Id }
+      [ Subsession-Operation ]
+  * 2 [ AN-GW-Address ]
+      [ Bearer-Identifier ]
+      [ Bearer-Operation ]
+  *   [ Packet-Filter-Information ]
+      [ Packet-Filter-Operation ]
+      [ QoS-Information ]
+      [ Framed-IP-Address ]
+      [ Framed-IPv6-Prefix ]
+  *   [ CoA-Information ]
+      [ Called-Station-Id ]
+      [ PDN-Connection-ID ]
+      [ Bearer-Usage ]
+  *   [ TFT-Packet-Filter-Information ]
+      [ Online ]
+      [ Offline ]
+      [ Result-Code ]
+      [ Experimental-Result-Code ]
+  *   [ Charging-Rule-Report ]
+      [ Credit-Management-Status ]
+  *   [ QoS-Rule-Report ]
+  *   [ Application-Detection-Information ]
+      [ IP-CAN-Type ]
+      [ RAT-Type ]
+      [ 3GPP-SGSN-MCC-MNC ]
+      [ 3GPP-SGSN-Address ]
+      [ 3GPP-SGSN-IPv6-Address ]
+      [ RAI ]
+      [ 3GPP-User-Location-Info ]
+      [ 3GPP2-BSID ]
+      [ User-CSG-Information ]
+      [ Default-EPS-Bearer-QoS ]
+      [ Network-Request-Support ]
+      [ Routing-Rule-Install ]
+      [ Routing-Rule-Remove ]
+      [ User-Location-Info-Time ]
+      [ Logical-Access-ID ]
+      [ Physical-Access-ID ]
+  *   [ Usage-Monitoring-Information ]
+      [ Multiple-BBERF-Action ]
+  *   [ Event-Trigger ]
+      [ Access-Network-Charging-Address ]
+  *   [ Access-Network-Charging-Identifier-Gx ]
+      [ Session-Linking-Indicator ]
+      [ HeNB-Local-IP-Address ]
+      [ UE-Local-IP-Address ]
+      [ UE-Local-IPv6-Prefix ]
+      [ UDP-Source-Port ]
+      [ AN-GW-Status ]
+  *   [ AVP ]
+Real-Time-Tariff-Information ::= <AVP Header: 2305>
+      [ Tariff-Information ]
+      [ Tariff-XML ]
+AoC-Service ::= <AVP Header: 2311>
+      [ AoC-Service-Obligatory-Type ]
+      [ AoC-Service-Type ]
+AoC-Subscription-Information ::= <AVP Header: 2314>
+  *   [ AoC-Service ]
+      [ AoC-Format ]
+      [ Preferred-AoC-Currency ]
+User-CSG-Information ::= <AVP Header: 2319>
+      { CSG-Id }
+      { CSG-Access-Mode }
+      [ CSG-Membership-Indication ]
+Serving-Node ::= <AVP Header: 2401>
+      [ SGSN-Number ]
+      [ SGSN-Name ]
+      [ SGSN-Realm ]
+      [ MME-Name ]
+      [ MME-Realm ]
+      [ MSC-Number ]
+      [ 3GPP-AAA-Server-Name ]
+      [ LCS-Capabilities-Sets ]
+      [ GMLC-Address ]
+  *   [ AVP ]
+Additional-Serving-Node ::= <AVP Header: 2406>
+      [ SGSN-Number ]
+      [ MME-Name ]
+      [ SGSN-Name ]
+      [ SGSN-Realm ]
+      [ MME-Realm ]
+      [ MSC-Number ]
+      [ 3GPP-AAA-Server-Name ]
+      [ LCS-Capabilities-Sets ]
+      [ GMLC-Address ]
+  *   [ AVP ]
+LCS-EPS-Client-Name ::= <AVP Header: 2501>
+      [ LCS-Name-String ]
+      [ LCS-Format-Indicator ]
+LCS-Requestor-Name ::= <AVP Header: 2502>
+      [ LCS-Requestor-ID-String ]
+      [ LCS-Format-Indicator ]
+LCS-QoS ::= <AVP Header: 2504>
+      [ LCS-QoS-Class ]
+      [ Horizontal-Accuracy ]
+      [ Vertical-Accuracy ]
+      [ Vertical-Requested ]
+      [ Response-Time ]
+LCS-Privacy-Check-Non-Session ::= <AVP Header: 2521>
+      { LCS-Privacy-Check }
+LCS-Privacy-Check-Session ::= <AVP Header: 2522>
+      { LCS-Privacy-Check }
+GERAN-Positioning-Info ::= <AVP Header: 2524>
+      [ GERAN-Positioning-Data ]
+      [ GERAN-GANSS-Positioning-Data ]
+  *   [ AVP ]
+UTRAN-Positioning-Info ::= <AVP Header: 2527>
+      [ UTRAN-Positioning-Data ]
+      [ UTRAN-GANSS-Positioning-Data ]
+  *   [ AVP ]
+Area-Event-Info ::= <AVP Header: 2533>
+      { Area-Definition }
+      [ Occurrence-Info ]
+      [ Interval-Time ]
+  *   [ AVP ]
+Area-Definition ::= <AVP Header: 2534>
+ 1*10 { Area }
+  *   [ AVP ]
+Area ::= <AVP Header: 2535>
+      { Area-Type }
+      { Area-Identification }
+  *   [ AVP ]
+Periodic-LDR-Information ::= <AVP Header: 2540>
+      { Reporting-Amount }
+      { Reporting-Interval }
+  *   [ AVP ]
+Reporting-PLMN-List ::= <AVP Header: 2543>
+ 1*20 { PLMN-ID-List }
+      [ Prioritized-List-Indicator ]
+  *   [ AVP ]
+PLMN-ID-List ::= <AVP Header: 2544>
+      { Visited-PLMN-Id }
+      [ Periodic-Location-Support-Indicator ]
+  *   [ AVP ]
+Deferred-MT-LR-Data ::= <AVP Header: 2547>
+      { Deferred-Location-Type }
+      [ ETSI-Termination-Cause ]
+      [ Serving-Node ]
+  *   [ AVP ]
+ESMLC-Cell-Info ::= <AVP Header: 2552>
+      [ ECGI ]
+      [ Cell-Portion-ID ]
+  *   [ AVP ]
+NNI-Information ::= <AVP Header: 2703>
+      [ Session-Direction ]
+      [ NNI-Type ]
+      [ Relationship-Mode ]
+      [ Neighbour-Node-Address ]
+Access-Transfer-Information ::= <AVP Header: 2709>
+      [ Access-Transfer-Type ]
+  *   [ Access-Network-Information ]
+TWAN-User-Location-Info ::= <AVP Header: 2714>
+      { SSID }
+      [ BSSID ]
+Default-QoS-Information ::= <AVP Header: 2816>
+      [ QoS-Class-Identifier ]
+      [ Max-Requested-Bandwidth-UL ]
+      [ Max-Requested-Bandwidth-DL ]
+      [ Default-QoS-Name ]
+  *   [ AVP ]
+Conditional-APN-Aggregate-Max-Bitrate ::= <AVP Header: 2818>
+      [ APN-Aggregate-Max-Bitrate-UL ]
+      [ APN-Aggregate-Max-Bitrate-DL ]
+  *   [ IP-CAN-Type ]
+  *   [ RAT-Type ]
+  *   [ AVP ]
+Presence-Reporting-Area-Information ::= <AVP Header: 2822>
+      [ Presence-Reporting-Area-Identifier ]
+      [ Presence-Reporting-Area-Status ]
+      [ Presence-Reporting-Area-Elements-List ]
+  *   [ AVP ]
+Fixed-User-Location-Info ::= <AVP Header: 2825>
+      [ SSID ]
+      [ BSSID ]
+      [ Logical-Access-ID ]
+      [ Physical-Access-ID ]
+  *   [ AVP ]
+Policy-Counter-Status-Report ::= <AVP Header: 2903>
+      { Policy-Counter-Identifier }
+      { Policy-Counter-Status }
+  *   [ Pending-Policy-Counter-Information ]
+  *   [ AVP ]
+Pending-Policy-Counter-Information ::= <AVP Header: 2905>
+      { Policy-Counter-Status }
+      { Pending-Policy-Counter-Change-Time }
+  *   [ AVP ]
+SM-Device-Trigger-Information ::= <AVP Header: 3405>
+      [ MTC-IWF-Address ]
+      [ Reference-Number ]
+      [ Serving-Node ]
+      [ Validity-Time ]
+      [ Priority-Indication ]
+      [ Application-Port-Identifier ]
+VCS-Information ::= <AVP Header: 3410>
+      [ Bearer-Capability ]
+      [ Network-Call-Reference-Number ]
+      [ MSC-Address ]
+      [ Basic-Service-Code ]
+      [ ISUP-Location-Number ]
+      [ VLR-Number ]
+      [ Forwarding-Pending ]
+      [ ISUP-Release-Cause ]
+      [ Start-Time ]
+      [ Start-of-Charging ]
+      [ Stop-Time ]
+      [ PS-Free-Format-Data ]
+Basic-Service-Code ::= <AVP Header: 3411>
+      [ Bearer-Service ]
+      [ Teleservice ]
+ProSe-Direct-Communication-Transmission-Data-Container ::= <AVP Header: 3441>
+      [ Local-Sequence-Number ]
+      [ Coverage-Status ]
+      [ 3GPP-User-Location-Info ]
+      [ Accounting-Output-Octets ]
+      [ Change-Time ]
+      [ Change-Condition ]
+      [ Visited-PLMN-Id ]
+      [ Usage-Information-Report-Sequence-Number ]
+      [ Radio-Resources-Indicator ]
+      [ Radio-Frequency ]
+ProSe-Information ::= <AVP Header: 3447>
+      [ Announcing-UE-HPLMN-Identifier ]
+      [ Announcing-UE-VPLMN-Identifier ]
+      [ Monitoring-UE-HPLMN-Identifier ]
+      [ Monitoring-UE-VPLMN-Identifier ]
+      [ Monitored-PLMN-Identifier ]
+      [ Role-Of-ProSe-Function ]
+      [ ProSe-App-ID ]
+      [ ProSe-3rd-Party-Application-ID ]
+      [ Application-Specific-Data ]
+      [ ProSe-Event-Type ]
+      [ ProSe-Direct-Discovery-Model ]
+      [ ProSe-Function-IP-Address ]
+      [ ProSe-Function-ID ]
+      [ ProSe-Validity-Timer ]
+      [ ProSe-Role-Of-UE ]
+      [ ProSe-Request-Timestamp ]
+      [ PC3-Control-Protocol-Cause ]
+      [ Monitoring-UE-Identifier ]
+      [ ProSe-Function-PLMN-Identifier ]
+      [ Requestor-PLMN-Identifier ]
+      [ Origin-App-Layer-User-Id ]
+      [ WLAN-Link-Layer-Id ]
+      [ Requesting-EPUID ]
+      [ Target-App-Layer-User-Id ]
+      [ Requested-PLMN-Identifier ]
+      [ Time-Window ]
+      [ ProSe-Range-Class ]
+      [ Proximity-Alert-Indication ]
+      [ Proximity-Alert-Timestamp ]
+      [ Proximity-Cancellation-Timestamp ]
+      [ ProSe-Reason-For-Cancellation ]
+      [ PC3-EPC-Control-Protocol-Cause ]
+      [ ProSe-UE-ID ]
+      [ ProSe-Source-IP-Address ]
+      [ Layer-2-Group-ID ]
+      [ ProSe-Group-IP-Multicast-Address ]
+  *   [ Coverage-Info ]
+  *   [ Radio-Parameter-Set-Info ]
+  *   [ Transmitter-Info ]
+      [ Time-First-Transmission ]
+      [ Time-First-Reception ]
+  *   [ ProSe-Direct-Communication-Transmission-Data-Container ]
+  *   [ ProSe-Direct-Communication-Reception-Data-Container ]
+Coverage-Info ::= <AVP Header: 3459>
+      [ Coverage-Status ]
+      [ Change-Time ]
+  *   [ Location-Info ]
+Location-Info ::= <AVP Header: 3460>
+      [ 3GPP-User-Location-Info ]
+      [ Change-Time ]
+ProSe-Direct-Communication-Reception-Data-Container ::= <AVP Header: 3461>
+      [ Local-Sequence-Number ]
+      [ Coverage-Status ]
+      [ 3GPP-User-Location-Info ]
+      [ Accounting-Input-Octets ]
+      [ Change-Time ]
+      [ Change-Condition ]
+      [ Visited-PLMN-Id ]
+      [ Usage-Information-Report-Sequence-Number ]
+      [ Radio-Resources-Indicator ]
+      [ Radio-Frequency ]
+Radio-Parameter-Set-Info ::= <AVP Header: 3463>
+      [ Radio-Parameter-Set-Values ]
+      [ Change-Time ]
+Transmitter-Info ::= <AVP Header: 3468>
+      [ ProSe-Source-IP-Address ]
+      [ ProSe-UE-ID ]
+ProSe-Subscription-Data ::= <AVP Header: 3701>
+      { ProSe-Permission }
+  *   [ ProSe-Allowed-PLMN ]
+  *   [ AVP ]
+ProSe-Allowed-PLMN ::= <AVP Header: 3703>
+      [ Visited-PLMN-Id ]
+      [ Authorized-Discovery-Range ]
+      [ ProSe-Direct-Allowed ]
+  *   [ AVP ]
+
+Sponsored-Connectivity-Data ::= <AVP Header: 530>
+[Sponsor-Identity ]
+[Application-Service-Provider-Identity ]
+[Granted-Service-Unit ]
+[Used-Service-Unit ]
+*[AVP ]
+
+@enum Abort-Cause
+BEARER_RELEASED                              	0
+INSUFFICIENT_SERVER_RESOURCES                	1
+INSUFFICIENT_BEARER_RESOURCES                	2
+
+@enum Flow-Status
+ENABLED_UPLINK                               	0
+ENABLED_DOWNLINK                             	1
+ENABLED                                      	2
+DISABLED                                     	3
+REMOVED                                      	4
+
+@enum Flow-Usage
+NO_INFORMATION                               	0
+RTCP                                         	1
+AF_SIGNALLING                                	2
+
+@enum Specific-Action
+CHARGING_CORRELATION_EXCHANGE                	1
+INDICATION_OF_LOSS_OF_BEARER                 	2
+INDICATION_OF_RECOVERY_OF_BEARER             	3
+INDICATION_OF_RELEASE_OF_BEARER              	4
+IP_CAN_CHANGE                                	6
+INDICATION_OF_OUT_OF_CREDIT                  	7
+INDICATION_OF_SUCCESSFUL_RESOURCES_ALLOCATION	8
+INDICATION_OF_FAILED_RESOURCES_ALLOCATION    	9
+INDICATION_OF_LIMITED_PCC_DEPLOYMENT         	10
+USAGE_REPORT                                 	11
+ACCESS_NETWORK_INFO_REPORT                   	12
+
+@enum Media-Type
+AUDIO                                        	0
+VIDEO                                        	1
+DATA                                         	2
+APPLICATION                                  	3
+CONTROL                                      	4
+TEXT                                         	5
+MESSAGE                                      	6
+OTHER                                        	4294967295
+
+@enum SIP-Forking-Indication
+SINGLE_DIALOGUE                              	0
+SEVERAL_DIALOGUES                            	1
+
+@enum Service-Info-Status
+FINAL_SERVICE_INFORMATION                    	0
+PRELIMINARY_SERVICE_INFORMATION              	1
+
+@enum AF-Signalling-Protocol
+NO_INFORMATION                               	0
+SIP                                          	1
+
+@enum Rx-Request-Type
+INITIAL_REQUEST                              	0
+UPDATE_REQUEST                               	1
+
+@enum Required-Access-Info
+USER_LOCATION                                	0
+MS_TIME_ZONE                                 	1
+
+@enum Server-Assignment-Type
+NO_ASSIGNMENT                                	0
+REGISTRATION                                 	1
+RE_REGISTRATION                              	2
+UNREGISTERED_USER                            	3
+TIMEOUT_DEREGISTRATION                       	4
+USER_DEREGISTRATION                          	5
+TIMEOUT_DEREGISTRATION_STORE_SERVER_NAME     	6
+USER_DEREGISTRATION_STORE_SERVER_NAME        	7
+ADMINISTRATIVE_DEREGISTRATION                	8
+AUTHENTICATION_FAILURE                       	9
+AUTHENTICATION_TIMEOUT                       	10
+DEREGISTRATION_TOO_MUCH_DATA                 	11
+AAA_USER_DATA_REQUEST                        	12
+PGW_UPDATE                                   	13
+
+@enum Reason-Code
+PERMANENT_TERMINATION                        	0
+NEW_SERVER_ASSIGNED                          	1
+SERVER_CHANGE                                	2
+REMOVE_S_CSCF                                	3
+
+@enum User-Authorization-Type
+REGISTRATION                                 	0
+DE_REGISTRATION                              	1
+REGISTRATION_AND_CAPABILITIES                	2
+
+@enum User-Data-Already-Available
+USER_DATA_NOT_AVAILABLE                      	0
+USER_DATA_ALREADY_AVAILABLE                  	1
+
+@enum Originating-Request
+ORIGINATING                                  	0
+
+@enum Loose-Route-Indication
+LOOSE_ROUTE_NOT_REQUIRED                     	0
+LOOSE_ROUTE_REQUIRED                         	1
+
+@enum Multiple-Registration-Indication
+NOT_MULTIPLE_REGISTRATION                    	0
+MULTIPLE_REGISTRATION                        	1
+
+@enum Session-Priority
+PRIORITY_0                                   	0
+PRIORITY_1                                   	1
+PRIORITY_2                                   	2
+PRIORITY_3                                   	3
+PRIORITY_4                                   	4
+
+@enum Priviledged-Sender-Indication
+NOT_PRIVILEDGED_SENDER                       	0
+PRIVILEDGED_SENDER                           	1
+
+@enum Data-Reference
+REPOSITORYDATA                               	0
+IMSPUBLICIDENTITY                            	10
+IMSUSERSTATE                                 	11
+S_CSCFNAME                                   	12
+INITIALFILTERCRITERIA                        	13
+LOCATIONINFORMATION                          	14
+USERSTATE                                    	15
+CHARGINGINFORMATION                          	16
+MSISDN                                       	17
+PSIACTIVATION                                	18
+DSAI                                         	19
+RESERVED                                     	20
+SERVICELEVELTRACEINFO                        	21
+IPADDRESSSECUREBINDINGINFORMATION            	22
+SERVICEPRIORITYLEVEL                         	23
+SMSREGISTRATIONINFO                          	24
+UEREACHABILITYFORIP                          	25
+TADSINFORMATION                              	26
+STN_SR                                       	27
+UE_SRVCC_CAPABILITY                          	28
+EXTENDEDPRIORITY                             	29
+CSRN                                         	30
+REFERENCELOCATIONINFORMATION                 	31
+
+@enum Subs-Req-Type
+SUBSCRIBE                                    	0
+UNSUBSCRIBE                                  	1
+
+@enum Requested-Domain
+CS_DOMAIN                                    	0
+PS_DOMAIN                                    	1
+
+@enum Current-Location
+DONOTNEEDINITIATEACTIVELOCATIONRETRIEVAL     	0
+INITIATEACTIVELOCATIONRETRIEVAL              	1
+
+@enum Identity-Set
+ALL_IDENTITIES                               	0
+REGISTERED_IDENTITIES                        	1
+IMPLICIT_IDENTITIES                          	2
+ALIAS_IDENTITIES                             	3
+
+@enum Send-Data-Indication
+USER_DATA_NOT_REQUESTED                      	0
+USER_DATA_REQUESTED                          	1
+
+@enum One-Time-Notification
+ONE_TIME_NOTIFICATION_REQUESTED              	0
+
+@enum Serving-Node-Indication
+ONLY_SERVING_NODES_REQUIRED                  	0
+
+@enum Pre-paging-Supported
+PREPAGING_NOT_SUPPORTED                      	0
+PREPAGING_SUPPORTED                          	1
+
+@enum Local-Time-Zone-Indication
+ONLY_LOCAL_TIME_ZONE_REQUESTED               	0
+LOCAL_TIME_ZONE_WITH_LOCATION_INFO_REQUESTED 	1
+
+@enum Role-Of-Node
+HPLMN                                        	0
+VPLMN                                        	1
+FORWARDING_ROLE                              	2
+
+@enum Node-Functionality
+S_CSCF                                       	0
+P_CSCF                                       	1
+I_CSCF                                       	2
+BGCF                                         	5
+AS                                           	6
+IBCF                                         	7
+S_GW                                         	8
+P_GW                                         	9
+HSGW                                         	10
+E_CSCF_                                      	11
+MME_                                         	12
+TRF                                          	13
+TF                                           	14
+ATCF                                         	15
+PROXY_FUNCTION                               	16
+EPDG                                         	17
+
+@enum Originator
+CALLING_PARTY                                	0
+CALLED_PARTY                                 	1
+
+@enum PS-Append-Free-Format-Data
+APPEND                                       	0
+OVERWRITE                                    	1
+
+@enum Trigger-Type
+CHANGE_IN_SGSN_IP_ADDRESS_                   	1
+CHANGE_IN_QOS                                	2
+CHANGE_IN_LOCATION                           	3
+CHANGE_IN_RAT                                	4
+CHANGE_IN_UE_TIMEZONE                        	5
+CHANGEINQOS_TRAFFIC_CLASS                    	10
+CHANGEINQOS_RELIABILITY_CLASS                	11
+CHANGEINQOS_DELAY_CLASS                      	12
+CHANGEINQOS_PEAK_THROUGHPUT                  	13
+CHANGEINQOS_PRECEDENCE_CLASS                 	14
+CHANGEINQOS_MEAN_THROUGHPUT                  	15
+CHANGEINQOS_MAXIMUM_BIT_RATE_FOR_UPLINK      	16
+CHANGEINQOS_MAXIMUM_BIT_RATE_FOR_DOWNLINK    	17
+CHANGEINQOS_RESIDUAL_BER                     	18
+CHANGEINQOS_SDU_ERROR_RATIO                  	19
+CHANGEINQOS_TRANSFER_DELAY                   	20
+CHANGEINQOS_TRAFFIC_HANDLING_PRIORITY        	21
+CHANGEINQOS_GUARANTEED_BIT_RATE_FOR_UPLINK   	22
+CHANGEINQOS_GUARANTEED_BIT_RATE_FOR_DOWNLINK 	23
+CHANGEINQOS_APN_AGGREGATE_MAXIMUM_BIT_RATE   	24
+CHANGEINLOCATION_MCC                         	30
+CHANGEINLOCATION_MNC                         	31
+CHANGEINLOCATION_RAC                         	32
+CHANGEINLOCATION_LAC                         	33
+CHANGEINLOCATION_CELLID                      	34
+CHANGEINLOCATION_TAC                         	35
+CHANGEINLOCATION_ECGI                        	36
+CHANGE_IN_MEDIA_COMPOSITION                  	40
+CHANGE_IN_PARTICIPANTS_NMB                   	50
+CHANGE_IN__THRSHLD_OF_PARTICIPANTS_NMB       	51
+CHANGE_IN_USER_PARTICIPATING_TYPE            	52
+CHANGE_IN_SERVICE_CONDITION                  	60
+CHANGE_IN_SERVING_NODE                       	61
+CHANGE_IN_USER_CSG_INFORMATION               	70
+CHANGE_IN_HYBRID_SUBSCRIBED_USER_CSG_INFORMATION	71
+CHANGE_IN_HYBRID_UNSUBSCRIBED_USER_CSG_INFORMATION	72
+CHANGE_OF_UE_PRESENCE_IN_PRESENCE_REPORTING_AREA	73
+
+@enum Reporting-Reason
+THRESHOLD                                    	0
+QHT                                          	1
+FINAL                                        	2
+QUOTA_EXHAUSTED                              	3
+VALIDITY_TIME                                	4
+OTHER_QUOTA_TYPE                             	5
+RATING_CONDITION_CHANGE                      	6
+FORCED_REAUTHORISATION                       	7
+POOL_EXHAUSTED                               	8
+
+@enum Media-Initiator-Flag
+CALLED_PARTY                                 	0
+CALLING_PARTY                                	1
+UNKNOWN                                      	2
+
+@enum PoC-Server-Role
+PARTICIPATING_POC_SERVER                     	0
+CONTROLLING_POC_SERVER                       	1
+
+@enum PoC-Session-Type
+1_TO_1_POC_SESSION                           	0
+CHAT_POC_GROUP_SESSION                       	1
+PRE_ARRANGED_POC_GROUP_SESSION               	2
+AD_HOC_POC_GROUP_SESSION                     	3
+
+@enum Address-Type
+E_MAIL_ADDRESS                               	0
+MSISDN                                       	1
+IPV4_ADDRESS                                 	2
+IPV6_ADDRESS                                 	3
+NUMERIC_SHORTCODE                            	4
+ALPHANUMERIC_SHORTCODE                       	5
+OTHER                                        	6
+IMSI                                         	7
+
+@enum MBMS-StartStop-Indication
+START                                        	0
+STOP                                         	1
+UPDATE                                       	2
+
+@enum MBMS-Service-Type
+MULTICAST                                    	0
+BROADCAST                                    	1
+
+@enum MBMS-2G-3G-Indicator
+2G                                           	0
+3G                                           	1
+2G_AND_3G                                    	2
+
+@enum CN-IP-Multicast-Distribution
+NO_IP_MULTICAST                              	0
+IP_MULTICAST                                 	1
+
+@enum MBMS-HC-Indicator
+UNCOMPRESSED_HEADER                          	0
+COMPRESSED_HEADER                            	1
+
+@enum Bearer-Usage
+GENERAL                                      	0
+IMS_SIGNALLING                               	1
+DEDICATED                                    	2
+
+@enum Event-Trigger
+SGSN_CHANGE                                  	0
+QOS_CHANGE                                   	1
+RAT_CHANGE                                   	2
+TFT_CHANGE                                   	3
+PLMN_CHANGE                                  	4
+LOSS_OF_BEARER                               	5
+RECOVERY_OF_BEARER                           	6
+IP_CAN_CHANGE                                	7
+GW_PCEF_MALFUNCTION                          	8
+RESOURCES_LIMITATION                         	9
+MAX_NR_BEARERS_REACHED                       	10
+QOS_CHANGE_EXCEEDING_AUTHORIZATION           	11
+RAI_CHANGE                                   	12
+USER_LOCATION_CHANGE                         	13
+NO_EVENT_TRIGGERS                            	14
+OUT_OF_CREDIT                                	15
+REALLOCATION_OF_CREDIT                       	16
+REVALIDATION_TIMEOUT                         	17
+UE_IP_ADDRESS_ALLOCATE                       	18
+UE_IP_ADDRESS_RELEASE                        	19
+DEFAULT_EPS_BEARER_QOS_CHANGE                	20
+AN_GW_CHANGE                                 	21
+SUCCESSFUL_RESOURCE_ALLOCATION               	22
+RESOURCE_MODIFICATION_REQUEST                	23
+PGW_TRACE_CONTROL                            	24
+UE_TIME_ZONE_CHANGE                          	25
+TAI_CHANGE                                   	26
+ECGI_CHANGE                                  	27
+CHARGING_CORRELATION_EXCHANGE                	28
+APN_AMBR_MODIFICATION_FAILURE                	29
+USER_CSG_INFORMATION_CHANGE                  	30
+USAGE_REPORT                                 	33
+DEFAULT_EPS_BEARER_QOS_MODIFICATION_FAILURE  	34
+USER_CSG_HYBRID_SUBSCRIBED_INFORMATION_CHANGE	35
+USER_CSG__HYBRID_UNSUBSCRIBED_INFORMATION_CHANGE	36
+ROUTING_RULE_CHANGE                          	37
+MAX_MBR_APN_AMBR_CHANGE                      	38
+APPLICATION_START                            	39
+APPLICATION_STOP                             	40
+ADC_REVALIDATION_TIMEOUT                     	41
+CS_TO_PS_HANDOVER                            	42
+UE_LOCAL_IP_ADDRESS_CHANGE                   	43
+ACCESS_NETWORK_INFO_REPORT                   	45
+TIME_CHANGE                                  	100
+TFT_DELETED                                  	1000
+LOSS_OF_BEARER1                              	1001
+RECOVERY_OF_BEARER1                          	1002
+POLICY_ENFORCEMENT_FAILED                    	1003
+
+@enum Metering-Method
+DURATION                                     	0
+VOLUME                                       	1
+DURATION_VOLUME                              	2
+
+@enum Offline
+DISABLE_OFFLINE                              	0
+ENABLE_OFFLINE                               	1
+
+@enum Online
+DISABLE_ONLINE                               	0
+ENABLE_ONLINE                                	1
+
+@enum Reporting-Level
+SERVICE_IDENTIFIER_LEVEL                     	0
+RATING_GROUP_LEVEL                           	1
+SPONSORED_CONNECTIVITY_LEVEL                 	2
+
+@enum PDP-Session-Operation
+PDP_SESSION_TERMINATION                      	0
+
+@enum PCC-Rule-Status
+ACTIVE                                       	0
+INACTIVE                                     	1
+TEMPORARY_INACTIVE                           	2
+
+@enum Bearer-Operation
+TERMINATION                                  	0
+ESTABLISHMENT                                	1
+MODIFICATION                                 	2
+
+@enum Bearer-Control-Mode
+UE_ONLY                                      	0
+RESERVED                                     	1
+UE_NW                                        	2
+
+@enum Network-Request-Support
+NETWORK_REQUEST_NOT_SUPPORTED                	0
+NETWORK_REQUEST_SUPPORTED                    	1
+
+@enum IP-CAN-Type
+3GPP_GPRS                                    	0
+DOCSIS                                       	1
+XDSL                                         	2
+WIMAX                                        	3
+3GPP2                                        	4
+3GPP_EPS                                     	5
+NON_3GPP_EPS                                 	6
+
+@enum QoS-Class-Identifier
+QCI_1                                        	1
+QCI_2                                        	2
+QCI_3                                        	3
+QCI_4                                        	4
+QCI_5                                        	5
+QCI_6                                        	6
+QCI_7                                        	7
+QCI_8                                        	8
+QCI_9                                        	9
+
+@enum Rule-Failure-Code
+UNKNOWN_RULE_NAME                            	1
+RATING_GROUP_ERROR                           	2
+SERVICE_IDENTIFIER_ERROR                     	3
+GW_PCEF_MALFUNCTION                          	4
+RESOURCES_LIMITATION                         	5
+MAX_NR_BEARERS_REACHED                       	6
+UNKNOWN_BEARER_ID                            	7
+MISSING_BEARER_ID                            	8
+MISSING_FLOW_DESCRIPTION                     	9
+RESOURCE_ALLOCATION_FAILURE                  	10
+UNSUCCESSFUL_QOS_VALIDATION                  	11
+
+@enum RAT-Type
+WLAN                                         	0
+VIRTUAL                                      	1
+UTRAN                                        	1000
+GERAN                                        	1001
+GAN                                          	1002
+HSPA_EVOLUTION                               	1003
+EUTRAN                                       	1004
+CDMA2000_1X                                  	2000
+HRPD                                         	2001
+UMB                                          	2002
+EHRPD                                        	2003
+
+@enum Session-Release-Cause
+UNSPECIFIED_REASON                           	0
+UE_SUBSCRIPTION_REASON                       	1
+INSUFFICIENT_SERVER_RESOURCES                	2
+
+@enum Pre-emption-Capability
+PRE_EMPTION_CAPABILITY_ENABLED               	0
+PRE_EMPTION_CAPABILITY_DISABLED              	1
+
+@enum Pre-emption-Vulnerability
+PRE_EMPTION_VULNERABILITY_ENABLED            	0
+PRE_EMPTION_VULNERABILITY_DISABLED           	1
+
+@enum Packet-Filter-Operation
+DELETION                                     	0
+ADDITION                                     	1
+MODIFICATION                                 	2
+
+@enum Resource-Allocation-Notification
+ENABLE_NOTIFICATION                          	0
+
+@enum Session-Linking-Indicator
+SESSION_LINKING_IMMEDIATE                    	0
+SESSION_LINKING_DEFERRED                     	1
+
+@enum Usage-Monitoring-Level
+SESSION_LEVEL                                	0
+PCC_RULE_LEVEL                               	1
+ADC_RULE_LEVEL                               	2
+
+@enum Usage-Monitoring-Report
+USAGE_MONITORING_REPORT_REQUIRED             	0
+
+@enum Usage-Monitoring-Support
+USAGE_MONITORING_DISABLED                    	0
+
+@enum CSG-Information-Reporting
+CHANGE_CSG_CELL                              	0
+CHANGE_CSG_SUBSCRIBED_HYBRID_CELL            	1
+CHANGE_CSG_UNSUBSCRIBED_HYBRID_CELL          	2
+
+@enum Packet-Filter-Usage
+SEND_TO_UE                                   	1
+
+@enum Charging-Correlation-Indicator
+CHARGING_IDENTIFIER_REQUIRED                 	0
+
+@enum Flow-Direction
+UNSPECIFIED                                  	0
+DOWNLINK                                     	1
+UPLINK                                       	2
+BIDIRECTIONAL                                	3
+
+@enum Redirect-Support
+REDIRECTION_DISABLED                         	0
+REDIRECTION_ENABLED                          	1
+
+@enum PS-to-CS-Session-Continuity
+VIDEO_PS2CS_CONT_CANDIDATE                   	0
+
+@enum Type-Number
+TBC                                          	0
+
+@enum Addressee-Type
+TO_                                          	0
+CC_                                          	1
+BCC                                          	2
+
+@enum Priority
+LOW                                          	0
+NORMAL                                       	1
+HIGH                                         	2
+
+@enum Message-Type
+M_SEND_REQ                                   	1
+M_SEND_CONF                                  	2
+M_NOTIFICATION_IND_                          	3
+M_NOTIFYRESP_IND_                            	4
+M_RETRIEVE_CONF_                             	5
+M_ACKNOWLEDGE_IND_                           	6
+M_DELIVERY_IND_                              	7
+M_READ_REC_IND_                              	8
+M_READ_ORIG_IND                              	9
+M_FORWARD_REQ_                               	10
+M_FORWARD_CONF_                              	11
+M_MBOX_STORE_CONF                            	12
+M_MBOX_VIEW_CONF_                            	13
+M_MBOX_UPLOAD_CONF_                          	14
+M_MBOX_DELETE_CONF_                          	15
+
+@enum Class-Identifier
+PERSONAL                                     	0
+ADVERTISEMENT                                	1
+INFORMATIONAL                                	2
+AUTO                                         	3
+
+@enum Delivery-Report-Requested
+NO                                           	0
+YES                                          	1
+
+@enum Adaptations
+YES                                          	0
+NO                                           	1
+
+@enum Content-Class
+TEXT_                                        	0
+IMAGE_BASIC_                                 	1
+IMAGE_RICH_                                  	2
+VIDEO_BASIC                                  	3
+VIDEO_RICH_                                  	4
+MEGAPIXEL_                                   	5
+CONTENT_BASIC_                               	6
+CONTENT_RICH_                                	7
+
+@enum DRM-Content
+NO                                           	0
+YES                                          	1
+
+@enum Read-Reply-Report-Requested
+NO                                           	0
+YES                                          	1
+
+@enum File-Repair-Supported
+FORWARDING_NOT_PENDING                       	0
+FORWARDING_PENDING                           	1
+NOT_SUPPORTED                                	2
+
+@enum MBMS-User-Service-Type
+DOWNLOAD                                     	1
+STREAMING                                    	2
+
+@enum LCS-Format-Indicator
+LOGICAL_NAME                                 	0
+EMAIL_ADDRESS                                	1
+MSISDN                                       	2
+URL                                          	3
+SIP_URL                                      	4
+
+@enum LCS-Client-Type
+EMERGENCY_SERVICES                           	0
+VALUE_ADDED_SERVICES                         	1
+PLMN_OPERATOR_SERVICES                       	2
+LAWFUL_INTERCEPT_SERVICES                    	3
+
+@enum Location-Estimate-Type
+CURRENT_LOCATION                             	0
+CURRENT_LAST_KNOWN_LOCATION                  	1
+INITIAL_LOCATION                             	2
+ACTIVATE_DEFERRED_LOCATION                   	3
+CANCEL_DEFERRED_LOCATION                     	4
+
+@enum PDP-Context-Type
+PRIMARY                                      	0
+SECONDARY                                    	1
+
+@enum MMBox-Storage-Requested
+NO                                           	0
+YES                                          	1
+
+@enum PoC-User-Role-info-Units
+MODERATOR                                    	1
+DISPATCHER                                   	2
+SESSION_OWNER                                	3
+SESSION_PARTICIPANT                          	4
+
+@enum Participant-Access-Priority
+PRE_EMPTIVE_PRIORITY:_                       	1
+HIGH_PRIORITY:_LOWER_THAN_PRE_EMPTIVE_PRIORITY	2
+NORMAL_PRIORITY:_NORMAL_LEVEL._LOWER_THAN_HIGH_PRIORITY	3
+LOW_PRIORITY:_LOWEST_LEVEL_PRIORITY          	4
+
+@enum PoC-Change-Condition
+SERVICECHANGE                                	0
+VOLUMELIMIT                                  	1
+TIMELIMIT                                    	2
+NUMBEROFTALKBURSTLIMIT                       	3
+NUMBEROFACTIVEPARTICIPANTS                   	4
+
+@enum Envelope-Reporting
+DO_NOT_REPORT_ENVELOPES                      	0
+REPORT_ENVELOPES                             	1
+REPORT_ENVELOPES_WITH_VOLUME                 	2
+REPORT_ENVELOPES_WITH_EVENTS                 	3
+REPORT_ENVELOPES_WITH_VOLUME_AND_EVENTS      	4
+
+@enum Time-Quota-Type
+DISCRETE_TIME_PERIOD                         	0
+CONTINUOUS_TIME_PERIOD                       	1
+
+@enum PoC-Session-Initiation-type
+PRE_ESTABLISHED                              	0
+ON_DEMAND                                    	1
+
+@enum User-Participating-Type
+NORMAL                                       	0
+NW_POC_BOX                                   	1
+UE_POC_BOX                                   	2
+
+@enum Network-Access-Mode
+PACKET_AND_CIRCUIT                           	0
+RESERVED                                     	1
+ONLY_PACKET                                  	2
+
+@enum Cancellation-Type
+MME_UPDATE_PROCEDURE                         	0
+SGSN_UPDATE_PROCEDURE                        	1
+SUBSCRIPTION_WITHDRAWAL                      	2
+UPDATE_PROCEDURE_IWF                         	3
+INITIAL_ATTACH_PROCEDURE                     	4
+
+@enum Subscriber-Status
+SERVICE_GRANTED                              	0
+OPERATOR_DETERMINED_BARRING                  	1
+
+@enum All-APN-Configurations-Included-Indicator
+ALL_APN_CONFIGURATIONS_INCLUDED              	0
+
+@enum VPLMN-Dynamic-Address-Allowed
+NOTALLOWED                                   	0
+ALLOWED                                      	1
+
+@enum Alert-Reason
+UE_PRESENT                                   	0
+UE_MEMORY_AVAILABLE                          	1
+
+@enum PDN-GW-Allocation-Type
+STATIC                                       	0
+DYNAMIC                                      	1
+
+@enum Equipment-Status
+WHITELISTED                                  	0
+BLACKLISTED                                  	1
+GREYLISTED                                   	2
+
+@enum PDN-Type
+IPV4                                         	0
+IPV6                                         	1
+IPV4V6                                       	2
+IPV4_OR_IPV6                                 	3
+
+@enum Roaming-Restricted-Due-To-Unsupported-Feature
+ROAMING_RESTRICTED_DUE_TO_UNSUPPORTED_FEATURE	0
+
+@enum Trace-Depth
+MINIMUM                                      	0
+MEDIUM                                       	1
+MAXIMUM                                      	2
+MINIMUMWITHOUTVENDORSPECIFICEXTENSION        	3
+MEDIUMWITHOUTVENDORSPECIFICEXTENSION         	4
+MAXIMUMWITHOUTVENDORSPECIFICEXTENSION        	5
+
+@enum Complete-Data-List-Included-Indicator
+ALL_PDP_CONTEXTS_INCLUDED                    	0
+
+@enum Notification-To-UE-User
+NOTIFY_LOCATION_ALLOWED                      	0
+NOTIFYANDVERIFY_LOCATION_ALLOWED_IF_NO_RESPONSE	1
+NOTIFYANDVERIFY_LOCATION_NOT_ALLOWED_IF_NO_RESPONSE	2
+LOCATION_NOT_ALLOWED                         	3
+
+@enum GMLC-Restriction
+GMLC_LIST                                    	0
+HOME_COUNTRY                                 	1
+
+@enum PLMN-Client
+BROADCAST_SERVICE                            	0
+O_AND_M_HPLMN                                	1
+O_AND_M_VPLMN                                	2
+ANONYMOUS_LOCATION                           	3
+TARGET_UE_SUBSCRIBED_SERVICE                 	4
+
+@enum ICS-Indicator
+FALSE                                        	0
+TRUE                                         	1
+
+@enum IMS-Voice-Over-PS-Sessions-Supported
+NOT_SUPPORTED                                	0
+SUPPORTED                                    	1
+
+@enum Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions
+NOT_SUPPORTED                                	0
+SUPPORTED                                    	1
+
+@enum User-State
+DETACHED                                     	0
+ATTACHED_NOT_REACHABLE_FOR_PAGING            	1
+ATTACHED_REACHABLE_FOR_PAGING                	2
+CONNECTED_NOT_REACHABLE_FOR_PAGING           	3
+CONNECTED_REACHABLE_FOR_PAGING               	4
+NETWORK_DETERMINED_NOT_REACHABLE             	5
+
+@enum Non-3GPP-IP-Access
+NON_3GPP_SUBSCRIPTION_ALLOWED                	0
+NON_3GPP_SUBSCRIPTION_BARRED                 	1
+
+@enum Non-3GPP-IP-Access-APN
+NON_3GPP_APNS_ENABLE                         	0
+NON_3GPP_APNS_DISABLE                        	1
+
+@enum AN-Trusted
+TRUSTED                                      	0
+UNTRUSTED                                    	1
+
+@enum Trust-Relationship-Update
+TBC                                          	0
+
+@enum Transport-Access-Type
+BBF                                          	0
+
+@enum Current-Location-Retrieved
+ACTIVE_LOCATION_RETRIEVAL                    	0
+
+@enum SIPTO-Permission
+SIPTO_ALLOWED                                	0
+SIPTO_NOTALLOWED                             	1
+
+@enum Error-Diagnostic
+GPRS_DATA_SUBSCRIBED                         	0
+NO_GPRS_DATA_SUBSCRIBED                      	1
+ODB_ALL_APN                                  	2
+ODB_HPLMN_APN                                	3
+ODB_VPLMN_APN                                	4
+
+@enum UE-SRVCC-Capability
+UE_SRVCC_NOT_SUPPORTED                       	0
+UE_SRVCC_SUPPORTED                           	1
+
+@enum VPLMN-LIPA-Allowed
+LIPA_NOTALLOWED                              	0
+LIPA_ALLOWED                                 	1
+
+@enum LIPA-Permission
+LIPA_PROHIBITED                              	0
+LIPA_ONLY                                    	1
+LIPA_CONDITIONAL                             	2
+
+@enum Job-Type
+IMMEDIATE_MDT_ONLY                           	0
+LOGGED_MDT_ONLY                              	1
+TRACE_ONLY                                   	2
+IMMEDIATE_MDT_AND_TRACE                      	3
+RLF_REPORTS_ONLY                             	4
+
+@enum Report-Interval
+UMTS_250_MS                                  	0
+UMTS_500_MS                                  	1
+UMTS_1000_MS                                 	2
+UMTS_2000_MS                                 	3
+UMTS_3000_MS                                 	4
+UMTS_4000_MS                                 	5
+UMTS_6000_MS                                 	6
+UMTS_8000_MS                                 	7
+UMTS_12000_MS                                	8
+UMTS_16000_MS                                	9
+UMTS_20000_MS                                	10
+UMTS_24000_MS                                	11
+UMTS_28000_MS                                	12
+UMTS_32000_MS                                	13
+UMTS_64000_MS                                	14
+LTE_120_MS                                   	15
+LTE_240_MS                                   	16
+LTE_480_MS                                   	17
+LTE_640_MS                                   	18
+LTE_1024_MS                                  	19
+LTE_2048_MS                                  	20
+LTE_5120_MS                                  	21
+LTE_10240_MS                                 	22
+LTE_60000_MS                                 	23
+LTE_360000_MS                                	24
+LTE_720000_MS                                	25
+LTE_1800000_MS                               	26
+LTE_3600000_MS                               	27
+
+@enum Report-Amount
+1                                            	0
+2                                            	1
+4                                            	2
+8                                            	3
+16                                           	4
+32                                           	5
+64                                           	6
+INFINITY                                     	7
+
+@enum Logging-Interval
+1.28                                         	0
+2.56                                         	1
+5.12                                         	2
+10.24                                        	3
+20.48                                        	4
+30.72                                        	5
+40.96                                        	6
+61.44                                        	7
+
+@enum Logging-Duration
+600_SEC                                      	0
+1200_SEC                                     	1
+2400_SEC                                     	2
+3600_SEC                                     	3
+5400_SEC                                     	4
+7200_SEC                                     	5
+
+@enum Relay-Node-Indicator
+NOT_RELAY_NODE                               	0
+RELAY_NODE                                   	1
+
+@enum MDT-User-Consent
+CONSENT_NOT_GIVEN                            	0
+CONSENT_GIVEN                                	1
+
+@enum Subscribed-VSRVCC
+VSRVCC_SUBSCRIBED                            	0
+
+@enum SMS-Register-Request
+SMS_REGISTRATION_REQUIRED                    	0
+SMS_REGISTRATION_NOT_PREFERRED               	1
+NO_PREFERENCE                                	2
+
+@enum Daylight-Saving-Time
+NO_ADJUSTMENT                                	0
+PLUS_ONE_HOUR_ADJUSTMENT                     	1
+PLUS_TWO_HOURS_ADJUSTMENT                    	2
+
+@enum Measurement-Period-UMTS
+250MS                                        	0
+500MS                                        	1
+1000MS                                       	2
+2000MS                                       	3
+3000MS                                       	4
+4000MS                                       	5
+6000MS                                       	6
+8000MS                                       	7
+12000MS                                      	8
+16000MS                                      	9
+20000MS                                      	10
+24000MS                                      	11
+28000MS                                      	12
+32000MS                                      	13
+64000MS                                      	14
+
+@enum Measurement-Period-LTE
+120MS                                        	15
+240MS                                        	16
+480MS                                        	17
+640MS                                        	18
+1024MS                                       	19
+2048MS                                       	20
+5120MS                                       	21
+10240MS                                      	22
+1MIN                                         	23
+6MIN                                         	24
+12MIN                                        	25
+30MIN                                        	26
+60MIN                                        	27
+
+@enum Collection-Period-RRM-LTE
+1024MS                                       	0
+1280MS                                       	1
+2048MS                                       	2
+2560MS                                       	3
+5120MS                                       	4
+10240MS                                      	5
+1MIN                                         	6
+
+@enum Collection-Period-RRM-UMTS
+250MS                                        	0
+500MS                                        	1
+1000MS                                       	2
+2000MS                                       	3
+3000MS                                       	4
+4000MS                                       	5
+6000MS                                       	6
+8000MS                                       	7
+12000MS                                      	8
+16000MS                                      	9
+20000MS                                      	10
+24000MS                                      	11
+28000MS                                      	12
+32000MS                                      	13
+64000MS                                      	14
+
+@enum Interface-Type
+UNKNOWN                                      	0
+MOBILE_ORIGINATING                           	1
+MOBILE_TERMINATING                           	2
+APPLICATION_ORIGINATING                      	3
+APPLICATION_TERMINATION                      	4
+
+@enum SM-Message-Type
+SUBMISSION                                   	0
+
+@enum Reply-Path-Requested
+NO_REPLY_PATH_SET                            	0
+REPLY_PATH_SET                               	1
+
+@enum SMS-Node
+SMS_ROUTER                                   	0
+IP_SM_GW                                     	1
+SMS_ROUTER_AND_IP_SM_GW                      	2
+SMS_SC                                       	3
+
+@enum PoC-Event-Type
+NORMAL                                       	0
+INSTANT_PERSONAL_AALERT_EVENT                	1
+POC_GROUP_ADVERTISEMENT_EVENT                	2
+EARLY_SESSION_SETTING_UP_EVENT               	3
+POC_TALK_BURST                               	4
+
+@enum SM-Service-Type
+VAS4SMS_SHORT_MESSAGE_CONTENT_PROCESSING     	0
+VAS4SMS_SHORT_MESSAGE_FORWARDING             	1
+VAS4SMS_SHORT_MESSAGE_FORWARDING_MULTIPLE_SUBSCRIPTIONS_	2
+VAS4SMS_SHORT_MESSAGE_FILTERING_             	3
+VAS4SMS_SHORT_MESSAGE_RECEIPT                	4
+VAS4SMS_SHORT_MESSAGE_NETWORK_STORAGE_       	5
+VAS4SMS_SHORT_MESSAGE_TO_MULTIPLE_DESTINATIONS	6
+VAS4SMS_SHORT_MESSAGE_VIRTUAL_PRIVATE_NETWORK_(VPN)	7
+VAS4SMS_SHORT_MESSAGE_AUTO_REPLY             	8
+VAS4SMS_SHORT_MESSAGE_PERSONAL_SIGNATURE     	9
+VAS4SMS_SHORT_MESSAGE_DEFERRED_DELIVERY_     	10
+
+@enum Subscriber-Role
+ORIGINATING                                  	0
+TERMINATING                                  	1
+
+@enum SDP-Type
+SDP_OFFER                                    	0
+SDP_ANSWER                                   	1
+
+@enum Serving-Node-Type
+SGSN                                         	0
+PMIPSGW                                      	1
+GTPSGW                                       	2
+EPDG                                         	3
+HSGW                                         	4
+MME                                          	5
+TWAN                                         	6
+
+@enum Participant-Action-Type
+CREATE_CONF                                  	0
+JOIN_CONF                                    	1
+INVITE_INTO_CONF                             	2
+QUIT_CONF                                    	3
+
+@enum Dynamic-Address-Flag
+STATIC                                       	0
+DYNAMIC                                      	1
+
+@enum SGW-Change
+ACR_START_NOT_DUE_TO_SGW_CHANGE              	0
+
+@enum Charging-Characteristics-Selection-Mode
+SERVING_NODE_SUPPLIED                        	0
+SUBSCRIPTION_SPECIFIC                        	1
+APN_SPECIFIC                                 	2
+HOME_DEFAULT                                 	3
+ROAMING_DEFAULT                              	4
+VISITING_DEFAULT                             	5
+
+@enum Dynamic-Address-Flag-Extension
+STATIC                                       	0
+DYNAMIC                                      	1
+PDN_ADDRESS_HAS_BEEN_DYNAMICALLY_ALLOCATED_FOR_THAT_PARTICULAR_IP_CAN_BEARER_(PDN_CONNECTION)_OF_PDN_TYPE_IPV4V6,_AND_THE_DYNAMIC_IPV6_ADDRESS_IS_INDICATED_IN_DYNAMIC_ADDRESS_FLAG._THIS_FIELD_IF_IPV4_ADDRESS_IS_STATIC._THE_FOLLOWING_VALUES_ARE_DEFINED:	4
+
+@enum Application-Service-Type
+SENDING                                      	100
+RECEIVING                                    	101
+RETRIEVAL                                    	102
+INVITING                                     	103
+LEAVING                                      	104
+JOINING                                      	105
+
+@enum Charge-Reason-Code
+UNKNOWN                                      	0
+USAGE                                        	1
+COMMUNICATION_ATTEMPT_CHARGE                 	2
+SETUP_CHARGE                                 	3
+ADD_ON_CHARGE                                	4
+
+@enum Subsession-Operation
+TERMINATION                                  	0
+ESTABLISHMENT                                	1
+MODIFICATION                                 	2
+
+@enum Multiple-BBERF-Action
+ESTABLISHMENT                                	0
+TERMINATION                                  	1
+
+@enum DRA-Deployment
+DRA_DEPLOYED                                 	0
+
+@enum DRA-Binding
+DRA_BINDING_DELETION                         	0
+
+@enum Online-Charging-Flag
+ECF_ADDRESS_NOT_PROVIDED                     	0
+ECF_ADDRESS_PROVIDED                         	1
+
+@enum IMSI-Unauthenticated-Flag
+AUTHENTICATED                                	0
+UNAUTHENTICATED                              	1
+
+@enum AoC-Format
+MONETARY                                     	0
+NON_MONETARY                                 	1
+CAI                                          	2
+
+@enum AoC-Service-Obligatory-Type
+NON_BINDING                                  	0
+BINDING                                      	1
+
+@enum AoC-Service-Type
+NONE                                         	0
+AOC_S                                        	1
+AOC_D                                        	2
+AOC_E                                        	3
+
+@enum CSG-Access-Mode
+CLOSED_MODE                                  	0
+HYBRID_MODE                                  	1
+
+@enum CSG-Membership-Indication
+NOT_CSG_MEMBER                               	0
+CSG_MEMBER                                   	1
+
+@enum IMS-Emergency-Indicator
+NON_EMERGENCY                                	0
+EMERGENCY                                    	1
+
+@enum MBMS-Charged-Party
+CONTENT_PROVIDER                             	0
+SUBSCRIBER                                   	1
+
+@enum SLg-Location-Type
+CURRENT_LOCATION                             	0
+CURRENT_OR_LAST_KNOWN_LOCATION               	1
+INITIAL_LOCATION                             	2
+ACTIVATE_DEFERRED_LOCATION                   	3
+CANCEL_DEFERRED_LOCATION                     	4
+NOTIFICATION_VERIFICATION_ONLY               	5
+
+@enum Vertical-Requested
+VERTICAL_COORDINATE_IS_NOT_REQUESTED         	0
+VERTICAL_COORDINATE_IS_REQUESTED             	1
+
+@enum Velocity-Requested
+VELOCITY_IS_NOT_REQUESTED                    	0
+BEST_VELOCITY_IS_REQUESTED                   	1
+
+@enum Response-Time
+LOW_DELAY                                    	0
+DELAY_TOLERANT                               	1
+
+@enum LCS-Privacy-Check
+ALLOWED_WITHOUT_NOTIFICATION                 	0
+ALLOWED_WITH_NOTIFICATION                    	1
+ALLOWED_IF_NO_RESPONSE                       	2
+RESTRICTED_IF_NO_RESPONSE                    	3
+NOT_ALLOWED                                  	4
+
+@enum Accuracy-Fulfilment-Indicator
+REQUESTED_ACCURACY_FULFILLED                 	0
+REQUESTED_ACCURACY_NOT_FULFILLED             	1
+
+@enum Location-Event
+EMERGENCY_CALL_ORIGINATION                   	0
+EMERGENCY_CALL_RELEASE                       	1
+MO_LR                                        	2
+EMERGENCY_CALL_HANDOVER                      	3
+
+@enum Pseudonym-Indicator
+PSEUDONYM_NOT_REQUESTED                      	0
+PSEUDONYM_REQUESTED                          	1
+
+@enum LCS-QoS-Class
+ASSURED                                      	0
+BEST_EFFORT                                  	1
+
+@enum Occurrence-Info
+ONE_TIME_EVENT                               	0
+MULTIPLE_TIME_EVENT                          	1
+
+@enum Periodic-Location-Support-Indicator
+NOT_SUPPORTED                                	0
+SUPPORTED                                    	1
+
+@enum Prioritized-List-Indicator
+NOT_PRIORITIZED                              	0
+PRIORITIZED                                  	1
+
+@enum Low-Priority-Indicator
+NO                                           	0
+
+@enum IP-Realm-Default-Indication
+NOT_USED                                     	0
+USED                                         	1
+
+@enum Local-GW-Inserted-Indication
+LOCAL_GW_NOT_INSERTED                        	0
+LOCAL_GW_INSERTED                            	1
+
+@enum Transcoder-Inserted-Indication
+TRANSCODER_NOT_INSERTED                      	0
+TRANSCODER_INSERTED                          	1
+
+@enum Status-AS-Code
+4XX                                          	0
+5XX                                          	1
+TIMEOUT                                      	2
+
+@enum NNI-Type
+NON_ROAMING                                  	0
+ROAMING_WITHOUT_LOOPBACK                     	1
+ROAMING_WITH_LOOPBACK                        	2
+
+@enum Relationship-Mode
+TRUSTED                                      	0
+NON_TRUSTED                                  	1
+
+@enum Session-Direction
+INBOUND                                      	0
+
+@enum Access-Transfer-Type
+PS_TO_CS_TRANSFER                            	0
+CS_TO_PS_TRANSFER                            	1
+
+@enum TAD-Identifier
+CS                                           	0
+PS                                           	1
+
+@enum Mute-Notification
+MUTE_REQUIRED                                	0
+
+@enum AN-GW-Status
+AN_GW_FAILED                                 	0
+
+@enum SL-Request-Type
+INITIAL_REQUEST                              	0
+INTERMEDIATE_REQUEST                         	1
+
+@enum Priority-Indication
+NON_PRIORITY                                 	0
+PRIORITY                                     	1
+
+@enum SM-Device-Trigger-Indicator
+NOT_DEVICETRIGGER_                           	0
+DEVICE_TRIGGER                               	1
+
+@enum Forwarding-Pending
+FORWARDING_NOT_PENDING                       	0
+FORWARDING_PENDING                           	1
+
+@enum CN-Operator-Selection-Entity
+THE_SERVING_NETWORK_HAS_BEEN_SELECTED_BY_THE_UE	0
+THE_SERVING_NETWORK_HAS_BEEN_SELECTED_BY_THE_NETWORK	1
+
+@enum Coverage-Status
+OUT_OF_COVERAGE                              	0
+IN_COVERAGE                                  	1
+
+@enum Role-Of-ProSe-Function
+HPLMN                                        	0
+VPLMN                                        	1
+
+@enum ProSe-Direct-Discovery-Model
+MODEL_A                                      	0
+MODEL_B                                      	1
+
+@enum ProSe-Event-Type
+ANNOUCING                                    	0
+MONITORING                                   	1
+MATCH_REPORT                                 	2
+
+@enum ProSe-Functionality
+DIRECT_DISCOVERY                             	0
+EPC_LEVEL_DISCOVERY                          	1
+
+@enum ProSe-Range-Class
+RESERVED                                     	0
+50_M                                         	1
+100_M                                        	2
+200_M                                        	3
+500_M                                        	4
+1000_M                                       	5
+UNUSED                                       	255
+
+@enum ProSe-Reason-For-Cancellation
+PROXIMITY_ALERT_SENT                         	0
+TIME_EXPIRED_WITH_NO_RENEWAL                 	1
+
+@enum ProSe-Role-Of-UE
+ANNOUNCING_UE                                	0
+MONITORING_UE                                	1
+REQUESTOR_UE                                 	2
+
+@enum Proximity-Alert-Indication
+ALERT                                        	0
+NO_ALERT                                     	1
+
+@enum QoS-Negotiation
+NO_QoS_NEGOTIATION				0
+QoS_NEGOTIATION_SUPPORTED			1
+
+@enum QoS-Upgrade
+QoS_UPGRADE_NOT_SUPPORTED			0
+QoS_UPGRADE_SUPPORTED				1
+
