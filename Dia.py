@@ -583,9 +583,10 @@ class Directory:
         'specs/nasreq_rfc7155.dia', 'specs/sip_rfc4740.dia',
         # 3GPP applications
         'specs/Cx.dia', 'specs/S13.dia', 'specs/S6a.dia',
-        'specs/S6b.dia', 'specs/S7a.dia', 'specs/Sh.dia',
-        'specs/SWx.dia', 'specs/Rx.dia', 'specs/Gx.dia', 'specs/Gxx.dia',
-        'specs/SWm.dia', 'specs/SLg.dia', 'specs/SLh.dia']
+        'specs/S6b.dia', 'specs/S7a.dia', 'specs/S9.dia',
+        'specs/Sh.dia', 'specs/SWx.dia', 'specs/Rx.dia',
+        'specs/Gx.dia', 'specs/Gxx.dia', 'specs/SWm.dia',
+        'specs/SLg.dia', 'specs/SLh.dia']
 
     for arg in args:
       app = Application.load(arg)
