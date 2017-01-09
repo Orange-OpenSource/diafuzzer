@@ -1,0 +1,123 @@
+@id	16777267
+@name	S9
+
+@inherits	etsi-avps
+@inherits	ietf-avps
+@inherits	3gpp-avps
+@inherits	3gpp2-avps
+
+@messages
+CC-Request ::= <Diameter Header: 272, REQ, PXY, 16777267>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { CC-Request-Type }
+      { CC-Request-Number }
+      [ Destination-Host ]
+      [ Origin-State-Id ]
+  *   [ Subscription-Id ]
+      [ Framed-IP-Address ]
+      [ Framed-IPv6-Prefix ]
+  *   [ Supported-Features ]
+      [ QoS-Information ]
+  *   [ QoS-Rule-Report ]
+  * 2 [ AN-GW-Address ]
+      [ Network-Request-Support ]
+  *   [ Packet-Filter-Information ]
+      [ Packet-Filter-Operation ]
+  *   [ Subsession-Enforcement-Info ]
+      [ IP-CAN-Type ]
+      [ RAT-Type ]
+      [ Termination-Cause ]
+      [ User-Equipment-Info ]
+      [ QoS-Negotiation ]
+      [ QoS-Upgrade ]
+      [ 3GPP-SGSN-MCC-MNC ]
+      [ 3GPP-SGSN-Address ]
+      [ 3GPP-SGSN-IPv6-Address ]
+      [ RAI ]
+      [ 3GPP-User-Location-Info ]
+      [ 3GPP-MS-TimeZone ]
+      [ 3GPP2-BSID ]
+  *   [ Event-Trigger ]
+      [ Multiple-BBERF-Action ]
+      [ User-CSG-Information ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+CC-Answer ::= <Diameter Header: 272, PXY, 16777267>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Result-Code ]
+      [ Experimental-Result ]
+      { CC-Request-Type }
+      { CC-Request-Number }
+  *   [ Supported-Features ]
+  *   [ QoS-Rule-Install ]
+  *   [ QoS-Rule-Remove ]
+  *   [ QoS-Information ]
+      [ Bearer-Control-Mode ]
+  *   [ Event-Trigger ]
+      [ Charging-Information ]
+  *   [ Subsession-Decision-Info ]
+  *   [ CSG-Information-Reporting ]
+  * 2 [ AN-GW-Address ]
+      [ Origin-State-Id ]
+      [ Error-Message ]
+      [ Error-Reporting-Host ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+RA-Request ::= <Diameter Header: 258, REQ, PXY, 16777267>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+  *   [ CoA-Information ]
+      [ Called-Station-Id ]
+      [ PDN-Connection-ID ]
+      [ Bearer-Usage ]
+  *   [ TFT-Packet-Filter-Information ]
+      [ Online ]
+      [ Offline ]
+      [ Result-Code ]
+      [ Experimental-Result-Code ]
+  *   [ Charging-Rule-Report ]
+  *   [ QoS-Rule-Report ]
+      [ IP-CAN-Type ]
+      [ RAT-Type ]
+      [ 3GPP-SGSN-MCC-MNC ]
+      [ 3GPP-SGSN-Address ]
+      [ 3GPP-SGSN-IPv6-Address ]
+      [ RAI ]
+      [ 3GPP-User-Location-Info ]
+      [ 3GPP2-BSID ]
+      [ User-CSG-Information ]
+      [ Default-EPS-Bearer-QoS ]
+      [ Network-Request-Support ]
+      [ Routing-Rule-Install ]
+      [ Routing-Rule-Remove ]
+      [ Logical-Access-ID ]
+      [ Physical-Access-ID ]
+  *   [ Usage-Monitoring-Information ]
+      [ Multiple-BBERF-Action ]
+  *   [ Event-Trigger ]
+      [ Access-Network-Charging-Address ]
+  *   [ Access-Network-Charging-Identifier-Gx ]
+      [ Session-Linking-Indicator ]
+  *   [ AVP ]
+      [ User-CSG-Information ]
+      [ Error-Message ]
+      [ Error-Reporting-Host ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ AVP ]
+
