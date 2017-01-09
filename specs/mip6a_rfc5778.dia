@@ -1,0 +1,70 @@
+@id	8
+@name	mip6a_rfc5778
+
+@inherits	ietf-avps
+
+@messages
+MIP6-Request ::= <Diameter Header: 325, REQ, PXY, 8>
+      < Session-Id >
+      { Auth-Application-Id }
+      { User-Name }
+      { Destination-Realm }
+      { Origin-Host }
+      { Origin-Realm }
+      { Auth-Request-Type }
+      [ Destination-Host ]
+      [ Origin-State-Id ]
+      [ NAS-Identifier ]
+      [ NAS-IP-Address ]
+      [ NAS-IPv6-Address ]
+      [ NAS-Port-Type ]
+      [ Called-Station-Id ]
+      [ Calling-Station-Id ]
+      [ MIP6-Feature-Vector ]
+      { MIP6-Auth-Mode }
+      [ MIP-MN-AAA-SPI ]
+      [ MIP-MN-HA-SPI ]
+ 1* 2 { MIP-Mobile-Node-Address }
+      { MIP6-Agent-Info }
+      { MIP-Careof-Address }
+      [ MIP-Authenticator ]
+      [ MIP-MAC-Mobility-Data ]
+      [ MIP-Timestamp ]
+      [ QoS-Capability ]
+  *   [ QoS-Resources ]
+      [ Chargeable-User-Identity ]
+      [ Service-Selection ]
+      [ Authorization-Lifetime ]
+      [ Auth-Session-State ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+MIP6-Answer ::= <Diameter Header: 325, PXY, 8>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Result-Code }
+      { Origin-Host }
+      { Origin-Realm }
+      { Auth-Request-Type }
+      [ User-Name ]
+      [ Authorization-Lifetime ]
+      [ Auth-Session-State ]
+      [ Error-Message ]
+      [ Error-Reporting-Host ]
+      [ Re-Auth-Request-Type ]
+      [ MIP6-Feature-Vector ]
+      [ MIP6-Agent-Info ]
+  * 2 [ MIP-Mobile-Node-Address ]
+      [ MIP-MN-HA-MSA ]
+  *   [ QoS-Resources ]
+      [ Chargeable-User-Identity ]
+      [ Service-Selection ]
+      [ Origin-State-Id ]
+  *   [ Proxy-Info ]
+  *   [ Redirect-Host ]
+      [ Redirect-Host-Usage ]
+      [ Redirect-Max-Cache-Time ]
+  *   [ Failed-AVP ]
+  *   [ AVP ]
+

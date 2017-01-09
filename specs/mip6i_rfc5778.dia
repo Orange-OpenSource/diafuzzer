@@ -1,0 +1,50 @@
+@id	7
+@name	mip6i_rfc5778
+
+@inherits	ietf-avps
+
+@messages
+Diameter-EAP-Request ::= <Diameter Header: 268, REQ, PXY, 7>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { Auth-Request-Type }
+      [ Destination-Host ]
+      [ NAS-Identifier ]
+      [ NAS-IP-Address ]
+      [ NAS-IPv6-Address ]
+      [ NAS-Port-Type ]
+      [ User-Name ]
+      { EAP-Payload }
+      [ MIP6-Feature-Vector ]
+      [ MIP6-Agent-Info ]
+  * 2 [ MIP-Mobile-Node-Address ]
+      [ Chargeable-User-Identity ]
+      [ Service-Selection ]
+      [ QoS-Capability ]
+  *   [ QoS-Resources ]
+  *   [ AVP ]
+
+Diameter-EAP-Answer ::= <Diameter Header: 268, PXY, 7>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Auth-Request-Type }
+      { Result-Code }
+      { Origin-Host }
+      { Origin-Realm }
+      [ User-Name ]
+      [ EAP-Payload ]
+      [ EAP-Reissued-Payload ]
+      [ EAP-Master-Session-Key ]
+      [ EAP-Key-Name ]
+      [ Multi-Round-Time-Out ]
+  * 2 [ MIP-Mobile-Node-Address ]
+      [ MIP6-Feature-Vector ]
+      [ MIP6-Agent-Info ]
+      [ Service-Selection ]
+  *   [ QoS-Resources ]
+      [ Chargeable-User-Identity ]
+  *   [ AVP ]
+

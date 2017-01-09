@@ -1,0 +1,70 @@
+@id	16777308
+@name	S7a
+
+@inherits	ietf-avps
+@inherits	3gpp-avps
+
+@messages
+Cancel-VCSG-Location-Request ::= <Diameter Header: 8388642, REQ, PXY, 16777308>
+      < Session-Id >
+      [ Vendor-Specific-Application-Id ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Host }
+      { Destination-Realm }
+      { User-Name }
+  *   [ Supported-Features ]
+      { Cancellation-Type }
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Cancel-VCSG-Location-Answer ::= <Diameter Header: 8388642, PXY, 16777308>
+      < Session-Id >
+      [ Vendor-Specific-Application-Id ]
+  *   [ Supported-Features ]
+      [ Result-Code ]
+      [ Experimental-Result ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+  *   [ AVP ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Update-VCSG-Location-Request ::= <Diameter Header: 8388638, REQ, PXY, 16777308>
+      < Session-Id >
+      [ Vendor-Specific-Application-Id ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Destination-Host ]
+      { Destination-Realm }
+      { User-Name }
+      [ MSISDN ]
+      [ SGSN-Number ]
+  *   [ Supported-Features ]
+      { UVR-Flags }
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Update-VCSG-Location-Answer ::= <Diameter Header: 8388638, PXY, 16777308>
+      < Session-Id >
+      [ Vendor-Specific-Application-Id ]
+      [ Result-Code ]
+      [ Experimental-Result ]
+      [ Error-Diagnostic ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+  *   [ Supported-Features ]
+  *   [ VPLMN-CSG-Subscription-Data ]
+      [ UVA-Flags ]
+  *   [ AVP ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+

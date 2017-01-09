@@ -1,0 +1,209 @@
+@id	6
+@name	sip_rfc4740
+
+@inherits	ietf-avps
+
+@messages
+Push-Profile-Request ::= <Diameter Header: 288, REQ, PXY, 6>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { User-Name }
+  *   [ SIP-User-Data ]
+      [ SIP-Accounting-Information ]
+      [ Destination-Host ]
+      [ Authorization-Lifetime ]
+      [ Auth-Grace-Period ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+Push-Profile-Answer ::= <Diameter Header: 288, PXY, 6>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Result-Code }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Redirect-Host ]
+      [ Redirect-Host-Usage ]
+      [ Redirect-Max-Cache-Time ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+User-Authorization-Request ::= <Diameter Header: 283, REQ, PXY, 6>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { SIP-AOR }
+      [ Destination-Host ]
+      [ User-Name ]
+      [ SIP-Visited-Network-Id ]
+      [ SIP-User-Authorization-Type ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+User-Authorization-Answer ::= <Diameter Header: 283, PXY, 6>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Auth-Session-State }
+      { Result-Code }
+      { Origin-Host }
+      { Origin-Realm }
+      [ SIP-Server-URI ]
+      [ SIP-Server-Capabilities ]
+      [ Authorization-Lifetime ]
+      [ Auth-Grace-Period ]
+      [ Redirect-Host ]
+      [ Redirect-Host-Usage ]
+      [ Redirect-Max-Cache-Time ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+Server-Assignment-Request ::= <Diameter Header: 284, REQ, PXY, 6>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { SIP-Server-Assignment-Type }
+      { SIP-User-Data-Already-Available }
+      [ Destination-Host ]
+      [ User-Name ]
+      [ SIP-Server-URI ]
+  *   [ SIP-Supported-User-Data-Type ]
+  *   [ SIP-AOR ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+Server-Assignment-Answer ::= <Diameter Header: 284, PXY, 6>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Result-Code }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+  *   [ SIP-User-Data ]
+      [ SIP-Accounting-Information ]
+  *   [ SIP-Supported-User-Data-Type ]
+      [ User-Name ]
+      [ Auth-Grace-Period ]
+      [ Authorization-Lifetime ]
+      [ Redirect-Host ]
+      [ Redirect-Host-Usage ]
+      [ Redirect-Max-Cache-Time ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+Location-Info-Request ::= <Diameter Header: 285, REQ, PXY, 6>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { SIP-AOR }
+      [ Destination-Host ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+Location-Info-Answer ::= <Diameter Header: 285, PXY, 6>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Result-Code }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ SIP-Server-URI ]
+      [ SIP-Server-Capabilities ]
+      [ Auth-Grace-Period ]
+      [ Authorization-Lifetime ]
+      [ Redirect-Host ]
+      [ Redirect-Host-Usage ]
+      [ Redirect-Max-Cache-Time ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+Multimedia-Auth-Request ::= <Diameter Header: 286, REQ, PXY, 6>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { SIP-AOR }
+      { SIP-Method }
+      [ Destination-Host ]
+      [ User-Name ]
+      [ SIP-Server-URI ]
+      [ SIP-Number-Auth-Items ]
+      [ SIP-Auth-Data-Item ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+Multimedia-Auth-Answer ::= <Diameter Header: 286, PXY, 6>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Result-Code }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ User-Name ]
+      [ SIP-AOR ]
+      [ SIP-Number-Auth-Items ]
+  *   [ SIP-Auth-Data-Item ]
+      [ Authorization-Lifetime ]
+      [ Auth-Grace-Period ]
+      [ Redirect-Host ]
+      [ Redirect-Host-Usage ]
+      [ Redirect-Max-Cache-Time ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+Registration-Termination-Request ::= <Diameter Header: 287, REQ, PXY, 6>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Host }
+      { SIP-Deregistration-Reason }
+      [ Destination-Realm ]
+      [ User-Name ]
+  *   [ SIP-AOR ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+Registration-Termination-Answer ::= <Diameter Header: 287, PXY, 6>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Result-Code }
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Authorization-Lifetime ]
+      [ Auth-Grace-Period ]
+      [ Redirect-Host ]
+      [ Redirect-Host-Usage ]
+      [ Redirect-Max-Cache-Time ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+

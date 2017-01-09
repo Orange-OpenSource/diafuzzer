@@ -1,0 +1,66 @@
+@id	4
+@name	credit_rfc4006
+
+@inherits	ietf-avps
+
+@messages
+Credit-Control-Request ::= <Diameter Header: 272, REQ, PXY, 4>
+      < Session-Id >
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { Auth-Application-Id }
+      { Service-Context-Id }
+      { CC-Request-Type }
+      { CC-Request-Number }
+      [ Destination-Host ]
+      [ User-Name ]
+      [ CC-Sub-Session-Id ]
+      [ Acct-Multi-Session-Id ]
+      [ Origin-State-Id ]
+      [ Event-Timestamp ]
+  *   [ Subscription-Id ]
+      [ Service-Identifier ]
+      [ Termination-Cause ]
+      [ Requested-Service-Unit ]
+      [ Requested-Action ]
+  *   [ Used-Service-Unit ]
+      [ Multiple-Services-Indicator ]
+  *   [ Multiple-Services-Credit-Control ]
+  *   [ Service-Parameter-Info ]
+      [ CC-Correlation-Id ]
+      [ User-Equipment-Info ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+Credit-Control-Answer ::= <Diameter Header: 272, PXY, 4>
+      < Session-Id >
+      { Result-Code }
+      { Origin-Host }
+      { Origin-Realm }
+      { Auth-Application-Id }
+      { CC-Request-Type }
+      { CC-Request-Number }
+      [ User-Name ]
+      [ CC-Session-Failover ]
+      [ CC-Sub-Session-Id ]
+      [ Acct-Multi-Session-Id ]
+      [ Origin-State-Id ]
+      [ Event-Timestamp ]
+      [ Granted-Service-Unit ]
+  *   [ Multiple-Services-Credit-Control ]
+      [ Cost-Information ]
+      [ Final-Unit-Indication ]
+      [ Check-Balance-Result ]
+      [ Credit-Control-Failure-Handling ]
+      [ Direct-Debiting-Failure-Handling ]
+      [ Validity-Time ]
+  *   [ Redirect-Host ]
+      [ Redirect-Host-Usage ]
+      [ Redirect-Max-Cache-Time ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ Failed-AVP ]
+  *   [ AVP ]
+

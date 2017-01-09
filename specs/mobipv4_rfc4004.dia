@@ -1,0 +1,105 @@
+@id	2
+@name	mobipv4_rfc4004
+
+@inherits	ietf-avps
+
+@messages
+AA-Mobile-Node-Request ::= <Diameter Header: 260, REQ, PXY, 2>
+      < Session-Id >
+      { Auth-Application-Id }
+      { User-Name }
+      { Destination-Realm }
+      { Origin-Host }
+      { Origin-Realm }
+      { MIP-Reg-Request }
+      { MIP-MN-AAA-Auth }
+      [ Acct-Multi-Session-Id ]
+      [ Destination-Host ]
+      [ Origin-State-Id ]
+      [ MIP-Mobile-Node-Address ]
+      [ MIP-Home-Agent-Address ]
+      [ MIP-Feature-Vector ]
+      [ MIP-Originating-Foreign-AAA ]
+      [ Authorization-Lifetime ]
+      [ Auth-Session-State ]
+      [ MIP-FA-Challenge ]
+      [ MIP-Candidate-Home-Agent-Host ]
+      [ MIP-Home-Agent-Host ]
+      [ MIP-HA-to-FA-SPI ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+AA-Mobile-Node-Answer ::= <Diameter Header: 260, PXY, 2>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Result-Code }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Acct-Multi-Session-Id ]
+      [ User-Name ]
+      [ Authorization-Lifetime ]
+      [ Auth-Session-State ]
+      [ Error-Message ]
+      [ Error-Reporting-Host ]
+      [ Re-Auth-Request-Type ]
+      [ MIP-Feature-Vector ]
+      [ MIP-Reg-Reply ]
+      [ MIP-MN-to-FA-MSA ]
+      [ MIP-MN-to-HA-MSA ]
+      [ MIP-FA-to-MN-MSA ]
+      [ MIP-FA-to-HA-MSA ]
+      [ MIP-HA-to-MN-MSA ]
+      [ MIP-MSA-Lifetime ]
+      [ MIP-Home-Agent-Address ]
+      [ MIP-Mobile-Node-Address ]
+  *   [ MIP-Filter-Rule ]
+      [ Origin-State-Id ]
+  *   [ Proxy-Info ]
+  *   [ AVP ]
+
+Home-Agent-MIP-Request ::= <Diameter Header: 262, REQ, PXY, 2>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Authorization-Lifetime }
+      { Auth-Session-State }
+      { MIP-Reg-Request }
+      { Origin-Host }
+      { Origin-Realm }
+      { User-Name }
+      { Destination-Realm }
+      { MIP-Feature-Vector }
+      [ Destination-Host ]
+      [ MIP-MN-to-HA-MSA ]
+      [ MIP-MN-to-FA-MSA ]
+      [ MIP-HA-to-MN-MSA ]
+      [ MIP-HA-to-FA-MSA ]
+      [ MIP-MSA-Lifetime ]
+      [ MIP-Originating-Foreign-AAA ]
+      [ MIP-Mobile-Node-Address ]
+      [ MIP-Home-Agent-Address ]
+  *   [ MIP-Filter-Rule ]
+      [ Origin-State-Id ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+Home-Agent-MIP-Answer ::= <Diameter Header: 262, PXY, 2>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Result-Code }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Acct-Multi-Session-Id ]
+      [ User-Name ]
+      [ Error-Reporting-Host ]
+      [ Error-Message ]
+      [ MIP-Reg-Reply ]
+      [ MIP-Home-Agent-Address ]
+      [ MIP-Mobile-Node-Address ]
+      [ MIP-FA-to-HA-SPI ]
+      [ MIP-FA-to-MN-SPI ]
+      [ Origin-State-Id ]
+  *   [ Proxy-Info ]
+  *   [ AVP ]
+

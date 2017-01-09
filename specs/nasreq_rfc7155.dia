@@ -1,0 +1,384 @@
+@id	1
+@name	nasreq_rfc7155
+
+@inherits	ietf-avps
+
+@messages
+AA-Request ::= <Diameter Header: 265, REQ, PXY, 1>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { Auth-Request-Type }
+      [ Destination-Host ]
+      [ NAS-Identifier ]
+      [ NAS-IP-Address ]
+      [ NAS-IPv6-Address ]
+      [ NAS-Port ]
+      [ NAS-Port-Id ]
+      [ NAS-Port-Type ]
+      [ Origin-AAA-Protocol ]
+      [ Origin-State-Id ]
+      [ Port-Limit ]
+      [ User-Name ]
+      [ User-Password ]
+      [ Service-Type ]
+      [ State ]
+      [ Authorization-Lifetime ]
+      [ Auth-Grace-Period ]
+      [ Auth-Session-State ]
+      [ Callback-Number ]
+      [ Called-Station-Id ]
+      [ Calling-Station-Id ]
+      [ Originating-Line-Info ]
+      [ Connect-Info ]
+      [ CHAP-Auth ]
+      [ CHAP-Challenge ]
+  *   [ Framed-Compression ]
+      [ Framed-Interface-Id ]
+      [ Framed-IP-Address ]
+  *   [ Framed-IPv6-Prefix ]
+      [ Framed-IP-Netmask ]
+      [ Framed-MTU ]
+      [ Framed-Protocol ]
+      [ ARAP-Password ]
+      [ ARAP-Security ]
+  *   [ ARAP-Security-Data ]
+  *   [ Login-IP-Host ]
+  *   [ Login-IPv6-Host ]
+      [ Login-LAT-Group ]
+      [ Login-LAT-Node ]
+      [ Login-LAT-Port ]
+      [ Login-LAT-Service ]
+  *   [ Tunneling ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+AA-Answer ::= <Diameter Header: 265, PXY, 1>
+      < Session-Id >
+      { Auth-Application-Id }
+      { Auth-Request-Type }
+      { Result-Code }
+      { Origin-Host }
+      { Origin-Realm }
+      [ User-Name ]
+      [ Service-Type ]
+  *   [ Class ]
+  *   [ Configuration-Token ]
+      [ Acct-Interim-Interval ]
+      [ Error-Message ]
+      [ Error-Reporting-Host ]
+  *   [ Failed-AVP ]
+      [ Idle-Timeout ]
+      [ Authorization-Lifetime ]
+      [ Auth-Grace-Period ]
+      [ Auth-Session-State ]
+      [ Re-Auth-Request-Type ]
+      [ Multi-Round-Time-Out ]
+      [ Session-Timeout ]
+      [ State ]
+  *   [ Reply-Message ]
+      [ Origin-AAA-Protocol ]
+      [ Origin-State-Id ]
+  *   [ Filter-Id ]
+      [ Password-Retry ]
+      [ Port-Limit ]
+      [ Prompt ]
+      [ ARAP-Challenge-Response ]
+      [ ARAP-Features ]
+      [ ARAP-Security ]
+  *   [ ARAP-Security-Data ]
+      [ ARAP-Zone-Access ]
+      [ Callback-Id ]
+      [ Callback-Number ]
+      [ Framed-Appletalk-Link ]
+  *   [ Framed-Appletalk-Network ]
+      [ Framed-Appletalk-Zone ]
+  *   [ Framed-Compression ]
+      [ Framed-Interface-Id ]
+      [ Framed-IP-Address ]
+  *   [ Framed-IPv6-Prefix ]
+      [ Framed-IPv6-Pool ]
+  *   [ Framed-IPv6-Route ]
+      [ Framed-IP-Netmask ]
+  *   [ Framed-Route ]
+      [ Framed-Pool ]
+      [ Framed-IPX-Network ]
+      [ Framed-MTU ]
+      [ Framed-Protocol ]
+      [ Framed-Routing ]
+  *   [ Login-IP-Host ]
+  *   [ Login-IPv6-Host ]
+      [ Login-LAT-Group ]
+      [ Login-LAT-Node ]
+      [ Login-LAT-Port ]
+      [ Login-LAT-Service ]
+      [ Login-Service ]
+      [ Login-TCP-Port ]
+  *   [ NAS-Filter-Rule ]
+  *   [ QoS-Filter-Rule ]
+  *   [ Tunneling ]
+  *   [ Redirect-Host ]
+      [ Redirect-Host-Usage ]
+      [ Redirect-Max-Cache-Time ]
+  *   [ Proxy-Info ]
+  *   [ AVP ]
+
+Re-Auth-Request ::= <Diameter Header: 258, REQ, PXY, 1>
+      < Session-Id >
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { Destination-Host }
+      { Auth-Application-Id }
+      { Re-Auth-Request-Type }
+      [ User-Name ]
+      [ Origin-AAA-Protocol ]
+      [ Origin-State-Id ]
+      [ NAS-Identifier ]
+      [ NAS-IP-Address ]
+      [ NAS-IPv6-Address ]
+      [ NAS-Port ]
+      [ NAS-Port-Id ]
+      [ NAS-Port-Type ]
+      [ Service-Type ]
+      [ Framed-IP-Address ]
+      [ Framed-IPv6-Prefix ]
+      [ Framed-Interface-Id ]
+      [ Called-Station-Id ]
+      [ Calling-Station-Id ]
+      [ Originating-Line-Info ]
+      [ Acct-Session-Id ]
+      [ Acct-Multi-Session-Id ]
+      [ State ]
+  *   [ Class ]
+      [ Reply-Message ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+Re-Auth-Answer ::= <Diameter Header: 258, PXY, 1>
+      < Session-Id >
+      { Result-Code }
+      { Origin-Host }
+      { Origin-Realm }
+      [ User-Name ]
+      [ Origin-AAA-Protocol ]
+      [ Origin-State-Id ]
+      [ Error-Message ]
+      [ Error-Reporting-Host ]
+  *   [ Failed-AVP ]
+  *   [ Redirect-Host ]
+      [ Redirect-Host-Usage ]
+      [ Redirect-Max-Cache-Time ]
+      [ Service-Type ]
+  *   [ Configuration-Token ]
+      [ Idle-Timeout ]
+      [ Authorization-Lifetime ]
+      [ Auth-Grace-Period ]
+      [ Re-Auth-Request-Type ]
+      [ State ]
+  *   [ Class ]
+  *   [ Reply-Message ]
+      [ Prompt ]
+  *   [ Proxy-Info ]
+  *   [ AVP ]
+
+Session-Termination-Request ::= <Diameter Header: 275, REQ, PXY, 1>
+      < Session-Id >
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { Auth-Application-Id }
+      { Termination-Cause }
+      [ User-Name ]
+      [ Destination-Host ]
+  *   [ Class ]
+      [ Origin-AAA-Protocol ]
+      [ Origin-State-Id ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+Session-Termination-Answer ::= <Diameter Header: 275, REQ, PXY, 1>
+      < Session-Id >
+      { Result-Code }
+      { Origin-Host }
+      { Origin-Realm }
+      [ User-Name ]
+  *   [ Class ]
+      [ Error-Message ]
+      [ Error-Reporting-Host ]
+  *   [ Failed-AVP ]
+      [ Origin-AAA-Protocol ]
+      [ Origin-State-Id ]
+  *   [ Redirect-Host ]
+      [ Redirect-Host-Usage ]
+      [ Redirect-Max-Cache-Time ]
+  *   [ Proxy-Info ]
+  *   [ AVP ]
+
+Abort-Session-Request ::= <Diameter Header: 274, REQ, PXY, 1>
+      < Session-Id >
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { Destination-Host }
+      { Auth-Application-Id }
+      [ User-Name ]
+      [ Origin-AAA-Protocol ]
+      [ Origin-State-Id ]
+      [ NAS-Identifier ]
+      [ NAS-IP-Address ]
+      [ NAS-IPv6-Address ]
+      [ NAS-Port ]
+      [ NAS-Port-Id ]
+      [ NAS-Port-Type ]
+      [ Service-Type ]
+      [ Framed-IP-Address ]
+      [ Framed-IPv6-Prefix ]
+      [ Framed-Interface-Id ]
+      [ Called-Station-Id ]
+      [ Calling-Station-Id ]
+      [ Originating-Line-Info ]
+      [ Acct-Session-Id ]
+      [ Acct-Multi-Session-Id ]
+      [ State ]
+  *   [ Class ]
+  *   [ Reply-Message ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+Abort-Session-Answer ::= <Diameter Header: 274, PXY, 1>
+      < Session-Id >
+      { Result-Code }
+      { Origin-Host }
+      { Origin-Realm }
+      [ User-Name ]
+      [ Origin-AAA-Protocol ]
+      [ Origin-State-Id ]
+      [ State ]
+      [ Error-Message ]
+      [ Error-Reporting-Host ]
+  *   [ Failed-AVP ]
+  *   [ Redirect-Host ]
+      [ Redirect-Host-Usage ]
+      [ Redirect-Max-Cache-Time ]
+  *   [ Proxy-Info ]
+  *   [ AVP ]
+
+Accounting-Request ::= <Diameter Header: 271, REQ, PXY, 1>
+      < Session-Id >
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Realm }
+      { Accounting-Record-Type }
+      { Accounting-Record-Number }
+      { Acct-Application-Id }
+      [ User-Name ]
+      [ Accounting-Sub-Session-Id ]
+      [ Acct-Session-Id ]
+      [ Acct-Multi-Session-Id ]
+      [ Origin-AAA-Protocol ]
+      [ Origin-State-Id ]
+      [ Destination-Host ]
+      [ Event-Timestamp ]
+      [ Acct-Delay-Time ]
+      [ NAS-Identifier ]
+      [ NAS-IP-Address ]
+      [ NAS-IPv6-Address ]
+      [ NAS-Port ]
+      [ NAS-Port-Id ]
+      [ NAS-Port-Type ]
+  *   [ Class ]
+      [ Service-Type ]
+      [ Termination-Cause ]
+      [ Accounting-Input-Octets ]
+      [ Accounting-Input-Packets ]
+      [ Accounting-Output-Octets ]
+      [ Accounting-Output-Packets ]
+      [ Acct-Authentic ]
+      [ Accounting-Auth-Method ]
+      [ Acct-Link-Count ]
+      [ Acct-Session-Time ]
+      [ Acct-Tunnel-Connection ]
+      [ Acct-Tunnel-Packets-Lost ]
+      [ Callback-Id ]
+      [ Callback-Number ]
+      [ Called-Station-Id ]
+      [ Calling-Station-Id ]
+  *   [ Connect-Info ]
+      [ Originating-Line-Info ]
+      [ Authorization-Lifetime ]
+      [ Session-Timeout ]
+      [ Idle-Timeout ]
+      [ Port-Limit ]
+      [ Accounting-Realtime-Required ]
+      [ Acct-Interim-Interval ]
+  *   [ Filter-Id ]
+  *   [ NAS-Filter-Rule ]
+  *   [ QoS-Filter-Rule ]
+      [ Framed-Appletalk-Link ]
+      [ Framed-Appletalk-Network ]
+      [ Framed-Appletalk-Zone ]
+      [ Framed-Compression ]
+      [ Framed-Interface-Id ]
+      [ Framed-IP-Address ]
+      [ Framed-IP-Netmask ]
+  *   [ Framed-IPv6-Prefix ]
+      [ Framed-IPv6-Pool ]
+  *   [ Framed-IPv6-Route ]
+      [ Framed-IPX-Network ]
+      [ Framed-MTU ]
+      [ Framed-Pool ]
+      [ Framed-Protocol ]
+  *   [ Framed-Route ]
+      [ Framed-Routing ]
+  *   [ Login-IP-Host ]
+  *   [ Login-IPv6-Host ]
+      [ Login-LAT-Group ]
+      [ Login-LAT-Node ]
+      [ Login-LAT-Port ]
+      [ Login-LAT-Service ]
+      [ Login-Service ]
+      [ Login-TCP-Port ]
+  *   [ Tunneling ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+  *   [ AVP ]
+
+Accounting-Answer ::= <Diameter Header: 271, PXY, 1>
+      < Session-Id >
+      { Result-Code }
+      { Origin-Host }
+      { Origin-Realm }
+      { Accounting-Record-Type }
+      { Accounting-Record-Number }
+      { Acct-Application-Id }
+      [ User-Name ]
+      [ Accounting-Sub-Session-Id ]
+      [ Acct-Session-Id ]
+      [ Acct-Multi-Session-Id ]
+      [ Event-Timestamp ]
+      [ Error-Message ]
+      [ Error-Reporting-Host ]
+  *   [ Failed-AVP ]
+      [ Origin-AAA-Protocol ]
+      [ Origin-State-Id ]
+      [ NAS-Identifier ]
+      [ NAS-IP-Address ]
+      [ NAS-IPv6-Address ]
+      [ NAS-Port ]
+      [ NAS-Port-Id ]
+      [ NAS-Port-Type ]
+      [ Service-Type ]
+      [ Termination-Cause ]
+      [ Accounting-Realtime-Required ]
+      [ Acct-Interim-Interval ]
+  *   [ Class ]
+  *   [ Proxy-Info ]
+  *   [ AVP ]
+
