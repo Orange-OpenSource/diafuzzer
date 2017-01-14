@@ -1,4 +1,7 @@
-![coverity scan status](https://scan.coverity.com/projects/11469/badge.svg)
+<a href="https://scan.coverity.com/projects/11469">
+  <img alt="Coverity Scan Build Status"
+       src="https://scan.coverity.com/projects/11469/badge.svg"/>
+</a>
 
 # diafuzzer
 Diameter fuzzer, based on specifications of Diameter applications following rfc 3588 / 6733
