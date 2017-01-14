@@ -314,6 +314,7 @@ Rx    | specs/Rx.dia  | [29.214](http://www.3gpp.org/DynaReport/29214.htm)
 SLg   | specs/SLg.dia | [29.172](http://www.3gpp.org/DynaReport/29172.htm)
 SLh   | specs/SLh.dia | [29.173](http://www.3gpp.org/DynaReport/29173.htm)
 STa   | specs/STa.dia | [29.273](http://www.3gpp.org/DynaReport/29273.htm)
+S9    | specs/S9.dia  | [29.215](http://www.3gpp.org/DynaReport/29215.htm)
 
 #### Dia.py
 
