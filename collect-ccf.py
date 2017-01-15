@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 
+# Project     : diafuzzer
+# Copyright (C) 2017 Orange
+# All rights reserved.
+# This software is distributed under the terms and conditions of the 'BSD 3-Clause'
+# license which can be found in the file 'LICENSE' in this package distribution.
+
 from pyparsing import alphas, alphanums, OneOrMore, Group, Literal, delimitedList
 from pyparsing import Suppress as S
 from pyparsing import Optional as O
