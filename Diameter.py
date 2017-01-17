@@ -538,8 +538,8 @@ class Avp:
 
   def compute_path(self, avp):
     index = None
-    total = 0
     found = False
+    seend = 0
 
     for a in self.avps:
       if a.code == avp.code and a.vendor == avp.vendor:
