@@ -142,6 +142,7 @@ Origin-Realm                                 	296      	DiameterIdentity    	M
 Experimental-Result                          	297      	Grouped             	M   
 Experimental-Result-Code                     	298      	Unsigned32          	M   
 Inband-Security-Id                           	299      	Unsigned32          	M   
+DRMP						301		Enumerated		M
 MIP-FA-to-HA-SPI                             	318      	Unsigned32          	M   
 MIP-FA-to-MN-SPI                             	319      	Unsigned32          	M   
 MIP-Reg-Request                              	320      	OctetString         	M   
@@ -714,6 +715,24 @@ OC-OLR ::= <AVP Header: 623>
       [ OC-Reduction-Percentage ]
       [ OC-Validity-Duration ]
   *   [ AVP ]
+
+@enum DRMP
+PRIORITY_15					15
+PRIORITY_0				0
+PRIORITY_1				1
+PRIORITY_2				2
+PRIORITY_3				3
+PRIORITY_4				4
+PRIORITY_5				5
+PRIORITY_6				6
+PRIORITY_7				7
+PRIORITY_8				8
+PRIORITY_9				9
+PRIORITY_10				10
+PRIORITY_11				11
+PRIORITY_12				12
+PRIORITY_13				13
+PRIORITY_14				14
 
 @enum Service-Type
 UNKNOWN                                      	0
