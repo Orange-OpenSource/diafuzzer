@@ -1,0 +1,75 @@
+@id	16777313
+@name	SGd
+
+@inherits	ietf-avps
+@inherits	3gpp-avps
+
+@messages
+MO-Forward-Short-Message-Request ::= <Diameter Header: 8388645, REQ, PXY, 16777313>
+      [ DRMP ]
+      [ Vendor-Specific-Application-Id ]
+      { Origin-Host }
+      { Origin-Realm }
+      [ Destination-Host ]
+      { Destination-Realm }
+      { SC-Address }
+      [ OFR-Flags ]
+  *   [ Supported-Features ]
+      { User-Identifier }
+      { SM-RP-UI }
+      [ SMSMI-Correlation-ID ]
+      [ SM-Delivery-Outcome ]
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+MO-Forward-Short-Message-Answer ::= <Diameter Header: 8388645, PXY, 16777313>
+      { Origin-Host }
+      { Origin-Realm }
+  *   [ Supported-Features ]
+      [ SM-Delivery-Failure-Cause ]
+      [ External-Identifier ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+MT-Forward-Short-Message-Request ::= <Diameter Header: 8388646, REQ, PXY, 16777313>
+      [ DRMP ]
+      [ Vendor-Specific-Application-Id ]
+      { Origin-Host }
+      { Origin-Realm }
+      { Destination-Host }
+      { Destination-Realm }
+      { User-Name }
+  *   [ Supported-Features ]
+      [ SMSMI-Correlation-ID ]
+      { SC-Address }
+      { SM-RP-UI }
+      [ MME-Number-for-MT-SMS ]
+      [ SGSN-Number ]
+      [ TFR-Flags ]
+      [ SM-Delivery-Timer ]
+      [ SM-Delivery-Start-Time ]
+      [ Maximum-Retransmission-Time ]
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+      [ DRMP ]
+      [ Vendor-Specific-Application-Id ]
+      [ Experimental-Result ]
+
+MT-Forward-Short-Message-Answer ::= <Diameter Header: 8388646, PXY, 16777313>
+      [ DRMP ]
+      [ Vendor-Specific-Application-Id ]
+      [ Experimental-Result ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+  *   [ Supported-Features ]
+      [ Absent-User-Diagnostic-SM ]
+      [ SM-Delivery-Failure-Cause ]
+      [ SM-RP-UI ]
+      [ Requested-Retransmission-Time ]
+      [ User-Identifier ]
+  *   [ Failed-AVP ]
+  *   [ Route-Record ]
+
