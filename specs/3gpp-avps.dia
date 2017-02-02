@@ -5,7 +5,36 @@
 @inherits	ietf-avps
 @inherits	etsi-avps
 @inherits	3gpp2-avps
+
 @avp_types
+External-Identifier	3111	UTF8String	MV
+User-Identifier	3102	Grouped		MV
+SC-Address	3300	OctetString	MV
+SM-RP-UI	3301	OctetString	MV
+TFR-Flags	3302	Unsigned32	MV
+SM-RP-MTI	3308	Enumerated	MV
+SM-RP-SMEA	3309	OctetString	MV
+SRR-Flags	3310	Unsigned32	MV
+SM-Delivery-Not-Intended	3311	Enumerated	MV
+MWD-Status	3312	Unsigned32	MV
+MME-Absent-User-Diagnostic-SM	3313	Unsigned32	MV
+MSC-Absent-User-Diagnostic-SM	3314	Unsigned32	MV
+SGSN-Absent-User-Diagnostic-SM	3315	Unsigned32	MV
+SM-Delivery-Outcome	3316	Grouped	MV
+MME-SM-Delivery-Outcome	3317	Grouped	MV
+MSC-SM-Delivery-Outcome	3318	Grouped	MV
+SGSN-SM-Delivery-Outcome	3319	Grouped	MV
+IP-SM-GW-SM-Delivery-Outcome	3320	Grouped	MV
+SM-Delivery-Cause	3321	Enumerated	MV
+Absent-User-Diagnostic-SM	3322	Unsigned32	MV
+RDR-Flags	3323	Unsigned32	MV
+SMSMI-Correlation-ID	3324	Grouped	V
+HSS-ID	3325	UTF8String	V
+Originating-SIP-URI	3326	UTF8String	V
+Destination-SIP-URI	3327	UTF8String	V
+Maximum-UE-Availability-Time	3329	Time	V
+SMS-GMSC-Alert-Event	3333	Unsigned32	V
+
 3GPP-IMSI                                    	1        	UTF8String          	MV  
 3GPP-Charging-ID                             	2        	Integer32           	MV  
 3GPP-PDP-Type                                	3        	Integer32           	MV  
@@ -916,6 +945,7 @@ Time-Window                                  	3818     	Unsigned32          	MV
 WLAN-Link-Layer-Id                           	3821     	OctetString         	MV  
 
 @avp_vendor_id	10415
+SM-Delivery-Outcome
 3GPP-IMSI
 3GPP-Charging-ID
 3GPP-PDP-Type
@@ -1822,7 +1852,39 @@ Requesting-EPUID
 Time-Window
 WLAN-Link-Layer-Id
 
+
 @grouped
+User-Identifier ::= <AVP header: 3102 10415>
+[ User-Name ] 
+[ MSISDN ]
+[ External-Identifier ]
+[ LMSI ]
+*[AVP]
+
+SMSMI-Correlation-ID ::= <AVP header: 3308 10415>
+[ HSS-ID ]
+[ Originating-SIP-URI ]
+[ Destination-SIP-URI ]
+*[ AVP ]
+
+SM-Delivery-Outcome::= <AVP header: 3316>
+[ MME-SM-Delivery-Outcome ]
+[ MSC-SM-Delivery-Outcome ]
+[ SGSN-SM-Delivery-Outcome ]
+[ IP-SM-GW-SM-Delivery-Outcome]
+*[AVP]
+MME-SM-Delivery-Outcome::= <AVP header: 3317 10415>>
+[ SM-Delivery-Cause ]
+[ Absent-User-Diagnostic-SM ]
+MSC-SM-Delivery-Outcome::= <AVP header: 3318 10415>
+[ SM-Delivery-Cause ]
+[ Absent-User-Diagnostic-SM ]
+SGSN-SM-Delivery-Outcome::= <AVP header: 3319 10415>
+[ SM-Delivery-Cause ]
+[ Absent-User-Diagnostic-SM ]
+IP-SM-GW-SM-Delivery-Outcome::= <AVP header: 3320 10415>
+[ SM-Delivery-Cause ]
+[ Absent-User-Diagnostic-SM ]
 Access-Network-Charging-Identifier ::= <AVP Header: 502>
       { Access-Network-Charging-Identifier-Value }
   *   [ Flows ]
@@ -3220,6 +3282,19 @@ Sponsored-Connectivity-Data ::= <AVP Header: 530>
 [Granted-Service-Unit ]
 [Used-Service-Unit ]
 *[AVP ]
+
+@enum SM-Delivery-Cause
+UE_MEMORY_CAPACITY_EXCEEDED			0
+ABSENT_USER					1
+SUCCESSFUL_TRANSFER				2
+
+@enum SM-Delivery-Not-Intended
+ONLY_IMSI_REQUESTED				0
+ONLY_MCC_MNC_REQUESTED				1
+
+@enum SM-RP-MTI
+SM_DELIVER					0
+SM_STATUS_REPORT				1
 
 @enum Abort-Cause
 BEARER_RELEASED                              	0

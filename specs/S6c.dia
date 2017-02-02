@@ -1,0 +1,123 @@
+@id	16777312
+@name	S6a
+
+@inherits	ietf-avps
+@inherits	3gpp-avps
+
+@messages
+Send-Routing-Info-for-SM-Request ::= <Diameter Header: 8388647, REQ, PXY, 16777312>
+      < Session-Id >
+      [ DRMP ]
+      [ Vendor-Specific-Application-Id ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Destination-Host ]
+      { Destination-Realm }
+      [ MSISDN ]
+      [ User-Name ]
+      [ SMSMI-Correlation-ID ]
+  *   [ Supported-Features ]
+      [ SC-Address ]
+      [ SM-RP-MTI ]
+      [ SM-RP-SMEA ]
+      [ SRR-Flags ]
+      [ SM-Delivery-Not-Intended ]
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Send-Routing-info-for-SM-Answer ::= <Diameter Header: 8388647, PXY, 16777312>
+      < Session-Id >
+      [ DRMP ]
+      [ Vendor-Specific-Application-Id ]
+      [ Result-Code ]
+      [ Experimental-Result ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ User-Name ]
+  *   [ Supported-Features ]
+      [ Serving-Node ]
+      [ Additional-Serving-Node ]
+      [ LMSI ]
+      [ User-Identifier ]
+      [ MWD-Status ]
+      [ MME-Absent-User-Diagnostic-SM ]
+      [ MSC-Absent-User-Diagnostic-SM ]
+      [ SGSN-Absent-User-Diagnostic-SM ]
+  *   [ AVP ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Alert-Service-Centre-Request ::= <Diameter Header: 8388648, REQ, PXY, 16777312>
+      < Session-Id >
+      [ DRMP ]
+      [ Vendor-Specific-Application-Id ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Destination-Host ]
+      { Destination-Realm }
+      { SC-Address }
+      { User-Identifier }
+      [ SMSMI-Correlation-ID ]
+      [ Maximum-UE-Availability-Time ]
+      [ SMS-GMSC-Alert-Event ]
+      [ Serving-Node ]
+  *   [ Supported-Features ]
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Alert-Service-Centre-Answer ::= <Diameter Header: 8388648, PXY, 16777312>
+      < Session-Id >
+      [ DRMP ]
+      [ Vendor-Specific-Application-Id ]
+      [ Result-Code ]
+      [ Experimental-Result ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+  *   [ Supported-Features ]
+  *   [ AVP ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Report-SM-Delivery-Status-Request ::= <Diameter Header: 8388649, REQ, PXY, 16777312>
+      < Session-Id >
+      [ DRMP ]
+      [ Vendor-Specific-Application-Id ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+      [ Destination-Host ]
+      { Destination-Realm }
+  *   [ Supported-Features ]
+      { User-Identifier }
+      [ SMSMI-Correlation-ID ]
+      { SC-Address }
+      { SM-Delivery-Outcome }
+      [ RDR-Flags ]
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
+Report-SM-Delivery-Status-Answer ::= <Diameter Header: 8388649, PXY, 16777312>
+      < Session-Id >
+      [ DRMP ]
+      [ Vendor-Specific-Application-Id ]
+      [ Result-Code ]
+      [ Experimental-Result ]
+      { Auth-Session-State }
+      { Origin-Host }
+      { Origin-Realm }
+  *   [ Supported-Features ]
+      [ User-Identifier ]
+  *   [ AVP ]
+  *   [ Failed-AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
+
