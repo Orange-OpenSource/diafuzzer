@@ -7,6 +7,14 @@
 @inherits	3gpp2-avps
 
 @avp_types
+SM-Diagnostic-Info	3305	OctetString	MV
+SM-Delivery-Timer	3306	Unsigned32	MV
+SM-Delivery-Start-Time	3307	Time		MV
+SM-Enumerated-Delivery-Failure-Cause	3304	Enumerated	MV
+SM-Delivery-Failure-Cause	3303	Grouped MV
+Maximum-Retransmission-Time	3330	Time	V
+Requested-Retransmission-Time	3331	Time	V
+OFR-Flags	3328	Unsigned32	V
 External-Identifier	3111	UTF8String	MV
 User-Identifier	3102	Grouped		MV
 SC-Address	3300	OctetString	MV
@@ -1854,6 +1862,11 @@ WLAN-Link-Layer-Id
 
 
 @grouped
+SM-Delivery-Failure-Cause ::= <AVP header: 3304 10415>
+{ SM-Enumerated-Delivery-Failure-Cause }
+[ SM-Diagnostic-Info ]
+*[ AVP ]
+
 User-Identifier ::= <AVP header: 3102 10415>
 [ User-Name ] 
 [ MSISDN ]
@@ -3282,6 +3295,15 @@ Sponsored-Connectivity-Data ::= <AVP Header: 530>
 [Granted-Service-Unit ]
 [Used-Service-Unit ]
 *[AVP ]
+
+@enum SM-Enumerated-Delivery-Failure-Cause
+MEMORY_CAPACITY_EXCEEDED	0
+EQUIPMENT_PROTOCOL_ERROR	1
+EQUIPMENT_NOT_SM-EQUIPPED	2
+UNKNOWN_SERVICE_CENTER		3
+SC-CONGESTION			4
+INVALID_SME-ADDRESS		5
+USER_NOT_SC-USER		6
 
 @enum SM-Delivery-Cause
 UE_MEMORY_CAPACITY_EXCEEDED			0
