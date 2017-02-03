@@ -7,6 +7,21 @@
 @inherits	3gpp2-avps
 
 @avp_types
+Emergency-Services	1538	Unsigned32	V
+Adjacent-PLMNs	1672	Grouped		V
+AIR-Flags	1679	Unsigned32	MV
+UE-Usage-Type	1680	Unsigned32	MV
+Monitoring-Event-Report	3123	Grouped	MV
+SCEF-Reference-ID	3124	Unsigned32	MV
+SCEF-ID	3125	DiameterIdentity	MV
+Monitoring-Type	3127	Unsigned32	MV
+Monitoring-Event-Config-Status	3142	Grouped	MV
+Service-Report	3152	Grouped	MV
+Service-Result	3146	Grouped	MV
+Node-Type	3153	Unsigned32	MV
+Service-Result-Code	3147	Unsigned32	MV
+Subscription-Data-Deletion	1685	Grouped	V
+Reachability-Information	3140	Unsigned32	MV
 SM-Diagnostic-Info	3305	OctetString	MV
 SM-Delivery-Timer	3306	Unsigned32	MV
 SM-Delivery-Start-Time	3307	Time		MV
@@ -953,6 +968,8 @@ Time-Window                                  	3818     	Unsigned32          	MV
 WLAN-Link-Layer-Id                           	3821     	OctetString         	MV  
 
 @avp_vendor_id	10415
+Monitoring-Event-Report
+Adjacent-PMLNs
 SM-Delivery-Outcome
 3GPP-IMSI
 3GPP-Charging-ID
@@ -1862,6 +1879,40 @@ WLAN-Link-Layer-Id
 
 
 @grouped
+Subscription-Data-Deletion ::= <AVP header: 1685 10415>
+{ DSR-Flags }
+[ SCEF-ID ]
+*[ Context-Identifier ] [ Trace-Reference ]
+*[ TS-Code ]
+*[ SS-Code ]
+*[ AVP ]
+
+Service-Result ::= <AVP header: 3146 10415>
+[Service-Result-Code]
+*[Vendor-Id]
+
+Service-Report ::= <AVP header: 3152 10415>
+[Service-Result]
+[Node-Type]
+
+Monitoring-Event-Config-Status ::= <AVP header: 3142 10415>
+{SCEF-Reference-ID}
+[SCEF-ID]
+*[Service-Report]
+
+Monitoring-Event-Report::= <AVP header: 3123 10415>
+{ SCEF-Reference-ID }
+[ SCEF-ID ]
+[ Reachability-Information ]
+[ EPS-Location-Information ]
+[ Monitoring-Type ]
+*[ AVP ]
+
+
+Adjacent-PLMNs ::= <AVP-Header: 1672, 10415>
+  1*{Visited-PLMN-Id}
+  *[AVP]
+
 SM-Delivery-Failure-Cause ::= <AVP header: 3304 10415>
 { SM-Enumerated-Delivery-Failure-Cause }
 [ SM-Diagnostic-Info ]
