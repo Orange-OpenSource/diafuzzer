@@ -141,6 +141,11 @@ Insert-Subscriber-Data-Request ::= <Diameter Header: 319, REQ, PXY, 16777251>
       { User-Name }
   *   [ Supported-Features ]
       { Subscription-Data }
+      [ IDR-Flags ]
+  *   [ Reset-ID ]
+  *   [ AVP ]
+  *   [ Proxy-Info ]
+  *   [ Route-Record ]
 
 Insert-Subscriber-Data-Answer ::= <Diameter Header: 319, PXY, 16777251>
       < Session-Id >
