@@ -110,6 +110,8 @@ def main():
             else:
                 msg = get_message(app, args.msg)
                 assert(msg)
+
+                # We've got both the App and the Msg and we want to list the Avps
                 # Beautify Mode
                 if args.b:
                     print("Avps List for Application <%s> and Msg <%s>" % (app.name, msg.name))
@@ -139,8 +141,9 @@ def main():
             assert(app)
             msg = get_message(app, args.msg)
             assert(msg)
-                        
-            data = b"m = Msg(R=True, code=%d, app_id=0x0, avps=[\n" % msg.code
+            
+            # Pythonic Msg construction
+            data = b"m = Msg(R=True, P=False, E=False, T=False,  code=%d, app_id=%d, avps=[\n" % (msg.code, app.id)
             for avp in list_avps(msg):
                 if avp.M:
                     out = b"# %s (datatype:%s) \n" % (avp.name, avp.datatype)
@@ -149,7 +152,7 @@ def main():
                     if args.rmopt:
                         continue
                     out = b"# OPTIONAL %s (datatype:%s) \n" % (avp.name, avp.datatype)
-
+                # Pythonic avps lines construction
                 out += b"\t Avp(code=%d, " % avp.code
                 if avp.M == True:
                     out += b"M=%r, " %avp.M
