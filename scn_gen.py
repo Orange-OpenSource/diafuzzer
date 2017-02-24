@@ -116,9 +116,19 @@ def main():
                     print(b"  ID\t-\tName")
                     print("-------------------------------")
                     for avp in list_avps(msg):
+                        # ignore the non-mandatory avps if args.rmopt is set
+                        if args.rmopt and not avp.M:
+                            continue
                         print(b"- %d\t-\t%s" % (avp.code, avp.name))
                 else:
-                    data = [[avp.code, avp.name] for avp in list_avps(msg)]
+                    data = list()
+                    for avp in list_avps(msg):
+                        # ignore the non-mandatory avps if args.rmopt is set
+                        if args.rmopt and not avp.M:
+                            continue
+                        else:
+                            data.append([avp.code, avp.name])
+
                     print >> sys.stdout, json.dumps(data)
                 
     else:
