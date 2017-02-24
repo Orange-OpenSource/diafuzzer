@@ -5,9 +5,6 @@ import os
 import sys
 from cPickle import load
 import argparse
-from pygments.lexers import PythonLexer
-from pygments.formatters import TerminalFormatter
-from pygments import highlight
 import json
 
 assert(os.path.exists('.dia-cache'))
@@ -55,7 +52,7 @@ def main():
     
     parser.add_argument('-l',default=None, action='store_true', help="Listing Mode (default). In this mode, the script will list the potentials Applications, Messages or Avps using the provided (or not) --app and --msg args.")
     parser.add_argument('-c', default=None, action='store_true', help="Creation Mode.")
-    parser.add_argument('-b', default=False, action='store_true', help="Beautify (default: false). Adapt the output to be printed in a terminal. Make it human-readable. By default, the script will output format will be ")
+    parser.add_argument('-b', default=False, action='store_true', help="Beautify (default: false). Adapt the output to be printed in a terminal. Make it human-readable.")
 
     parser.add_argument('--app', 
     help='Select a specific application. Use either the name or the ID of the Application.',
@@ -73,7 +70,7 @@ def main():
     assert(not(args.l and args.c))
     
     if args.l is None and args.c is None:
-        print >> sys.stderr, "You must chose a mode. Either listing (-l) or creation (-c)."
+        print >> sys.stderr, "You must chose a mode. Either listing (-l) or creation (-c). See --help for usage informations."
         return -1
 
     # Listing Mode
@@ -158,12 +155,9 @@ def main():
                 data += out
             data += b"])"
 
-            # Beautify Mode ?
-            if args.b == True:
-                print >> sys.stdout, highlight(data, PythonLexer(), TerminalFormatter())
-            else:
-                print >> sys.stdout, data
+            print >> sys.stdout, data
         else:
-            print >> sys.stderr, "In creative mode, both --app and --msg must be defined"
+            print >> sys.stderr, "In creative mode, both --app and --msg must be defined. See --help for usage informations."
+            return -1
 if __name__ == '__main__':
     main()
