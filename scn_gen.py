@@ -59,13 +59,21 @@ def main():
     choices=[a for a in list_applications()])
     parser.add_argument('--msg', 
     help='Select a specific message type. Requires the --app parameter to be defined. Use either the name or the ID of the Application.')
+    parser.add_argument('--addavp',
+    help='Add specific AVP to the output. Useful whith the --rmopt option.')
+
     parser.add_argument('--rmopt', default=False, action='store_true', 
     help='Remove the Optionnals Avps (default: false). Only useful in Creation mode ')
 
 
 
     args = parser.parse_args()
-    
+
+    if args.addavp is not None:
+        args.addavp = list(int(x) for x in args.addavp.split(','))
+    else:
+        args.addavp= []
+
     # We can't be in both Creation Mode and Listing Mode at the same time
     assert(not(args.l and args.c))
     
@@ -119,14 +127,17 @@ def main():
                     print("-------------------------------")
                     for avp in list_avps(msg):
                         # ignore the non-mandatory avps if args.rmopt is set
-                        if args.rmopt and not avp.M:
+                        if args.rmopt and not avp.M and \
+                        not(avp.code in args.addavp):
                             continue
-                        print(b"- %d\t-\t%s" % (avp.code, avp.name))
+                        else:
+                            print(b"- %d\t-\t%s" % (avp.code, avp.name))
                 else:
                     data = list()
                     for avp in list_avps(msg):
                         # ignore the non-mandatory avps if args.rmopt is set
-                        if args.rmopt and not avp.M:
+                        if args.rmopt and not avp.M and \
+                        not(avp.code in args.addavp):
                             continue
                         else:
                             data.append([avp.code, avp.name])
@@ -149,9 +160,10 @@ def main():
                     out = b"# %s (datatype:%s) \n" % (avp.name, avp.datatype)
                 else:
                     # If the --rmopt is set, do not print optionnals avp
-                    if args.rmopt:
+                    if args.rmopt and not(avp.code in args.addavp):
                         continue
-                    out = b"# OPTIONAL %s (datatype:%s) \n" % (avp.name, avp.datatype)
+                    else:
+                        out = b"# OPTIONAL %s (datatype:%s) \n" % (avp.name, avp.datatype)
                 # Pythonic avps lines construction
                 out += b"\t Avp(code=%d, " % avp.code
                 if avp.M == True:
