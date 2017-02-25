@@ -44,7 +44,84 @@ def list_avps(msg, prefix=''):
         if qavp.avp and qavp.avp.name.startswith(prefix):
             yield qavp.avp
 
+def print_app(args):
+# Beautify mode
+    if args.b == True:
+        print("Applications List:")
+        print("-------------------------------")
 
+        for app in list_applications():
+            print "- %s" % (app)
+    # JSON output mode
+    else:
+        data = [app for app in list_applications()]
+        print >> sys.stdout, json.dumps(data)
+
+def print_msg(app, args):
+    if args.b:
+        print("Messages List for Application <%s>" % app.name)
+        print(b"  ID\t-\tName")
+        print("-------------------------------")
+        for msg in list_messages(app):
+            print(b"- %d\t-\t%s" % (msg.code, msg.name))
+    #JSON output Mode
+    else:
+        data = [[msg.code, msg.name] for msg in list_messages(app)]
+        print >> sys.stdout, json.dumps(data)
+
+def print_avp(app, msg, args):
+# Beautify Mode
+    if args.b:
+        print("Avps List for Application <%s> and Msg <%s>" % (app.name, msg.name))
+        print(b"  ID\t-\tName")
+        print("-------------------------------")
+        for avp in list_avps(msg):
+            # ignore the non-mandatory avps if args.rmopt is set
+            if args.rmopt and not avp.M and \
+            not(avp.code in args.addavp):
+                continue
+            else:
+                print(b"- %d\t-\t%s" % (avp.code, avp.name))
+    else:
+        data = list()
+        for avp in list_avps(msg):
+            # ignore the non-mandatory avps if args.rmopt is set
+            if args.rmopt and not avp.M and \
+            not(avp.code in args.addavp):
+                continue
+            else:
+                data.append([avp.code, avp.name])
+
+        print >> sys.stdout, json.dumps(data)
+
+
+def python_creator(app, msg, args):
+    data = b"m = Msg(R=True, P=False, E=False, T=False,  code=%d, app_id=%d, avps=[\n" % (msg.code, app.id)
+    for avp in list_avps(msg):
+        if avp.M:
+            out = b"# %s (datatype:%s) \n" % (avp.name, avp.datatype)
+        else:
+            # If the --rmopt is set, do not print optionnals avp
+            if args.rmopt and not(avp.code in args.addavp):
+                continue
+            else:
+                out = b"# OPTIONAL %s (datatype:%s) \n" % (avp.name, avp.datatype)
+        # Pythonic avps lines construction
+        out += b"\t Avp(code=%d, " % avp.code
+        if avp.M == True:
+            out += b"M=%r, " %avp.M
+
+        if avp.P == True:
+            out += b"P=%r, " %avp.P
+        if avp.V == True:
+            out += b"vendor_id=%d, " % avp.vendor_id
+        if avp.allows_stacking == True:
+            out += b"avps=[], "
+        
+        out += b"data=''), \n\n"
+        data += out
+    data += b"])"
+    return data
 
 
 def main():
@@ -62,8 +139,8 @@ def main():
     parser.add_argument('--addavp',
     help='Add specific AVP to the output. Useful whith the --rmopt option.')
 
-    parser.add_argument('--rmopt', default=False, action='store_true', 
-    help='Remove the Optionnals Avps (default: false). Only useful in Creation mode ')
+    parser.add_argument('-m', '--rmopt', default=False, action='store_true', 
+    help='Mandatory Only. Remove the Optionnals Avps (default: false). Only useful in Creation mode ')
 
 
 
@@ -80,23 +157,13 @@ def main():
     if args.l is None and args.c is None:
         print >> sys.stderr, "You must chose a mode. Either listing (-l) or creation (-c). See --help for usage informations."
         return -1
-
     # Listing Mode
     if args.l == True:
         #print("Listing Mode.")
         
         if args.app == None or args.app=="":
-            # Beautify mode
-            if args.b == True:
-                print("Applications List:")
-                print("-------------------------------")
-
-                for app in list_applications():
-                    print "- %s" % (app)
-            # JSON output mode
-            else:
-                data = [app for app in list_applications()]
-                print >> sys.stdout, json.dumps(data)
+            
+            print_app(args)
 
         else:
             app = get_application(args.app)
@@ -104,46 +171,13 @@ def main():
             # We've got the App and we want to list potentials msgs
             if args.msg == None or args.msg=="":
                 
-                if args.b:
-                    print("Messages List for Application <%s>" % app.name)
-                    print(b"  ID\t-\tName")
-                    print("-------------------------------")
-                    for msg in list_messages(app):
-                        print(b"- %d\t-\t%s" % (msg.code, msg.name))
-                #JSON output Mode
-                else:
-                    data = [[msg.code, msg.name] for msg in list_messages(app)]
-                    print >> sys.stdout, json.dumps(data)
+                print_msg(app, args)
 
             else:
                 msg = get_message(app, args.msg)
                 assert(msg)
-
-                # We've got both the App and the Msg and we want to list the Avps
-                # Beautify Mode
-                if args.b:
-                    print("Avps List for Application <%s> and Msg <%s>" % (app.name, msg.name))
-                    print(b"  ID\t-\tName")
-                    print("-------------------------------")
-                    for avp in list_avps(msg):
-                        # ignore the non-mandatory avps if args.rmopt is set
-                        if args.rmopt and not avp.M and \
-                        not(avp.code in args.addavp):
-                            continue
-                        else:
-                            print(b"- %d\t-\t%s" % (avp.code, avp.name))
-                else:
-                    data = list()
-                    for avp in list_avps(msg):
-                        # ignore the non-mandatory avps if args.rmopt is set
-                        if args.rmopt and not avp.M and \
-                        not(avp.code in args.addavp):
-                            continue
-                        else:
-                            data.append([avp.code, avp.name])
-
-                    print >> sys.stdout, json.dumps(data)
-                
+                # We've got both the APP and the MSG and we want to list the AVPs
+                print_avp(app, msg, args)                
     else:
         #print ("Creation Mode")
         if args.app!=None and args.msg !=None and args.app!="" and args.msg!="":
@@ -153,32 +187,7 @@ def main():
             msg = get_message(app, args.msg)
             assert(msg)
             
-            # Pythonic Msg construction
-            data = b"m = Msg(R=True, P=False, E=False, T=False,  code=%d, app_id=%d, avps=[\n" % (msg.code, app.id)
-            for avp in list_avps(msg):
-                if avp.M:
-                    out = b"# %s (datatype:%s) \n" % (avp.name, avp.datatype)
-                else:
-                    # If the --rmopt is set, do not print optionnals avp
-                    if args.rmopt and not(avp.code in args.addavp):
-                        continue
-                    else:
-                        out = b"# OPTIONAL %s (datatype:%s) \n" % (avp.name, avp.datatype)
-                # Pythonic avps lines construction
-                out += b"\t Avp(code=%d, " % avp.code
-                if avp.M == True:
-                    out += b"M=%r, " %avp.M
-
-                if avp.P == True:
-                    out += b"P=%r, " %avp.P
-                if avp.V == True:
-                    out += b"vendor_id=%d, " % avp.vendor_id
-                if avp.allows_stacking == True:
-                    out += b"avps=[], "
-                
-                out += b"data=''), \n\n"
-                data += out
-            data += b"])"
+            data = python_creator(app, msg, args)
 
             print >> sys.stdout, data
         else:
