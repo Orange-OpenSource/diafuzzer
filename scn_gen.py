@@ -82,6 +82,7 @@ def print_avp(app, msg, args):
                 continue
             else:
                 print(b"- %d\t-\t%s" % (avp.code, avp.name))
+                
     else:
         data = list()
         for avp in list_avps(msg):
@@ -106,6 +107,10 @@ def python_creator(app, msg, args):
                 continue
             else:
                 out = b"# OPTIONAL %s (datatype:%s) \n" % (avp.name, avp.datatype)
+            if avp.datatype == "Enumerated":
+                out += b"# Possible values:\n"
+                for i in avp.val_to_desc:
+                    out += b"# %d: %s \n" % (i, avp.val_to_desc[i])
         # Pythonic avps lines construction
         out += b"\t Avp(code=%d, " % avp.code
         if avp.M == True:
@@ -118,7 +123,11 @@ def python_creator(app, msg, args):
         if avp.allows_stacking == True:
             out += b"avps=[], "
         
-        out += b"data=''), \n\n"
+        if avp.datatype == "Enumerated":
+            out += b"u32=), \n\n"
+        else:
+            out += b"data=''), \n\n"
+        
         data += out
     data += b"])"
     return data
