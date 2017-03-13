@@ -545,9 +545,8 @@ def run(f, args={}):
 ...
   ])
   m.send(f)
-  tsxs[0] = (m.e2e_id, m.h2h_id)
-
-  # frame 2
+  tsxs[0] = (m.e2e_id, m.h2h_id) 
+  # frame 2
   m = Msg.recv(f)
   assert(m.code == 272)
   assert(not m.R)
@@ -559,6 +558,8 @@ def run(f, args={}):
 ```
 
 ### unit.py and fuzz.py
+
+Both programs expect to be run wrapped by `withsctp` utility. Using TCP instead of SCTP is not supported at this time, as the required buffering logic is not implemented yet. `withsctp` utility will transparently make TCP sockets become SCTP sockets. And SCTP sockets are packet oriented and not byte oriented, which explains why TCP requires an additional work.
 
 #### Arguments
 
