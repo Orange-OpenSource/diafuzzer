@@ -1,5 +1,12 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
+# Project     : diafuzzer
+# Copyright (C) 2017 Orange
+# All rights reserved.
+# This software is distributed under the terms and conditions of the 'BSD 3-Clause'
+# license which can be found in the file 'LICENSE' in this package distribution.
+
 from Dia import *
 import os
 import sys
@@ -17,120 +24,117 @@ def list_applications(prefix=''):
       yield app.name
 
 def get_application(appName):
-    assert(appName)
-
-    for app in d.apps:
-        if app.name == appName:
-            return app
-    return False
+  assert(appName)
+  for app in d.apps:
+    if app.name == appName:
+      return app
 
 def list_messages(app, prefix=''):
-    assert(app)
-    for msg in app.msgs:
-        if msg.name.startswith(prefix):
-            yield msg
+  assert(app)
+  for msg in app.msgs:
+    if msg.name.startswith(prefix):
+      yield msg
 
 def get_message(app, name):
-    assert(isinstance(name, int) or isinstance(name, str))
-    assert(name)
-    for msg in app.msgs:
-        if msg.name == name or msg.code == int(name):
-            return msg
-    return None
+  assert(isinstance(name, int) or isinstance(name, str))
+  assert(name)
+  for msg in app.msgs:
+    if msg.name == name or msg.code == int(name):
+      return msg
 
 def list_avps(msg, prefix=''):
-    assert(msg)
-    for qavp in msg.avps:
-        if qavp.avp and qavp.avp.name.startswith(prefix):
-            yield qavp.avp
+  assert(msg)
+  for qavp in msg.avps:
+    if qavp.avp and qavp.avp.name.startswith(prefix):
+      yield qavp.avp
 
 def print_app(args):
-# Beautify mode
-    if args.b == True:
-        print("Applications List:")
-        print("-------------------------------")
+  # Beautify mode
+  if args.b == True:
+    print("Applications List:")
+    print("-------------------------------")
 
-        for app in list_applications():
-            print "- %s" % (app)
-    # JSON output mode
-    else:
-        data = [app for app in list_applications()]
-        print >> sys.stdout, json.dumps(data)
+    for app in list_applications():
+      print "- %s" % (app)
+  # JSON output mode
+  else:
+    data = [app for app in list_applications()]
+    print(json.dumps(data))
 
 def print_msg(app, args):
-    if args.b:
-        print("Messages List for Application <%s>" % app.name)
-        print(b"  ID\t-\tName")
-        print("-------------------------------")
-        for msg in list_messages(app):
-            print(b"- %d\t-\t%s" % (msg.code, msg.name))
-    #JSON output Mode
-    else:
-        data = [[msg.code, msg.name] for msg in list_messages(app)]
-        print >> sys.stdout, json.dumps(data)
+  # Beautify mode
+  if args.b:
+    print("Messages List for Application <%s>" % app.name)
+    print(b"  ID\t-\tName")
+    print("-------------------------------")
+    for msg in list_messages(app):
+      print(b"- %d\t-\t%s" % (msg.code, msg.name))
+  #JSON output Mode
+  else:
+    data = [[msg.code, msg.name] for msg in list_messages(app)]
+    print(json.dumps(data))
 
 def print_avp(app, msg, args):
-# Beautify Mode
-    if args.b:
-        print("Avps List for Application <%s> and Msg <%s>" % (app.name, msg.name))
-        print(b"  ID\t-\tName")
-        print("-------------------------------")
-        for avp in list_avps(msg):
-            # ignore the non-mandatory avps if args.rmopt is set
-            if args.rmopt and not avp.M and \
-            not(avp.code in args.addavp):
-                continue
-            else:
-                print(b"- %d\t-\t%s" % (avp.code, avp.name))
-                
+  # Beautify Mode
+  if args.b:
+    print("Avps List for Application <%s> and Msg <%s>" % (app.name, msg.name))
+    print(b"  ID\t-\tName")
+    print("-------------------------------")
+    for avp in list_avps(msg):
+      # ignore the non-mandatory avps if args.rmopt is set
+      if args.rmopt and not avp.M and \
+        not(avp.code in args.addavp):
+        continue
+      else:
+        print(b"- %d\t-\t%s" % (avp.code, avp.name))
     else:
-        data = list()
-        for avp in list_avps(msg):
-            # ignore the non-mandatory avps if args.rmopt is set
-            if args.rmopt and not avp.M and \
-            not(avp.code in args.addavp):
-                continue
-            else:
-                data.append([avp.code, avp.name])
-
-        print >> sys.stdout, json.dumps(data)
-
+      data = []
+      for avp in list_avps(msg):
+        # ignore the non-mandatory avps if args.rmopt is set
+        if args.rmopt and not avp.M and \
+          not(avp.code in args.addavp):
+          continue
+        else:
+          data.append([avp.code, avp.name])
+      print(json.dumps(data))
 
 def python_creator(app, msg, args):
-    data = b"m = Msg(R=True, P=False, E=False, T=False,  code=%d, app_id=%d, avps=[\n" % (msg.code, app.id)
-    for avp in list_avps(msg):
-        if avp.M:
-            out = b"# %s (datatype:%s) \n" % (avp.name, avp.datatype)
-        else:
-            # If the --rmopt is set, do not print optionnals avp
-            if args.rmopt and not(avp.code in args.addavp):
-                continue
-            else:
-                out = b"# OPTIONAL %s (datatype:%s) \n" % (avp.name, avp.datatype)
-            if avp.datatype == "Enumerated":
-                out += b"# Possible values:\n"
-                for i in avp.val_to_desc:
-                    out += b"# %d: %s \n" % (i, avp.val_to_desc[i])
+  data = b"m = Msg(R=True, P=False, E=False, T=False,  code=%d, app_id=%d, avps=[\n" % (msg.code, app.id)
+
+  for avp in list_avps(msg):
+    if avp.M:
+      out = b"# %s (datatype:%s) \n" % (avp.name, avp.datatype)
+    else:
+      # If the --rmopt is set, do not print optionnals avp
+      if args.rmopt and not(avp.code in args.addavp):
+        continue
+      else:
+        out = b"# OPTIONAL %s (datatype:%s) \n" % (avp.name, avp.datatype)
+      if avp.datatype == "Enumerated":
+        out += b"# Possible values:\n"
+        for i in avp.val_to_desc:
+          out += b"# %d: %s \n" % (i, avp.val_to_desc[i])
         # Pythonic avps lines construction
         out += b"\t Avp(code=%d, " % avp.code
         if avp.M == True:
-            out += b"M=%r, " %avp.M
-
+          out += b"M=%r, " %avp.M
         if avp.P == True:
-            out += b"P=%r, " %avp.P
+          out += b"P=%r, " %avp.P
         if avp.V == True:
-            out += b"vendor_id=%d, " % avp.vendor_id
+          out += b"vendor_id=%d, " % avp.vendor_id
+
+        # To fix: allows_stacking != Grouped
         if avp.allows_stacking == True:
-            out += b"avps=[], "
+          out += b"avps=[], "
         
         if avp.datatype == "Enumerated":
-            out += b"u32=), \n\n"
+          out += b"u32=), \n\n"
         else:
-            out += b"data=''), \n\n"
+          out += b"data=''), \n\n"
         
-        data += out
-    data += b"])"
-    return data
+  data += out
+  data += b"])"
+  return data
 
 
 def main():
@@ -202,5 +206,6 @@ def main():
         else:
             print >> sys.stderr, "In creative mode, both --app and --msg must be defined. See --help for usage informations."
             return -1
+
 if __name__ == '__main__':
     main()
