@@ -140,12 +140,11 @@ class Msg:
     return r
 
   @staticmethod
-  def recv(f, _timeout=-1):
-    if _timeout == -1:
-      _timemout = 5
-
+  def recv(f, _timeout=5.0):
     f.settimeout(_timeout)
+
     data = f.recv(U24_MAX)
+
     return Msg.decode(data)
 
   def send(self, f):
