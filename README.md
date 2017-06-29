@@ -564,7 +564,7 @@ Both programs expect to be run wrapped by `withsctp` utility. Using TCP instead 
 #### Arguments
 
 ```
-$ ./unit.py <scenario> <mode> <ip:port>
+$ ./unit.py --scenario=<.scn file> --mode=<client|clientloop|server> --local-hostname=<sut.realm> --local-realm=<realm> <target:port>
 ```
 
 Mode | Behaviour
@@ -574,7 +574,7 @@ clientloop | _forever_(connect to given ip:port and run scenario)
 server | bind server on given ip:port, _forever_(accept client connection and run scenario)
 
 ```
-$ ./fuzz.py <scenario> <mode> <ip:port>
+$ ./fuzz.py --scenario=<.scn file> --mode=<client|server> --local-hostname=<sut.realm> --local-realm=<realm> <target:port>
 ```
 
 Mode | Behaviour
@@ -588,45 +588,13 @@ Diameter mandates the use of Device-Watchdog Request and Answer to verify connec
 
 A thin layer will shield user scenario from received Device-Watchdog Request, and will automatically send Device-Watchdog Answer.
 
-An AF_UNIX socketpair of type SOCK_SEQPACKET will be created, in order to rely on datagram semantics for exchanges between Device-Watchdog handler and scenario:
+The initial behaviour using a SOCK_SEQPACKET AF_UNIX socketpair has been modifed, in order to be more portable. It now uses a SOCK_STREAM AF_UNIX socketpair, with records being delineated via their length. It is implented in two places:
 
-```
-def dwr_handler(fuzzed, f):
-  (own_plug, fuzzed_plug) = sk.socketpair(sk.AF_UNIX, sk.SOCK_SEQPACKET)
+* `scenario.py/pack_frame` and `scenario.py/unpack_frame` which respectively append a 4-byte big-endian of following frame, and conversely.
+* `scenario.py/dwr_handler` which automatically replies to received DWR, and forwards other messages to scenario instance.
 
-  child = Thread(target=fuzzed, args=[fuzzed_plug])
-  child.start()
-
-  while True:
-    (readable, _, _) = sl.select([own_plug, f], [], [])
-
-    if own_plug in readable:
-      try:
-        b = own_plug.recv(dm.U24_MAX)
-        if len(b) == 0:
-          break
-      except:
-        break
-      f.send(b)
-    elif f in readable:
-      b = f.recv(dm.U24_MAX)
-      if len(b) == 0:
-        break
-
-      m = dm.Msg.decode(b)
-      if m.code == 280 and m.R:
-        dwa = dm.Msg(code=280, R=False, e2e_id=m.e2e_id, h2h_id=m.h2h_id, avps=[
-          dm.Avp(code=264, M=True, data=local_host),
-          dm.Avp(code=296, M=True, data=local_realm),
-          dm.Avp(code=268, M=True, u32=2001),
-          dm.Avp(code=278, M=True, u32=0xcafebabe)])
-        f.send(dwa.encode())
-      else:
-        own_plug.send(b)
-
-  own_plug.close()
-  child.join()
-```
+However answering to DWR requires to set a suitable Origin-Host and Origin-Realm, which is clearly not dependent of the scenario.
+`unit.py` and `fuzz.py` both accept to set a local hostname and a local realm. Scenario can access these variables via `local_hostname` and `local_realm`.
 
 #### Fuzzing process
 

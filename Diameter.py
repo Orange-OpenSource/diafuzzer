@@ -15,6 +15,7 @@ from Dia import Directory
 from random import randint
 from copy import deepcopy
 import sys
+from scenario import unpack_frame, pack_frame
 
 class IncompleteBuffer(Exception): pass
 class MsgInvalidLength(Exception): pass
@@ -143,13 +144,13 @@ class Msg:
   def recv(f, _timeout=5.0):
     f.settimeout(_timeout)
 
-    data = f.recv(U24_MAX)
+    data = unpack_frame(f)
 
     return Msg.decode(data)
 
   def send(self, f):
     data = self.encode()
-    f.send(data)
+    pack_frame(f, data)
 
   @staticmethod
   def decode(s, tag=False):

@@ -82,6 +82,12 @@ def lookup(msgs, val):
       if m.values[k] == val:
         return (m, k)
 
+def usage(arg0):
+  print('''usage: %s [--client=<generated client scenario>] [--server=<generated server scenario] <pcap file>''' % arg0)
+  sys.exit(1)
+
+
+
 if __name__ == '__main__':
   client_dump = None
   client_empty = True
@@ -90,7 +96,7 @@ if __name__ == '__main__':
   server_empty = True
 
   try:
-    opts, args = getopt(sys.argv[1:], 'c:s:', ['client=', 'server='])
+    opts, args = getopt(sys.argv[1:], 'c:s:h', ['client=', 'server=', 'help'])
     for o, a in opts:
       if o in ('-c', '--client'):
         client_dump = open(a, 'wb')
@@ -98,8 +104,17 @@ if __name__ == '__main__':
       elif o in ('-s', '--server'):
         server_dump = open(a, 'wb')
         server_dump.write('def run(f, args={}):\n')
+      elif o in ('-h', '--help'):
+        usage(sys.argv[0])
   except:
     sys.exit(2)
+
+  if len(args) != 1:
+    usage(sys.argv[0])
+
+  if client_dump is None and server_dump is None:
+    print >>sys.stderr, "As per your options, no scenario will be generated"
+
 
   pcap = args[0]
 

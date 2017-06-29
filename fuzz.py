@@ -9,9 +9,12 @@
 from Pdml import PdmlLoader
 import Diameter as dm
 from Dia import Directory
+from mutate import MsgAnchor, MutateScenario
+from scenario import unpack_frame, pack_frame, dwr_handler, load_scenario
+
 
 import socket as sk
-from getopt import getopt
+import getopt
 from threading import Thread
 import select as sl
 import os
@@ -20,72 +23,6 @@ from functools import partial
 from collections import namedtuple, OrderedDict
 import sys
 from random import randint
-
-MsgAnchor = namedtuple('MsgAnchor', 'index code is_request')
-
-class FuzzScenario:
-  def __init__(self, msg_anchor, description):
-    assert(isinstance(msg_anchor, MsgAnchor))
-    self.anchor = msg_anchor
-    self.description = description
-
-    self.processed_msgs = []
-    self.f = None
-
-    self.act = None
-
-  def bind(self, f):
-    assert(self.f is None)
-    self.f = f
-    assert(self.f is not None)
-
-  def send(self, msg):
-    '''to be called on locally generated wire messages.'''
-    assert(self.f is not None)
-    assert(isinstance(msg, dm.Msg))
-
-    activate = (len(self.processed_msgs) == self.anchor.index)
-    self.processed_msgs.append((msg.code, msg.R))
-
-    if activate:
-      assert(msg.code == self.anchor.code and msg.R == self.anchor.is_request)
-      assert(self.act)
-      self.act(self, msg)
-    else:
-      self.xmit(msg)
-
-  def xmit(self, msg):
-    '''perform transmit of msg, without alteration.'''
-    assert(self.f is not None)
-    assert(isinstance(msg, dm.Msg))
-    msg.send(self.f)
-
-  def omit_msg(self, msg):
-    pass
-
-  def stutter_msg(self, msg):
-    self.xmit(msg)
-
-    msg.e2e_id = randint(0, pow(2, 32)-1)
-    msg.h2h_id = randint(0, pow(2, 32)-1)
-    self.xmit(msg)
-
-  def absent_variant(self, msg, path):
-    assert(isinstance(msg, dm.Msg))
-    msg.suppress_avps(path)
-    self.xmit(msg)
-
-  def overpresent_variant(self, msg, path, count):
-    assert(isinstance(msg, dm.Msg))
-    msg.overflow_avps(path, count)
-    self.xmit(msg)
-
-  def set_value(self, msg, path, value):
-    msg.modify_value(path, value)
-    self.xmit(msg)
-
-  def __repr__(self):
-    return 'anchored at %r: %s' % (self.anchor, self.description)
 
 def group_by_code(avps):
   codes = {}
@@ -187,7 +124,6 @@ def non_grouped_variants(a):
   for fmt in ['%n', '%-1$n', '%4096$n']:
     data = fmt * 1024
     yield (data, 'Generic overflow with format specifier %r' % fmt)
-
 def analyze(seq):
   fuzzs = []
   sent = 0
@@ -202,11 +138,11 @@ def analyze(seq):
       # do not skip first message sent :)
       # need to dig deeper
       if i != 0 or not is_sent:
-        s = FuzzScenario(anchor, 'omit %d-th sent message' % sent)
+        s = MutateScenario(anchor, 'omit %d-th sent message' % sent)
         s.act = lambda this, m: this.omit_msg(m)
         fuzzs.append(s)
 
-      s = FuzzScenario(anchor, 'stutter %d-th sent message' % sent)
+      s = MutateScenario(anchor, 'stutter %d-th sent message' % sent)
       s.act = lambda this, m: this.stutter_msg(m)
       fuzzs.append(s)
       '''
@@ -215,7 +151,7 @@ def analyze(seq):
       avps = msg.avps
       paths = group_by_code(avps)
       for (a, count, description) in grouped_variants(avps):
-        s = FuzzScenario(anchor, description)
+        s = MutateScenario(anchor, description)
         path = '/' + get_path(a, paths)
         if count == 0:
           s.act = lambda this, m, path=path: this.absent_variant(m, path)
@@ -232,7 +168,7 @@ def analyze(seq):
         if ma.datatype == 'Grouped':
           paths = group_by_code(a.avps)
           for (sub_a, count, description) in grouped_variants(a.avps):
-            s = FuzzScenario(anchor, description)
+            s = MutateScenario(anchor, description)
             sub_path = get_path(sub_a, paths)
             sub_path = path + '/' + sub_path
             if count == 0:
@@ -244,12 +180,12 @@ def analyze(seq):
           # then generate a deep stacked self embedded AVP :)
           if ma.allows_stacking():
             data = a.overflow_stacking()
-            s = FuzzScenario(anchor, '%s self-stacked -> %d' % (ma.name, len(data)))
+            s = MutateScenario(anchor, '%s self-stacked -> %d' % (ma.name, len(data)))
             s.act = lambda this, m, path=path, data=data: this.set_value(m, path, data)
             fuzzs.append(s)
         else:
           for (data, description) in non_grouped_variants(a):
-            s = FuzzScenario(anchor, '%s %s' % (ma.name, description))
+            s = MutateScenario(anchor, '%s %s' % (ma.name, description))
             s.act = lambda this, m, path=path, data=data: this.set_value(m, path, data)
             fuzzs.append(s)
 
@@ -257,155 +193,56 @@ def analyze(seq):
 
   return fuzzs
 
-local_host = 'hss.invalid.tld'
-local_realm = 'hss.mnc999.mcc999.3gppnetwork.org'
+def usage(arg0):
+  print('''usage: %s [--help] --scenario=<.scn file> --mode=<client|server> 
+  --local-hostname=<sut.realm> --local-realm=<realm> <target:port>''' % arg0)
+  sys.exit(1)
 
-def load_scenario(scn):
-  globs = globals()
-  globs['Msg'] = dm.Msg
-  globs['Avp'] = dm.Avp
-  globs['RecvMismatch'] = dm.RecvMismatch
-
-  execfile(scn, globs, globs)
-
-  assert('run' in globs)
-
-  return globs['run']
-
-class WrappedThread(Thread):
-  def __init__(self, plug, **kwargs):
-    super(WrappedThread, self).__init__(**kwargs)
-    self.real_run = self.run
-    self.run = self.wrapped_run
-    self.exc_info = None
-    self.plug = plug
-
-  def wrapped_run(self):
-    try:
-      self.real_run()
-    except:
-      e = sys.exc_info()[0]
-      self.exc_info = e
-    finally:
-      self.plug.close()
-
-  def join(self):
-    Thread.join(self)
-    return self.exc_info
-
-def dwr_handler(scenario, f):
-  msgs = []
-
-  (own_plug, fuzzed_plug) = sk.socketpair(sk.AF_UNIX, sk.SOCK_SEQPACKET)
-
-  child = Thread(target=scenario, args=[fuzzed_plug])
-  child.start()
-
-  while True:
-    (readable, _, _) = sl.select([own_plug, f], [], [])
-
-    if own_plug in readable:
-      b = own_plug.recv(dm.U24_MAX)
-      if len(b) == 0:
-        break
-      m = dm.Msg.decode(b)
-      msgs.append((m, True))
-      f.send(b)
-    elif f in readable:
-      b = f.recv(dm.U24_MAX)
-      if len(b) == 0:
-        break
-
-      m = dm.Msg.decode(b)
-      if m.code == 280 and m.R:
-        dwa = dm.Msg(code=280, R=False, e2e_id=m.e2e_id, h2h_id=m.h2h_id, avps=[
-          dm.Avp(code=264, M=True, data=local_host),
-          dm.Avp(code=296, M=True, data=local_realm),
-          dm.Avp(code=268, M=True, u32=2001),
-          dm.Avp(code=278, M=True, u32=0xcafebabe)])
-        f.send(dwa.encode())
-      else:
-        msgs.append((m, False))
-        own_plug.send(b)
-
-  own_plug.close()
-  exc_info = child.join()
-
-  return (exc_info, msgs)
-
-def fuzz_handler(scenario, f, fuzz):
-  assert(isinstance(fuzz, FuzzScenario))
-
-  msgs = []
-
-  (own_plug, fuzzed_plug) = sk.socketpair(sk.AF_UNIX, sk.SOCK_SEQPACKET)
-
-  fuzz.bind(f)
-
-  child = WrappedThread(fuzzed_plug, target=scenario, args=[fuzzed_plug])
-  child.start()
-
-  while True:
-    (readable, _, _) = sl.select([own_plug, f], [], [])
-
-    if own_plug in readable:
-      b = own_plug.recv(dm.U24_MAX)
-      if len(b) == 0:
-        break
-      m = dm.Msg.decode(b)
-      msgs.append((m, True))
-      assert(isinstance(m, dm.Msg))
-      fuzz.send(m)
-    elif f in readable:
-      b = f.recv(dm.U24_MAX)
-      if len(b) == 0:
-        break
-
-      m = dm.Msg.decode(b)
-      if m.code == 280 and m.R:
-        dwa = dm.Msg(code=280, R=False, e2e_id=m.e2e_id, h2h_id=m.h2h_id, avps=[
-          dm.Avp(code=264, M=True, data=local_host),
-          dm.Avp(code=296, M=True, data=local_realm),
-          dm.Avp(code=268, M=True, u32=2001),
-          dm.Avp(code=278, M=True, u32=0xcafebabe)])
-        f.send(dwa.encode())
-      else:
-        msgs.append((m, False))
-        own_plug.send(b)
-
-  own_plug.close()
-  exc_info = child.join()
-
-  return (exc_info, msgs)
-
-def desc_exc(exc_info):
-  if exc_info is None:
-    return 'all right'
-  else:
-    return '%r' % exc_info
 
 if __name__ == '__main__':
-  if len(sys.argv) != 4:
-    print >>sys.stderr, 'usage: %s <.scn> [client|server] <0.0.0.0:port>' % sys.argv[0]
-    sys.exit(1)
+  scn = None
+  mode = None
+  local_hostname = None
+  local_realm = None
 
-  scn = sys.argv[1]
-  scenario = load_scenario(scn)
-  print('loaded scenario %s' % scn)
+  try:
+    opts, args = getopt.getopt(sys.argv[1:], "hs:m:H:R:", ["help", "scenario=", "mode=", "local-hostname=",
+      "local-realm="])
+  except getopt.GetoptError as err:
+    print(str(err))
+    usage(sys.argv[0])
+    sys.exit(2)
 
-  mode = sys.argv[2]
+  for o, a in opts:
+    if o in ('-h', '--help'):
+      usage(sys.argv[0])
+    if o in ('-s', '--scenario'):
+      scn = a
+    if o in ('-m', '--mode'):
+      if a not in ['client', 'server']:
+        usage(sys.argv[0])
+      mode = a
+    if o in ('-H', '--local-hostname'):
+      local_hostname = a
+    if o in ('-R', '--local-realm'):
+      local_realm = a
+ 
+  if len(args) != 1 or local_hostname is None or local_realm is None \
+    or scn is None or mode is None:
+    usage(sys.argv[0])
 
-  (host, port) = sys.argv[3].split(':')
+  scenario = load_scenario(scn, local_hostname, local_realm)
+
+  (host, port) = args[0].split(':')
   port = int(port)
 
   if mode == 'client':
     # run once in order to capture exchanged pdus
     f = sk.socket(sk.AF_INET, sk.SOCK_STREAM)
     f.connect((host, port))
-    (exc_info, msgs) = dwr_handler(scenario, f)
+    (exc_info, msgs) = dwr_handler(scenario, f, local_hostname, local_realm)
     if exc_info is not None:
-      print('scenario raised %r' % exc_info)
-      sys.exit(1)
+      print('scenario raised: %s' % exc_info)
     f.close()
 
     for (m, is_sent) in msgs:
@@ -417,20 +254,24 @@ if __name__ == '__main__':
     for fuzz in fuzzs:
       f = sk.socket(sk.AF_INET, sk.SOCK_STREAM)
       f.connect((host, port))
-      (exc_info, msgs) = fuzz_handler(scenario, f, fuzz)
+      (exc_info, msgs) = dwr_handler(scenario, f, local_hostname, local_realm, fuzz)
+      if exc_info is not None:
+        print('scenario %s raised: %s' % (fuzz.description, exc_info))
+      else:
+        print('scenario %s ok' % fuzz.description)
       f.close()
 
-      print('%s: %s' % (fuzz.description, desc_exc(exc_info)))
   elif mode == 'server':
     srv = sk.socket(sk.AF_INET, sk.SOCK_STREAM)
     srv.bind((host, port))
     srv.listen(64)
 
     (f,_) = srv.accept()
-    (exc_info, msgs) = dwr_handler(scenario, f)
+    (exc_info, msgs) = dwr_handler(scenario, f, local_hostname, local_realm)
     if exc_info is not None:
-      print('scenario raised %r' % exc_info)
-      sys.exit(1)
+      print('scenario %s raised: %s' % (fuzz.description, exc_info))
+    else:
+      print('scenario %s ok' % fuzz.description)
     f.close()
 
     for (m, is_sent) in msgs:
@@ -441,7 +282,9 @@ if __name__ == '__main__':
 
     for fuzz in fuzzs:
       (f,_) = srv.accept()
-      (exc_info, msgs) = fuzz_handler(scenario, f, fuzz)
+      (exc_info, msgs) = dwr_handler(scenario, f, local_hostname, local_realm, fuzz)
+      if exc_info is not None:
+        print('scenario %s raised: %s' % (fuzz.description, exc_info))
+      else:
+        print('scenario %s ok' % fuzz.description)
       f.close()
-
-      print('%s: %s' % (fuzz.description, desc_exc(exc_info)))

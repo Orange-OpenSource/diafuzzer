@@ -8,96 +8,54 @@
 
 import sys
 import socket as sk
-from getopt import getopt
+import getopt
 from threading import Thread
 import select as sl
 import os
 
 import Diameter as dm
+from scenario import load_scenario, dwr_handler
 
-local_host = 'hss.invalid.tld'
-local_realm = 'hss.mnc999.mcc999.3gppnetwork.org'
-
-def load_scenario(scn):
-  globs = globals()
-  globs['Msg'] = dm.Msg
-  globs['Avp'] = dm.Avp
-  globs['RecvMismatch'] = dm.RecvMismatch
-
-  execfile(scn, globs, globs)
-
-  assert('run' in globs)
-
-  return globs['run']
-
-class WrappedThread(Thread):
-  def __init__(self, plug, **kwargs):
-    super(WrappedThread, self).__init__(**kwargs)
-    self.real_run = self.run
-    self.run = self.wrapped_run
-    self.exc_info = None
-    self.plug = plug
-
-  def wrapped_run(self):
-    try:
-      self.real_run()
-    except:
-      e = sys.exc_info()[0]
-      self.exc_info = e
-    finally:
-      self.plug.close()
-
-  def join(self):
-    Thread.join(self)
-    return self.exc_info
-
-def dwr_handler(fuzzed, f):
-  (own_plug, fuzzed_plug) = sk.socketpair(sk.AF_UNIX, sk.SOCK_SEQPACKET)
-
-  child = WrappedThread(fuzzed_plug, target=fuzzed, args=[fuzzed_plug])
-  child.start()
-
-  while True:
-    (readable, _, _) = sl.select([own_plug, f], [], [])
-
-    if own_plug in readable:
-      try:
-        b = own_plug.recv(dm.U24_MAX)
-        if len(b) == 0:
-          break
-      except:
-        break
-      f.send(b)
-    elif f in readable:
-      b = f.recv(dm.U24_MAX)
-      if len(b) == 0:
-        break
-
-      m = dm.Msg.decode(b)
-      if m.code == 280 and m.R:
-        dwa = dm.Msg(code=280, R=False, e2e_id=m.e2e_id, h2h_id=m.h2h_id, avps=[
-          dm.Avp(code=264, M=True, data=local_host),
-          dm.Avp(code=296, M=True, data=local_realm),
-          dm.Avp(code=268, M=True, u32=2001),
-          dm.Avp(code=278, M=True, u32=0xcafebabe)])
-        f.send(dwa.encode())
-      else:
-        own_plug.send(b)
-
-  own_plug.close()
-  return child.join()
+def usage(arg0):
+  print('''usage: %s [--help] --scenario=<.scn file> --mode=<client|clientloop|server>
+  --local-hostname=<sut.realm> --local-realm=<realm> <target:port>''' % arg0)
+  sys.exit(1)
 
 if __name__ == '__main__':
-  if len(sys.argv) != 4:
-    print >>sys.stderr, 'usage: %s <.scn> [client|clientloop|server] <0.0.0.0:port>' % sys.argv[0]
-    sys.exit(1)
+  scn = None
+  mode = None
+  local_hostname = None
+  local_realm = None
 
-  scn = sys.argv[1]
-  scenario = load_scenario(scn)
+  try:
+    opts, args = getopt.getopt(sys.argv[1:], "hs:m:H:R:", ["help", "scenario=", "mode=", "local-hostname=",
+      "local-realm="])
+  except getopt.GetoptError as err:
+    print(str(err))
+    usage(sys.argv[1])
+    sys.exit(2)
 
-  mode = sys.argv[2]
+  for o, a in opts:
+    if o in ('-h', '--help'):
+      usage(sys.argv[0])
+    if o in ('-s', '--scenario'):
+      scn = a
+    if o in ('-m', '--mode'):
+      if a not in ['client', 'clientloop', 'server']:
+        usage(sys.argv[0])
+      mode = a
+    if o in ('-H', '--local-hostname'):
+      local_hostname = a
+    if o in ('-R', '--local-realm'):
+      local_realm = a
 
-  (host, port) = sys.argv[3].split(':')
+  if len(args) != 1 or local_hostname is None or local_realm is None \
+    or scn is None or mode is None:
+    usage(sys.argv[0])
+
+  scenario = load_scenario(scn, local_hostname, local_realm)
+
+  (host, port) = args[0].split(':')
   port = int(port)
 
   if mode == 'client' or mode == 'clientloop':
@@ -105,13 +63,9 @@ if __name__ == '__main__':
       f = sk.socket(sk.AF_INET, sk.SOCK_STREAM)
       f.connect((host, port))
 
-      exc_info = dwr_handler(scenario, f)
-      if mode == 'client':
-        if exc_info is None:
-          print('all good')
-        else:
-          print('*** %r' % exc_info)
-
+      (exc_info, msgs) = dwr_handler(scenario, f, local_hostname, local_realm)
+      if exc_info is not None:
+        print('raised: %s' % (exc_info))
       f.close()
 
       if mode == 'client':
@@ -123,5 +77,7 @@ if __name__ == '__main__':
 
     while True:
       (f,_) = srv.accept()
-      child = Thread(target=dwr_handler, args=[scenario, f])
-      child.start()
+      (exc_info, msgs) = dwr_handler(scenario, f, local_hostname, local_realm)
+      if exc_info is not None:
+        print('raised: %s' % (exc_info))
+      f.close()
