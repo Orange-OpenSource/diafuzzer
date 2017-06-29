@@ -73,6 +73,14 @@ class MutateScenario:
     msg.modify_value(path, value)
     self.xmit(msg)
 
+
+  # for fuzzing proprietary avps:
+  def appendAvp(self, msg, code, vendor):
+    assert(self.f is not None)
+    assert(isinstance(msg, dm.Msg))
+    msg.avps.append(dm.Avp(code=code, vendor=vendor, V=True, data='prout'))
+    self.xmit(msg)
+
   def __repr__(self):
     return 'anchored at %r: %s' % (self.anchor, self.description)
 
