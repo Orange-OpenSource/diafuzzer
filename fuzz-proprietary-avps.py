@@ -24,8 +24,6 @@ import time
 import argparse
 
 
-local_hostname = 'mme.openair4G.eur'
-local_realm = 'openair4G.eur'
 
 
 def analyze(seq, v, a=0, b=2**24):
@@ -68,11 +66,15 @@ if __name__ == '__main__':
     parser.add_argument('--min', type=int, default=0, help="The minimum AVP code to scan (default: 0)")
     parser.add_argument('--max', type=int, default=2**24, help="The maximum AVP code to scan (default: 2^24)")
     parser.add_argument('--vendor', type=int, default=0, help="The vendor ID to fuzz (default: 0)")
+    parser.add_argument('--local-host', type=str, default='mme.openair4G.eur', help="Define the local hostname to use in the scenario (default=mme.openair4G.eur)")
+    parser.add_argument('--local-realm', type=str, default='openair4G.eur', help="Define the local realm to use in the scenario (default=openair4G.eur)")
     args = parser.parse_args()
     
     # Check the min/max values
     assert(args.min >= 0 and args.min < args.max)
     assert(args.max <= 2**24)
+    local_hostname = args.local_host
+    local_realm = args.local_realm
     
     try:
         scenario = load_scenario(args.scenario, local_hostname, local_realm)
