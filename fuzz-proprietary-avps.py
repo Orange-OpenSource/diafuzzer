@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/env python2
 # coding: utf8
 # Project     : diafuzzer
 # Copyright (C) 2017 Orange
