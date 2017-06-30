@@ -1,0 +1,23 @@
+def run(f, args={}):
+  tsxs = [()]
+
+  # frame 1
+
+# frame 5
+  m = Msg(R=True, code=257, app_id=0x0, avps=[
+    Avp(code=264, M=True, vendor=0, data='mme.openair4G.eur'),
+    Avp(code=296, M=True, vendor=0, data='openair4G.eur'),
+    Avp(code=278, M=True, vendor=0, data='YG\x8b\xb9'),
+    Avp(code=257, M=True, vendor=0, data='\x00\x01\n\x00\x01\x03'),
+    Avp(code=257, M=True, vendor=0, data='\x00\x01\n\x00\x02\x02'),
+    Avp(code=257, M=True, vendor=0, data='\x00\x01\n\x00\x03\x02'),
+    Avp(code=266, M=True, vendor=0, data='\x00\x00\x00\x00'),
+    Avp(code=269, vendor=0, data='freeDiameter'),
+    Avp(code=267, vendor=0, data="\x00\x00'\xd8"),
+    Avp(code=299, M=True, vendor=0, data='\x00\x00\x00\x00'),
+    Avp(code=260, M=True, vendor=0, avps=[
+      Avp(code=258, M=True, vendor=0, data='\x01\x00\x00#'),
+      Avp(code=266, M=True, vendor=0, data='\x00\x00(\xaf'),
+    ]),
+    Avp(code=265, M=True, vendor=0, data='\x00\x00(\xaf'),
+  ])

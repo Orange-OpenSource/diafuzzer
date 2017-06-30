@@ -1,0 +1,75 @@
+def run(f, args={}):
+  tsxs = [()]*3
+
+  # frame 1
+
+  m = Msg(R=True, P=False, E=False, T=False,  code=316, app_id=16777251, avps=[
+# Session-Id (datatype:UTF8String) 
+	 Avp(code=263, M=True, data='bonjour'), 
+
+# DRMP (datatype:Enumerated) 
+# Possible values:
+# 0: PRIORITY_0 
+# 1: PRIORITY_1 
+# 2: PRIORITY_2 
+# 3: PRIORITY_3 
+# 4: PRIORITY_4 
+# 5: PRIORITY_5 
+# 6: PRIORITY_6 
+# 7: PRIORITY_7 
+# 8: PRIORITY_8 
+# 9: PRIORITY_9 
+# 10: PRIORITY_10 
+# 11: PRIORITY_11 
+# 12: PRIORITY_12 
+# 13: PRIORITY_13 
+# 14: PRIORITY_14 
+# 15: PRIORITY_15 
+	 Avp(code=301, M=True, u32=8), 
+
+# Vendor-Specific-Application-Id (datatype:Grouped) 
+	 Avp(code=260, M=True, data='pol'), 
+
+# Auth-Session-State (datatype:Enumerated) 
+# Possible values:
+# 0: STATE_MAINTAINED 
+# 1: NO_STATE_MAINTAINED 
+	 Avp(code=277, M=True, u32=0), 
+
+# Origin-Host (datatype:DiameterIdentity) 
+	 Avp(code=264, M=True, data='mme'), 
+
+# Origin-Realm (datatype:DiameterIdentity) 
+	 Avp(code=296, M=True, data='mme.openair4G.eur'), 
+
+# Destination-Host (datatype:DiameterIdentity) 
+	 Avp(code=293, M=True, data='hss'), 
+
+# Destination-Realm (datatype:DiameterIdentity) 
+	 Avp(code=283, M=True, data='hss.openair4G.eur'), 
+
+# User-Name (datatype:UTF8String) 
+	 Avp(code=1, M=True, data='mme'), 
+
+# Terminal-Information (datatype:Grouped) 
+	 Avp(code=1401, M=True, vendor_id=10415, data='fuzzer'), 
+
+# ULR-Flags (datatype:Unsigned32) 
+	 Avp(code=1405, M=True, vendor_id=10415, data='caca'), 
+
+# Visited-PLMN-Id (datatype:OctetString) 
+	 Avp(code=1407, M=True, vendor_id=10415, data='0'), 
+
+# SGSN-Number (datatype:OctetString) 
+	 Avp(code=1489, M=True, vendor_id=10415, data='e'), 
+
+# GMLC-Address (datatype:Address) 
+	 Avp(code=2405, M=True, vendor_id=10415, data='e'), 
+
+# Proxy-Info (datatype:Grouped) 
+	 Avp(code=284, M=True, data='e'), 
+
+# Route-Record (datatype:DiameterIdentity) 
+	 Avp(code=282, M=True, data='e'), 
+
+  ])
