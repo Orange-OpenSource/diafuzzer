@@ -136,7 +136,7 @@ if __name__ == '__main__':
   tsxs = []
 
   for pdu in c.pdus:
-    m = dm.Msg.decode(pdu.content)
+    m = dm.Msg.decode(pdu.content, tag=True)
     if m.code == 280: continue
 
     attrs = ['ipprotocol', 'ipsrc', 'sport', 'ipdst', 'dport']

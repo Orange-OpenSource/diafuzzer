@@ -18,7 +18,7 @@ if __name__ == '__main__':
   c = PdmlLoader(pcap)
 
   for pdu in c.pdus:
-    m = Msg.decode(pdu.content)
+    m = Msg.decode(pdu.content, tag=True)
 
     print('''# frame %d
 %r

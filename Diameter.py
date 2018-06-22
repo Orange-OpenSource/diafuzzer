@@ -16,7 +16,7 @@ from random import randint
 from copy import deepcopy
 import sys
 import scenario
-from socket import inet_pton, AF_INET, AF_INET6
+from socket import inet_pton, inet_ntop, AF_INET, AF_INET6
 
 
 class IncompleteBuffer(Exception): pass
@@ -379,8 +379,6 @@ class Avp:
     for k in ['code', 'V', 'M', 'P', 'reserved', 'vendor']:
       if k in attrs:
         elms.append('%s=%r' % (k, attrs[k]))
-    if model_avp is not None:
-      elms.append('name=%r' % model_avp.name)
 
     r += ', '.join(elms)
 
@@ -392,7 +390,23 @@ class Avp:
         r += a.__repr__(offset+indent, indent) + ',\n'
       r += ' '*offset + ']'
     elif 'data' in attrs:
-      r += ', data=%r' % attrs['data']
+      if model_avp is not None:
+        if model_avp.datatype in ['Unsigned32']:
+          r += ', u32=%d' % unpack('!L', attrs['data'])[0]
+        elif model_avp.datatype in ['Integer32', 'Enumerated']:
+          r += ', u32=%d' % unpack('!L', attrs['data'])[0]
+        elif model_avp.datatype in ['Unsigned64']:
+          r += ', u64=%d' % unpack('!Q', attrs['data'])[0]
+        elif model_avp.datatype == 'Address':
+          family = unpack('!H', attrs['data'][:2])[0]
+          if family == 1:
+            r += ', v4=%r' % inet_ntop(AF_INET, attrs['data'][2:])
+          elif family == 2:
+            r += ', v6=%r' % inet_ntop(AF_INET6, attrs['data'][2:])
+        else:
+          r += ', data=%r' % attrs['data']
+      else:
+        r += ', data=%r' % attrs['data']
 
     if self.model:
       r += ', conformant=%r' % self.model
