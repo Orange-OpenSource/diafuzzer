@@ -7,77 +7,87 @@
 # license which can be found in the file 'LICENSE' in this package distribution.
 
 import sys
-import socket as sk
-import getopt
 from threading import Thread
 import select as sl
 import os
+import argparse
+import sctp
+import socket as sk
 
 import Diameter as dm
 from scenario import load_scenario, dwr_handler
 
-def usage(arg0):
-  print('''usage: %s [--help] --scenario=<.scn file> --mode=<client|clientloop|server>
-  --local-hostname=<sut.realm> --local-realm=<realm> <target:port>''' % arg0)
-  sys.exit(1)
-
 if __name__ == '__main__':
-  scn = None
-  mode = None
-  local_hostname = None
-  local_realm = None
+  parser = argparse.ArgumentParser()
+  parser.add_argument('--local-addresses',
+    help='Local IPv4 addresses that will the addresses used in SCTP multihoming',
+    default=[])
+  parser.add_argument('--local-port',
+    help='Local SCTP port', default=0, type=int)
+  parser.add_argument('--local-hostname',
+    help='Local Diameter Host, used in DWA as Origin-Host, and may be used as local_hostname',
+    default='diafuzzer.invalid')
+  parser.add_argument('--local-realm',
+    help='Local Diameter realm, used in DWA as Origin-Realm, and may be used as local_realm',
+    default='invalid')
+  parser.add_argument('mode', help='Role: client, clientloop or server',
+    choices=('client', 'clientloop', 'server'))
+  parser.add_argument('scenario', help='Python scenario to run')
+  parser.add_argument('remote', nargs=argparse.REMAINDER, help='Target IP:port')
 
-  try:
-    opts, args = getopt.getopt(sys.argv[1:], "hs:m:H:R:", ["help", "scenario=", "mode=", "local-hostname=",
-      "local-realm="])
-  except getopt.GetoptError as err:
-    print(str(err))
-    usage(sys.argv[1])
-    sys.exit(2)
+  args = parser.parse_args(sys.argv[1:])
 
-  for o, a in opts:
-    if o in ('-h', '--help'):
-      usage(sys.argv[0])
-    if o in ('-s', '--scenario'):
-      scn = a
-    if o in ('-m', '--mode'):
-      if a not in ['client', 'clientloop', 'server']:
-        usage(sys.argv[0])
-      mode = a
-    if o in ('-H', '--local-hostname'):
-      local_hostname = a
-    if o in ('-R', '--local-realm'):
-      local_realm = a
+  if args.local_addresses:
+    args.local_addresses = args.local_addresses.split(',')
 
-  if len(args) != 1 or local_hostname is None or local_realm is None \
-    or scn is None or mode is None:
-    usage(sys.argv[0])
+  # parse additional argument in client or clientloop modes
+  target = None
+  if args.mode in ('client', 'clientloop'):
+    if len(args.remote) != 1 or len(args.remote[0]) == 0:
+      parser.print_help()
+      print >>sys.stderr, 'using client or clientloop modes require to specify target IP:port'
+      sys.exit(1)
 
-  scenario = load_scenario(scn, local_hostname, local_realm)
+    target = args.remote[0]
+    (host, port) = target.split(':')
+    port = int(port)
 
-  (host, port) = args[0].split(':')
-  port = int(port)
 
-  if mode == 'client' or mode == 'clientloop':
+  # load scenario
+  scenario = load_scenario(args.scenario, args.local_hostname, args.local_realm)
+
+  if args.mode in ('client', 'clientloop'):
     while True:
-      f = sk.socket(sk.AF_INET, sk.SOCK_STREAM)
+      f = sk.socket(sk.AF_INET, sk.SOCK_STREAM, sk.IPPROTO_SCTP)
+      if args.local_addresses:
+        addrs = [(a, int(args.local_port)) for a in args.local_addresses]
+        ret = sctp.bindx(f, addrs)
+        assert(ret == 0)
+      else:
+        f.bind(('0.0.0.0', args.local_port))
+
       f.connect((host, port))
 
-      (exc_info, msgs) = dwr_handler(scenario, f, local_hostname, local_realm)
+      (exc_info, msgs) = dwr_handler(scenario, f, args.local_hostname, args.local_realm)
       if exc_info is not None:
         print('raised: %s' % (exc_info))
       f.close()
 
-      if mode == 'client':
+      if args.mode == 'client':
         break
-  elif mode == 'server':
-    srv = sk.socket(sk.AF_INET, sk.SOCK_STREAM)
-    srv.bind((host, port))
+  elif args.mode == 'server':
+    srv = sk.socket(sk.AF_INET, sk.SOCK_STREAM, sk.IPPROTO_SCTP)
+    if args.local_addresses:
+      addrs = [(a, int(args.local_port)) for a in args.local_addresses]
+      ret = sctp.bindx(srv, addrs)
+      assert(ret == 0)
+    else:
+      srv.bind(('0.0.0.0', args.local_port))
     srv.listen(64)
 
     while True:
       (f,_) = srv.accept()
-      (exc_info, msgs) = dwr_handler(scenario, f, local_hostname, local_realm)
+      (exc_info, msgs) = dwr_handler(scenario, f, args.local_hostname, args.local_realm)
       if exc_info is not None:
         print('raised: %s' % (exc_info))
       f.close()
