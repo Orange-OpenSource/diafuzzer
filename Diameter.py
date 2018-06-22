@@ -11,11 +11,13 @@ from cStringIO import StringIO
 import time
 import re
 from pprint import pformat
-from Dia import Directory
+import Dia
 from random import randint
 from copy import deepcopy
 import sys
-from scenario import unpack_frame, pack_frame
+import scenario
+from socket import inet_pton, AF_INET, AF_INET6
+
 
 class IncompleteBuffer(Exception): pass
 class MsgInvalidLength(Exception): pass
@@ -114,6 +116,10 @@ class Msg:
     for k in ['code', 'app_id', 'e2e_id', 'h2h_id', 'avps']:
       attrs[k] = getattr(self, k)
 
+    model = None
+    if hasattr(self, 'model'):
+      model = self.model
+
     if self.R: attrs['R'] = True
     if self.P: attrs['P'] = True
     if self.E: attrs['E'] = True
@@ -132,7 +138,11 @@ class Msg:
           elms.append('%s=%r' % (k, attrs[k]))
     r += ', '.join(elms)
     if 'avps' in attrs:
-      r += ', avps=[\n'
+      comment = ''
+      if model is not None:
+        comment = model.name
+
+      r += ', avps=[ # %s\n' % comment
       for a in self.avps:
         r += a.__repr__(offset+indent, indent) + ',\n'
       r += ' '*offset + ']'
@@ -144,13 +154,13 @@ class Msg:
   def recv(f, _timeout=5.0):
     f.settimeout(_timeout)
 
-    data = unpack_frame(f)
+    data = scenario.unpack_frame(f)
 
     return Msg.decode(data)
 
   def send(self, f):
     data = self.encode()
-    pack_frame(f, data)
+    scenario.pack_frame(f, data)
 
   @staticmethod
   def decode(s, tag=False):
@@ -197,7 +207,7 @@ class Msg:
 
     m = Msg(**attrs)
     if tag:
-      Directory.tag(m)
+      Dia.Directory.tag(m)
     return m
 
   def encode(self):
@@ -334,6 +344,10 @@ class Avp:
         self.data = pack('!f', kwds[k])
       elif k == 'f64':
         self.data = pack('!d', kwds[k])
+      elif k == 'v4':
+        self.data = pack('!H', 1) + inet_pton(AF_INET, kwds[k])
+      elif k == 'v6':
+        self.data = pack('!H', 2) + inet_pton(AF_INET6, kwds[k])
       else:
         setattr(self, k, kwds[k])
 
@@ -572,6 +586,7 @@ class Avp:
 
 if __name__ == '__main__':
   from binascii import unhexlify as ux
+  from binascii import hexlify as x
 
   UNPADDED_AVP = ux('0000012b4000000c00000000')
   a = Avp.decode(UNPADDED_AVP)
@@ -608,3 +623,7 @@ if __name__ == '__main__':
   assert(a == Avp(code=280, data='toto'))
   a = m.eval_path('/code=280[2]')
   assert(a == Avp(code=280, data='tata'))
+
+  a = Avp(code=257, v4='127.0.0.1')
+  assert(a.encode() == ux('000001010000000e00017f0000010000'))
+

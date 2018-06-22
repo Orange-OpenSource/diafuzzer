@@ -78,6 +78,8 @@ s32       | !I     | Integer
 u64       | !Q     | Integer
 f32       | !f     | Float
 f64       | !d     | Float
+v4        | NA     | Dotted IPv4 address as a string, such as '0.0.0.0'
+v6        | NA     | Colon separated IPv6 as a string, such as '::1'
 
 To create a wire-ready version of the instance:
 
