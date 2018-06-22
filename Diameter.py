@@ -116,9 +116,9 @@ class Msg:
     for k in ['code', 'app_id', 'e2e_id', 'h2h_id', 'avps']:
       attrs[k] = getattr(self, k)
 
-    model = None
+    comment = ''
     if hasattr(self, 'model'):
-      model = self.model
+      comment = self.model.name
 
     if self.R: attrs['R'] = True
     if self.P: attrs['P'] = True
@@ -128,9 +128,6 @@ class Msg:
     if self.length is not None: attrs['length'] = self.length
 
     r = ''
-    if model is not None:
-      r = ' '*offset + '# %s\n' % model.name
-    
     r += ' '*offset + 'Msg('
     elms = []
     for k in ['version', 'R', 'P', 'E', 'T', 'reserved',
@@ -142,7 +139,7 @@ class Msg:
           elms.append('%s=%r' % (k, attrs[k]))
     r += ', '.join(elms)
     if 'avps' in attrs:
-      r += ', avps=[\n'
+      r += ', avps=[ # %s \n' % comment
       for a in self.avps:
         r += a.__repr__(offset+indent, indent) + ',\n'
       r += ' '*offset + ']'
