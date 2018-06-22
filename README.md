@@ -347,15 +347,22 @@ The script generate-cache.py will generate this file, and print supported applic
 ```
 $ ./generate-cache.py
 creating Directory instance, this might take a while ...
-created in 0:00:11.551822 dumping to .dia-cache
+created in 0:00:15.830600 dumping to .dia-cache
 contains the following applications:
 base_rfc6733		0 (0x0)
-...
+credit_rfc4006		4 (0x4)
+eap_rfc4072		5 (0x5)
+mip6a_rfc5778		8 (0x8)
+mip6i_rfc5778		7 (0x7)
+mobipv4_rfc4004		2 (0x2)
+nasreq_rfc7155		1 (0x1)
+sip_rfc4740		6 (0x6)
 Cx		16777216 (0x1000000)
 S13		16777252 (0x1000024)
 S6a		16777251 (0x1000023)
 S6b		16777272 (0x1000038)
 S7a		16777308 (0x100005c)
+S9		16777267 (0x1000033)
 Sh		16777217 (0x1000001)
 SWx		16777265 (0x1000031)
 Rx		16777236 (0x1000014)
@@ -364,6 +371,8 @@ Gxx		16777266 (0x1000032)
 SWm		16777264 (0x1000030)
 SLg		16777255 (0x1000027)
 SLh		16777291 (0x100004b)
+S6c		16777312 (0x1000060)
+SGd		16777313 (0x1000061)
 ``` 
 
 #### Adding or modifying an AVP
@@ -430,7 +439,6 @@ class Directory:
         'specs/SWx.dia', 'specs/Rx.dia', 'specs/Gx.dia', 'specs/Gxx.dia',
         'specs/SWm.dia', 'specs/SLg.dia', 'specs/SLh.dia',
         
-        
         # new S42 application
         'specs/S42.dia']
 ```
@@ -455,42 +463,57 @@ This operation allows to tag Diameter.Msg and Diameter.Avp instances with their 
 
 ### pcap2pdu.py
 
-#### Arguments
+#### Goal and arguments
+
+The goal is to extract Diameter messages contained in pcap to their Python form.
 
 ```
 $ ./pcap2pdu.py <pcap>
+[Diameter messages in their Python form follow]
 ```
 
 **Note that only pcap format is supported. In particular, pcapng and snoop formats are not supported.**
+**tshark must be in the path, and is used to dissect frames and retrieve Diameter messages.**
 
 #### Usage
 
 Pcap file is processed using tshark. Pdml stream is analyzed in order to identify Diameter PDUs, which is then decoded using Diameter.Msg.decode function. Handling of IP fragmentation, or transport segmentation is done by tshark. An example of usage is given below:
 
 ```
-$ ./pcap2pdu.py captures/Cx.pcap | head
+$ ./pcap2pdu.py captures/Cx.pcap | head -n20
 # frame 1
-Msg(R=True, P=True, code=300, app_id=0x1000000, avps=[
+Msg(R=True, P=True, code=300, app_id=0x1000000, avps=[ # User-Authorization-Request
+  # Session-Id
   Avp(code=263, M=True, vendor=0, data='icscf.open-ims.test;457324016;102'),
+  # Origin-Host
   Avp(code=264, M=True, vendor=0, data='icscf.open-ims.test'),
+  # Origin-Realm
   Avp(code=296, M=True, vendor=0, data='open-ims.test'),
+  # Destination-Realm
   Avp(code=283, M=True, vendor=0, data='open-ims.test'),
+  # Vendor-Specific-Application-Id
   Avp(code=260, M=True, vendor=0, avps=[
-    Avp(code=266, M=True, vendor=0, data='\x00\x00(\xaf'),
-    Avp(code=258, M=True, vendor=0, data='\x01\x00\x00\x00'),
+    # Vendor-Id
+    Avp(code=266, M=True, vendor=0, u32=10415),
+    # Auth-Application-Id
+    Avp(code=258, M=True, vendor=0, u32=16777216),
   ]),
-...
+  # Auth-Session-State
+  Avp(code=277, M=True, vendor=0, u32=1),
 ```
 
 ### pcap2scn.py
 
-#### Arguments
+#### Goal and arguments
+
+The goal is to analyze Diameter transactions and generate _smart_ Python scenarios made of send and receive sequences.
 
 ```
 $ ./pcap2scn.py [--client <client scenario>] [--server <server scenario>] <pcap>
 ```
 
 **Note that only pcap format is supported. In particular, pcapng and snoop formats are not supported.**
+**tshark must be in the path, and is used to dissect frames and retrieve Diameter messages.**
 
 #### Usage
 
@@ -561,12 +584,36 @@ def run(f, args={}):
 
 ### unit.py and fuzz.py
 
-Both programs expect to be run wrapped by `withsctp` utility. Using TCP instead of SCTP is not supported at this time, as the required buffering logic is not implemented yet. `withsctp` utility will transparently make TCP sockets become SCTP sockets. And SCTP sockets are packet oriented and not byte oriented, which explains why TCP requires an additional work.
+Both programs will use SCTP as transport layer.
 
 #### Arguments
 
 ```
-$ ./unit.py --scenario=<.scn file> --mode=<client|clientloop|server> --local-hostname=<sut.realm> --local-realm=<realm> <target:port>
+$ ./unit.py -h
+usage: unit.py [-h] [--local-addresses LOCAL_ADDRESSES]
+               [--local-port LOCAL_PORT] [--local-hostname LOCAL_HOSTNAME]
+               [--local-realm LOCAL_REALM]
+               {client,clientloop,server} scenario ...
+
+positional arguments:
+  {client,clientloop,server}
+                        Role: client, clientloop or server
+  scenario              Python scenario to run
+  remote                Target IP:port
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --local-addresses LOCAL_ADDRESSES
+                        Local IPv4 addresses that will the addresses used in
+                        SCTP multihoming
+  --local-port LOCAL_PORT
+                        Local SCTP port
+  --local-hostname LOCAL_HOSTNAME
+                        Local Diameter Host, used in DWA as Origin-Host, and
+                        may be used as local_hostname
+  --local-realm LOCAL_REALM
+                        Local Diameter realm, used in DWA as Origin-Realm, and
+                        may be used as local_realm
 ```
 
 Mode | Behaviour
@@ -576,7 +623,30 @@ clientloop | _forever_(connect to given ip:port and run scenario)
 server | bind server on given ip:port, _forever_(accept client connection and run scenario)
 
 ```
-$ ./fuzz.py --scenario=<.scn file> --mode=<client|server> --local-hostname=<sut.realm> --local-realm=<realm> <target:port>
+$ ./fuzz.py -h
+usage: fuzz.py [-h] [--local-addresses LOCAL_ADDRESSES]
+               [--local-port LOCAL_PORT] [--local-hostname LOCAL_HOSTNAME]
+               [--local-realm LOCAL_REALM]
+               {client,server} scenario ...
+
+positional arguments:
+  {client,server}       Role: client or server
+  scenario              Python scenario to run
+  remote                Target IP:port
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --local-addresses LOCAL_ADDRESSES
+                        Local IPv4 addresses that will the addresses used in
+                        SCTP multihoming
+  --local-port LOCAL_PORT
+                        Local SCTP port
+  --local-hostname LOCAL_HOSTNAME
+                        Local Diameter Host, used in DWA as Origin-Host, and
+                        may be used as local_hostname
+  --local-realm LOCAL_REALM
+                        Local Diameter realm, used in DWA as Origin-Realm, and
+                        may be used as local_realm
 ```
 
 Mode | Behaviour
@@ -586,7 +656,7 @@ server | bind server on given ip:port, _for each mutation_(accept client connect
 
 #### Device-Watchdog handling
 
-Diameter mandates the use of Device-Watchdog Request and Answer to verify connection states. These messages will be used after connection establishment, but they may appear during scenario, at random.
+Diameter mandates the use of Device-Watchdog Request and Answer to verify connection states. These messages will be used after connection establishment, but they may appear during scenario, at random places.
 
 A thin layer will shield user scenario from received Device-Watchdog Request, and will automatically send Device-Watchdog Answer.
 
@@ -623,5 +693,5 @@ As a matter of fact, a scenario will generate a bound number of mutations. The b
 
 During fuzzing, each run may throw exceptions, which will be caught by fuzz.py and processed to keep on fuzzing:
 
-- **socket.timeout**, which is raised by Diameter.Msg.recv when a timeout is specificed. When unspecified, this timeout will be set to 5s.
+- **socket.timeout**, which is raised by Diameter.Msg.recv when a timeout is specificed. When unspecified, this timeout will be set to 5s. When it is desirable to wait for a message without a timeout, one must use `Msg.recv(f, None)`.
 - **Diameter.RecvMismatch**, which may be raised by scenario when receiving an unexpected message. Scenarios generated by pcap2scn.py will check code and Request flag, and raise this exception if any does not meet the expectations.
