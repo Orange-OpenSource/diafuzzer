@@ -127,7 +127,11 @@ class Msg:
     if self.version != 1: attrs['version'] = self.version
     if self.length is not None: attrs['length'] = self.length
 
-    r = ' '*offset + 'Msg('
+    r = ''
+    if model is not None:
+      r = ' '*offset + '# %s\n' % model.name
+    
+    r += ' '*offset + 'Msg('
     elms = []
     for k in ['version', 'R', 'P', 'E', 'T', 'reserved',
       'code', 'app_id']:
@@ -138,11 +142,7 @@ class Msg:
           elms.append('%s=%r' % (k, attrs[k]))
     r += ', '.join(elms)
     if 'avps' in attrs:
-      comment = ''
-      if model is not None:
-        comment = model.name
-
-      r += ', avps=[ # %s\n' % comment
+      r += ', avps=[\n'
       for a in self.avps:
         r += a.__repr__(offset+indent, indent) + ',\n'
       r += ' '*offset + ']'
@@ -360,17 +360,28 @@ class Avp:
       if getattr(self, k) is not None:
         attrs[k] = getattr(self, k)
 
+    model_avp = None
+    if hasattr(self, 'model_avp'):
+      model_avp = self.model_avp
+
     if self.V: attrs['V'] = True
     if self.M: attrs['M'] = True
     if self.P: attrs['P'] = True
     if len(self.avps) > 0: attrs['avps'] = self.avps
 
-    r = ' '*offset + 'Avp('
+    r = ''
+    if model_avp is not None:
+      r += ' '*offset + '# %s\n' % model_avp.name
+
+    r += ' '*offset + 'Avp('
     elms = []
 
     for k in ['code', 'V', 'M', 'P', 'reserved', 'vendor']:
       if k in attrs:
         elms.append('%s=%r' % (k, attrs[k]))
+    if model_avp is not None:
+      elms.append('name=%r' % model_avp.name)
+
     r += ', '.join(elms)
 
     if hasattr(self, 'var'):
