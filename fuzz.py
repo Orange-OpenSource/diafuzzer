@@ -197,11 +197,6 @@ def analyze(seq):
 
   return fuzzs
 
-def usage(arg0):
-  print('''usage: %s [--help] --scenario=<.scn file> --mode=<client|server> 
-  --local-hostname=<sut.realm> --local-realm=<realm> <target:port>''' % arg0)
-  sys.exit(1)
-
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
@@ -216,8 +211,8 @@ if __name__ == '__main__':
   parser.add_argument('--local-realm',
     help='Local Diameter realm, used in DWA as Origin-Realm, and may be used as local_realm',
     default='invalid')
-  parser.add_argument('mode', help='Role: client, clientloop or server',
-    choices=('client', 'clientloop', 'server'))
+  parser.add_argument('mode', help='Role: client, clientloop or server. When using client or clientloop, an additional positional argument describing the target IP and port, colon separated, must be used. When using server, local address and port must be given using options',
+    choices=('client', 'server'))
   parser.add_argument('scenario', help='Python scenario to run')
   parser.add_argument('remote', nargs=argparse.REMAINDER, help='Target IP:port')
 
