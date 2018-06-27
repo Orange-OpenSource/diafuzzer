@@ -10,12 +10,13 @@ import Diameter as dm
 
 from struct import pack, unpack
 from threading import Thread
-from mutate import MsgAnchor, MutateScenario
+from mutate import MsgAnchor, MutateScenario, MessageTooBig
 
 import socket as sk
 import select as sl
 import sys
 import traceback
+
 
 class Disconnected(Exception): pass
 class FramingError(Exception): pass
@@ -109,7 +110,10 @@ def dwr_handler(scenario, f, local_host, local_realm, mutator=None):
         break
 
       if mutator:
-        mutator.send(m)
+        try:
+          mutator.send(m)
+        except MessageTooBig as e:
+          return ('MessageTooBig', msgs)
       else:
         f.sendall(b)
 

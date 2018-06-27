@@ -25,7 +25,7 @@ import argparse
 import sctp
 import socket as sk
 import sys
-
+import logging
 
 
 def group_by_code(avps):
@@ -84,10 +84,10 @@ def grouped_variants(avps):
   for a in avps:
     assert(a.qualified_avp)
     qa = a.qualified_avp
-    yield (a, 0, 'absent')
-    yield (a, 64, 'present 64 times')
+    for count in (0, 64, 128, 256, 512, 1024, 2048, 4096, 8192):
+      yield (a, count, '%s present %d time(s)' % (qa.name, count))
     if qa.max:
-      yield (a, qa.max+1, 'present more than max allowed')
+      yield (a, qa.max+1, '%s present more than max allowed' % (qa.name))
 
 def non_grouped_variants(a):
   assert(a.model_avp)
@@ -121,13 +121,17 @@ def non_grouped_variants(a):
 
   yield ('', 'empty value')
 
-  for length in [3, 128+64, 8192+64]:
+  for length in [3, 128, 4096, 64000]:
     data = '\xfe' * length
     yield (data, 'Generic overflow with %d bytes' % length)
 
   for fmt in ['%n', '%-1$n', '%4096$n']:
     data = fmt * 1024
     yield (data, 'Generic overflow with format specifier %r' % fmt)
+
+
+
+
 def analyze(seq):
   fuzzs = []
   sent = 0
@@ -183,10 +187,11 @@ def analyze(seq):
           # if ma allows for stacking e.g. CCF ends with *AVP
           # then generate a deep stacked self embedded AVP :)
           if ma.allows_stacking():
-            data = a.overflow_stacking()
-            s = MutateScenario(anchor, '%s self-stacked -> %d' % (ma.name, len(data)))
-            s.act = lambda this, m, path=path, data=data: this.set_value(m, path, data)
-            fuzzs.append(s)
+            for depth in (64, 1024, 2048, 4096, 8192):
+              data = a.overflow_stacking(depth)
+              s = MutateScenario(anchor, '%s self-stacked -> %d' % (ma.name, len(data)))
+              s.act = lambda this, m, path=path, data=data: this.set_value(m, path, data)
+              fuzzs.append(s)
         else:
           for (data, description) in non_grouped_variants(a):
             s = MutateScenario(anchor, '%s %s' % (ma.name, description))
@@ -238,6 +243,8 @@ if __name__ == '__main__':
   scenario = load_scenario(args.scenario, args.local_hostname, args.local_realm)
 
 
+  logging.basicConfig(format='%(asctime)s %(message)s', level=logging.WARNING)
+
   if args.mode == 'client':
     # run once in order to capture exchanged pdus
     f = sk.socket(sk.AF_INET, sk.SOCK_STREAM, sk.IPPROTO_SCTP)
@@ -251,14 +258,15 @@ if __name__ == '__main__':
 
     (exc_info, msgs) = dwr_handler(scenario, f, args.local_hostname, args.local_realm)
     if exc_info is not None:
-      print('scenario raised: %s' % exc_info)
+      logging.warning('vanilla scenario raised: %s' % (exc_info))
+      sys.exit(1)
     f.close()
 
     for (m, is_sent) in msgs:
       Directory.tag(m)
 
     fuzzs = analyze(msgs)
-    print('generated %d scenarios of fuzzing' % len(fuzzs))
+    logging.info('generated %d scenarios of fuzzing' % len(fuzzs))
 
     for fuzz in fuzzs:
       f = sk.socket(sk.AF_INET, sk.SOCK_STREAM, sk.IPPROTO_SCTP)
@@ -270,11 +278,9 @@ if __name__ == '__main__':
         f.bind(('0.0.0.0', args.local_port))
       f.connect((host, port))
 
-      (exc_info, msgs) = dwr_handler(scenario, f, args.local_hostname, args.local_realm)
+      (exc_info, msgs) = dwr_handler(scenario, f, args.local_hostname, args.local_realm, fuzz)
       if exc_info is not None:
-        print('scenario %s raised: %s' % (fuzz.description, exc_info))
-      else:
-        print('scenario %s ok' % fuzz.description)
+        logging.warning('scenario %s raised: %s' % (fuzz.description, exc_info))
       f.close()
 
   elif args.mode == 'server':
@@ -290,22 +296,19 @@ if __name__ == '__main__':
     (f,_) = srv.accept()
     (exc_info, msgs) = dwr_handler(scenario, f, args.local_hostname, args.local_realm)
     if exc_info is not None:
-      print('scenario %s raised: %s' % (fuzz.description, exc_info))
-    else:
-      print('scenario %s ok' % fuzz.description)
+      logging.warning('vanilla scenario raised: %s' % (exc_info))
+      sys.exit(1)
     f.close()
 
     for (m, is_sent) in msgs:
       Directory.tag(m)
 
     fuzzs = analyze(msgs)
-    print('generated %d scenarios of fuzzing' % len(fuzzs))
+    logging.info('generated %d scenarios of fuzzing' % len(fuzzs))
 
     for fuzz in fuzzs:
       (f,_) = srv.accept()
       (exc_info, msgs) = dwr_handler(scenario, f, args.local_hostname, args.local_realm, fuzz)
       if exc_info is not None:
-        print('scenario %s raised: %s' % (fuzz.description, exc_info))
-      else:
-        print('scenario %s ok' % fuzz.description)
+        logging.warning('scenario %s raised: %s' % (fuzz.description, exc_info))
       f.close()

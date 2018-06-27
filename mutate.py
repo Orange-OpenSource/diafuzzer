@@ -7,10 +7,13 @@
 # license which can be found in the file 'LICENSE' in this package distribution.
 
 import Diameter as dm
+import logging
 
 from collections import namedtuple
 
 MsgAnchor = namedtuple('MsgAnchor', 'index code is_request')
+
+class MessageTooBig(Exception): pass
 
 class MutateScenario:
   def __init__(self, msg_anchor, description):
@@ -23,9 +26,10 @@ class MutateScenario:
 
     self.act = None
 
-  def bind(self, f):
+  def bind(self, f, is_tcp=False):
     assert(self.f is None)
     self.f = f
+    self.is_tcp = is_tcp
     assert(self.f is not None)
 
   def send(self, msg):
@@ -47,7 +51,11 @@ class MutateScenario:
     '''perform transmit of msg, without alteration.'''
     assert(self.f is not None)
     assert(isinstance(msg, dm.Msg))
-    self.f.sendall(msg.encode())
+    data = msg.encode()
+    if not self.is_tcp and len(data) > pow(2, 16)-1:
+      logging.warning('SCTP transport may not carry such a payload')
+      raise MessageTooBig()
+    self.f.sendall(data)
 
   def omit_msg(self, msg):
     pass
