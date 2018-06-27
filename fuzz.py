@@ -84,7 +84,7 @@ def grouped_variants(avps):
   for a in avps:
     assert(a.qualified_avp)
     qa = a.qualified_avp
-    for count in (0, 64, 128, 256, 512, 1024, 2048, 4096, 8192):
+    for count in (0, 64, 128, 256, 512, 1024, 2048, 4096):
       yield (a, count, '%s present %d time(s)' % (qa.name, count))
     if qa.max:
       yield (a, qa.max+1, '%s present more than max allowed' % (qa.name))
@@ -103,6 +103,12 @@ def non_grouped_variants(a):
 
     data = pack('!i', mx+1)
     yield (data, 'Enumerated bigger than allowed')
+
+    yield (pack('!i', -1), 'Enumerated -1')
+  elif ma.datatype == 'Unsigned32':
+    yield (pack('!I', 0xffffffff), 'Unsigned32 maximum value')
+  elif ma.datatype == 'Unsigned64':
+    yield (pack('!Q', 0xffffffffffffffff), 'Unsigned64 maximum value')
   elif ma.datatype == 'UTF8String':
     for bad in ['\x80', '\xbf', '\x80'*128]:
       yield (bad, 'UTF8String continuations')
