@@ -2,6 +2,7 @@
 
 import socket
 import struct
+import sys
 
 # Monkey patch for:
 # - SOCK_SEQPACKET
@@ -23,7 +24,24 @@ SCTP_BINDX_REM_ADDR = 2
 # under x64-64 Debian 9, it resolves to /usr/lib/x86_64-linux-gnu/libsctp.so.1
 
 import ctypes
-libsctp = ctypes.CDLL('libsctp.so')
+
+libsctp = None
+if libsctp is None:
+  try:
+    libsctp = ctypes.CDLL('libsctp.so')
+  except:
+    pass
+
+if libsctp is None:
+  try:
+    libsctp = ctypes.CDLL('libsctp.so.1')
+  except:
+    pass
+
+if libsctp is None:
+  print('could not load SCTP shared library. Will now exit')
+  sys.exit(1)
+  
 assert(libsctp is not None)
 
 real_bindx = libsctp.sctp_bindx
