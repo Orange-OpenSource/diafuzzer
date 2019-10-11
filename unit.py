@@ -19,8 +19,10 @@ from scenario import load_scenario, dwr_handler
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
+  parser.add_argument('--ipv6',
+    help='Use IPv6', action='store_true')
   parser.add_argument('--local-addresses',
-    help='Local IPv4 addresses that will the addresses used in SCTP multihoming',
+    help='Local addresses that will the addresses used in SCTP multihoming',
     default=[])
   parser.add_argument('--local-port',
     help='Local SCTP port', default=0, type=int)
@@ -33,40 +35,47 @@ if __name__ == '__main__':
   parser.add_argument('mode', help='Role: client, clientloop or server. When using client or clientloop, an additional positional argument describing the target IP and port, colon separated, must be used. When using server, local address and port must be given using options',
     choices=('client', 'clientloop', 'server'))
   parser.add_argument('scenario', help='Python scenario to run')
-  parser.add_argument('remote', nargs=argparse.REMAINDER, help='Target IP:port')
+  parser.add_argument('remote', nargs=argparse.REMAINDER, help='target_ip port')
 
   args = parser.parse_args(sys.argv[1:])
 
+  family = sk.AF_INET
+  if args.ipv6:
+    family = sk.AF_INET6
+
   if args.local_addresses:
     args.local_addresses = args.local_addresses.split(',')
+  else:
+    if family == sk.AF_INET:
+      ADDR_ANY = '0.0.0.0'
+    else:
+      ADDR_ANY = '::'
 
   # parse additional argument in client or clientloop modes
   target = None
   if args.mode in ('client', 'clientloop'):
-    if len(args.remote) != 1 or len(args.remote[0]) == 0:
+    if len(args.remote) != 2 or len(args.remote[0]) == 0:
       parser.print_help()
-      print >>sys.stderr, 'using client or clientloop modes require to specify target IP:port'
+      print >>sys.stderr, 'using client or clientloop modes require to specify target ip port'
       sys.exit(1)
 
     target = args.remote[0]
-    (host, port) = target.split(':')
-    port = int(port)
-
+    port = int(args.remote[1])
 
   # load scenario
   scenario = load_scenario(args.scenario, args.local_hostname, args.local_realm)
 
   if args.mode in ('client', 'clientloop'):
     while True:
-      f = sk.socket(sk.AF_INET, sk.SOCK_STREAM, sk.IPPROTO_SCTP)
+      f = sk.socket(family, sk.SOCK_STREAM, sk.IPPROTO_SCTP)
       if args.local_addresses:
         addrs = [(a, int(args.local_port)) for a in args.local_addresses]
-        ret = sctp.bindx(f, addrs)
+        ret = sctp.bindx(f, addrs, family)
         assert(ret == 0)
       else:
-        f.bind(('0.0.0.0', args.local_port))
+        f.bind((ADDR_ANY, args.local_port))
 
-      f.connect((host, port))
+      f.connect((target, port))
 
       (exc_info, msgs) = dwr_handler(scenario, f, args.local_hostname, args.local_realm)
       if exc_info is not None:
@@ -76,13 +85,13 @@ if __name__ == '__main__':
       if args.mode == 'client':
         break
   elif args.mode == 'server':
-    srv = sk.socket(sk.AF_INET, sk.SOCK_STREAM, sk.IPPROTO_SCTP)
+    srv = sk.socket(family, sk.SOCK_STREAM, sk.IPPROTO_SCTP)
     if args.local_addresses:
       addrs = [(a, int(args.local_port)) for a in args.local_addresses]
-      ret = sctp.bindx(srv, addrs)
+      ret = sctp.bindx(srv, addrs, family)
       assert(ret == 0)
     else:
-      srv.bind(('0.0.0.0', args.local_port))
+      srv.bind((ADDR_ANY, args.local_port))
     srv.listen(64)
 
     while True:
